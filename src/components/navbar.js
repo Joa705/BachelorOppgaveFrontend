@@ -9,7 +9,7 @@ import "../styling/navbar.css";
 
 export function Navigationbar() {
   return (
-    <Navbar bg="light" expand="lg" className="navbar">
+    <Navbar expand="lg" className="navbar">
       <Container>
         <div className="nav-logo">
           <Navbar.Brand as={Link} to="/">
@@ -41,7 +41,7 @@ export function NavigationbarLogin() {
   const { islogin, Setislogin } = useContext(UserContex);
 
   return (
-    <Navbar bg="light" expand="lg" className="navbar">
+    <Navbar expand="lg" className="navbar">
       <Container>
         <Navbar.Brand as={Link} to="/">
           <img id="navbar-logo" src={require("../asplan.png")}/>
