@@ -1,5 +1,6 @@
-# BachelorOppgave
+# BachelorOppgaveFrontend
 
-- Userfeedback system 
-- React frontend
-- Asp.net core backend
+Mission: Userfeedback system
+
+- Developed using React 
+
