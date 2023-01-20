@@ -9,6 +9,7 @@ import { UserContex } from "./components/userContex";
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Posts from "./pages/posts";
+import NotFound from "./pages/notfound";
 import "./App.css";
 
 
@@ -38,6 +39,7 @@ export default function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
             <Route path="/posts/:id" element={<Posts />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
       </UserContex.Provider>
