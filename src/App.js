@@ -8,6 +8,7 @@ import { Navigationbar, NavigationbarLogin } from "./components/navbar";
 import { UserContex } from "./components/userContex";
 import Home from "./pages/home";
 import Login from "./pages/login";
+import Posts from "./pages/posts";
 import "./App.css";
 
 
@@ -36,6 +37,7 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/posts/:id" element={<Posts />} />
           </Routes>
         </div>
       </UserContex.Provider>
