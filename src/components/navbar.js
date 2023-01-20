@@ -40,6 +40,14 @@ export function Navigationbar() {
 export function NavigationbarLogin() {
   const { islogin, Setislogin } = useContext(UserContex);
 
+  const getUser = () => {
+    let name = localStorage.getItem("username");
+
+    return (
+      <p>Hello: {name ?? "(No name)"}</p>
+    );
+  }
+
   return (
     <Navbar expand="lg" className="navbar">
       <Container>
@@ -57,8 +65,9 @@ export function NavigationbarLogin() {
             </Nav.Link>
           </Nav>
           <Nav className="mr-auto">
+            {getUser()}
             <Nav.Link as={Link} to="/" onClick={() => Setislogin(false)}>
-              Logout
+               Logout
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
