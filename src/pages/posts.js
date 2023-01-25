@@ -3,9 +3,7 @@ import { useParams } from "react-router-dom";
 
 
 function Posts() {
-    const {id} = useParams()
-
-    return <h1>This is posts {id}</h1>
+    return <h1>Posts page hvor alle posts skal vises</h1>
 }
 
 export default Posts;
