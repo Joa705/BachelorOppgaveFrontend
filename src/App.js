@@ -1,48 +1,43 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import { Navigationbar, NavigationbarLogin } from "./components/navbar";
-import { UserContex } from "./components/userContex";
-import Home from "./pages/home";
+import { AuthProvider, ProtectRouteAdmin } from "./functions/authentication";
 import Login from "./pages/login";
 import Posts from "./pages/posts";
 import NotFound from "./pages/notfound";
+import Post from "./pages/post";
+import MyPosts from "./pages/mine_posts";
+import Admin from "./pages/admin";
+import Verify from "./pages/verify";
 import "./App.css";
 
 
-const About = () => (
-  <div>
-    <h2>Category</h2>
-  </div>
-);
-
-const Contact = () => (
-  <div>
-    <h2>Products</h2>
-  </div>
-);
 
 export default function App() {
-  const [islogin, setIslogin] = useState(false);
   
   return (
     <BrowserRouter>
-      <UserContex.Provider value={{ islogin, setIslogin }}>
-        {(islogin == false)? <Navigationbar />: <NavigationbarLogin />}
+      <AuthProvider>
+        <Navigationbar />
         <div>
           <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
+            <Route exact path="/" element={<Verify />} />
+            <Route exact path="/posts" element={<Posts />} />
+            <Route exact path="/posts/mine" element={<MyPosts />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/posts/:id" element={<Posts />} />
+            <Route path="/posts/:id" element={<Post />} />
+            <Route
+              path="/admin"
+              element={
+                <ProtectRouteAdmin>
+                  <Admin />
+                </ProtectRouteAdmin>
+              }
+            />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
-      </UserContex.Provider>
+      </AuthProvider>
     </BrowserRouter>
   );
 }
