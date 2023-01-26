@@ -8,24 +8,58 @@ import NotFound from "./pages/notfound";
 import Post from "./pages/post";
 import MyPosts from "./pages/mine_posts";
 import Admin from "./pages/admin";
-import Verify from "./pages/verify";
+import Verify from "./components/verify";
 import "./App.css";
-
-
+import { MsalProvider, useMsal} from "@azure/msal-react";
+import { Configuration,  PublicClientApplication } from "@azure/msal-browser";
+import { AzureConfig } from "./config";
+ 
 
 export default function App() {
+/* 
+  const pca = new PublicClientApplication({
+    auth: {
+      clientId : AzureConfig.appId,
+      redirectUri : AzureConfig.redirectUri,
+      authority : AzureConfig.authority
+    },
+    cache: {
+      cacheLocation : "sessionStorage",
+      storeAuthStateInCookie: true
+    }
+  })  
+
+  const {instance} = useMsal();
+  const LoginTest = (pca) => {
+    pca.loginPopup(
+      {
+        scopes: AzureConfig.scopes,
+        prompt : "select_account"
+      }
+    )
+  }
   
   return (
+    <>
+    <MsalProvider instance={pca}>
+      <button onClick={() => instance.loginPopup(pca)}>Test</button>
+    </MsalProvider> 
+    </>
+  ) */
+  
+
+   return (
     <BrowserRouter>
       <AuthProvider>
         <Navigationbar />
+        <Verify />
         <div>
           <Routes>
-            <Route exact path="/" element={<Verify />} />
+            <Route exact path="/" element={<Posts />} />
             <Route exact path="/posts" element={<Posts />} />
             <Route exact path="/posts/mine" element={<MyPosts />} />
-            <Route path="/login" element={<Login />} />
             <Route path="/posts/:id" element={<Post />} />
+            <Route path="/login" element={<Login />} />
             <Route
               path="/admin"
               element={
@@ -39,5 +73,5 @@ export default function App() {
         </div>
       </AuthProvider>
     </BrowserRouter>
-  );
+  ); 
 }

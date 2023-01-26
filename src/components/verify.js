@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
 import { UseAuth } from "../functions/authentication";
 import Cookies from "universal-cookie";
 
 function Verify() {
   const { isVerified } = UseAuth();
-  const navigate = useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
@@ -16,13 +14,9 @@ function Verify() {
         isVerified(cookies.get("name"));
       }
     }, 1000);
-
-    setTimeout(() => {
-      navigate("/posts");
-    }, 500);
   }, []);
 
-  return <p>Loading..</p>;
+  return <></>;
 }
 
 export default Verify;

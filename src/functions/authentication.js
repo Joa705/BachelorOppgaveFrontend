@@ -4,10 +4,10 @@ import Cookies from 'universal-cookie';
 
 
 export function ProtectRouteAdmin({ children }) {
-  const { token } = useContext(AuthContext);
+  const { admin } = useContext(AuthContext);
 
   // Add logic for verifying that the user is a admin
-  if (!token) {
+  if (!admin) {
     return <Navigate to="/" replace />;
   }
 
@@ -16,7 +16,7 @@ export function ProtectRouteAdmin({ children }) {
 
 export const AuthContext = createContext(null);
 
-export function AuthProvider({ children, init }) {
+export function AuthProvider({ children }) {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -63,7 +63,6 @@ export function AuthProvider({ children, init }) {
     isVerified: isVerified
   };
 
-  if (init) return value;
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
