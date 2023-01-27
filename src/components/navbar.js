@@ -3,11 +3,13 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import React, { useContext } from "react";
-import { UseAuth } from "../functions/authentication";
+import { UseAuth, SignInHandler, SignOutHandler } from "../functions/authentication";
 import "../styling/navbar.css";
+import { useMsal } from "@azure/msal-react";
 
 export function Navigationbar() {
-  const { token, admin, userName, onLogout } = UseAuth();
+  const { token, admin, userName, onLogin, onLogout} = UseAuth();
+  const {instance, accounts} = useMsal();
 
   return (
     <Navbar expand="lg" className="navbar">
@@ -35,20 +37,20 @@ export function Navigationbar() {
             )}
           </Nav>
           <Nav className="mr-auto">
-            {token ? (
+            {(token) ? (
               <>
-                <Nav.Link disabled style={{color: "black"}}>Hei ({userName})</Nav.Link>
+                <Nav.Link disabled style={{color: "black"}}>Hei, ({userName})</Nav.Link>
                 <Nav.Link
                   as={Link}
                   to="/"
-                  onClick={onLogout}
+                  onClick={() => SignOutHandler(instance, onLogout)}
                 >
                    Logout
                 </Nav.Link>
               </>
 
             ) : (
-              <Nav.Link as={Link} to="/login">
+              <Nav.Link onClick={() => SignInHandler(instance, onLogin)}>
                 Login
               </Nav.Link>
             )}

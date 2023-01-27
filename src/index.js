@@ -4,15 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import { AuthProvider } from './functions/authentication';
+import { pcaInstance } from './functions/authentication';
+import { MsalProvider} from "@azure/msal-react";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-
+    <MsalProvider instance={pcaInstance}>
      <App />
-
+    </MsalProvider>
   </React.StrictMode>
 );
 

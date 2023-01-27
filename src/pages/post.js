@@ -11,7 +11,7 @@ function Post() {
          <h2>Dette er for eksempel post med id: {id}</h2>
 
          {admin? 
-            <p>DU er en admin {userName}</p> 
+            <button>Delete post</button>
             :
             <p>DU er ikke admin</p>
         }

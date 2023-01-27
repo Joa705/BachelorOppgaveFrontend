@@ -1,16 +1,50 @@
 import React, { useState, useContext, createContext } from "react";
 import { Navigate, useNavigate, useLocation } from "react-router-dom";
 import Cookies from 'universal-cookie';
+import { PublicClientApplication } from "@azure/msal-browser";
+import { AzureConfig } from "../config";
+import {
+  useMsal,
+  AuthenticatedTemplate,
+  UnauthenticatedTemplate,
+} from "@azure/msal-react";
+
+const configs = {auth: {
+    clientId : AzureConfig.appId,
+    redirectUri : AzureConfig.redirectUri,
+    authority : AzureConfig.authority
+  }};
+
+export const pcaInstance = new PublicClientApplication(configs)
+
+
+export async function SignOutHandler(instance, onLogout) {
+  const logoutRequest = {
+    account: instance.getAccountByHomeId(),
+    mainWindowRedirectUri: "http://localhost:3000",
+    postLogoutRedirectUri: "http://localhost:3000",
+  };
+  await instance.logoutPopup(logoutRequest).then(() => onLogout())
+  
+}
+
+export async function SignInHandler(instance, onLogin) {
+  const loginRequest = {
+    scopes: AzureConfig.scopes
+   };
+  await instance.loginPopup()
+  .then((res) =>{
+    console.log(res.account)
+    onLogin(res.account.name ?? "none")
+    })
+ 
+}
 
 
 export function ProtectRouteAdmin({ children }) {
   const { admin } = useContext(AuthContext);
-
   // Add logic for verifying that the user is a admin
-  if (!admin) {
-    return <Navigate to="/" replace />;
-  }
-
+  if (!admin) return <Navigate to="/" replace />;
   return children;
 }
 
@@ -36,19 +70,11 @@ export function AuthProvider({ children }) {
     setToken(true);
     setAdmin(true);
     setUserName(name);
-
-    const cookies = new Cookies();
-    cookies.set("token", true);
-    cookies.set("name", name);
-
-    const origin = location.state?.from?.pathname || "/posts";
-    navigate(origin);
+    navigate("/");
+    
   };
 
   const handleLogout = () => {
-    const cookies = new Cookies();
-    cookies.remove("token");
-    cookies.remove("name");
     setToken(null);
     setAdmin(false);
     setUserName("");
