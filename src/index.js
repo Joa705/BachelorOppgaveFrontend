@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { pcaInstance } from './functions/authentication';
 import { MsalProvider} from "@azure/msal-react";
-import TestSidebar from "./Test";
+import TestSidebar from "./components/sidebar";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

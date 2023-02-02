@@ -14,15 +14,15 @@ import Post from "./pages/post";
 import MyPosts from "./pages/mine_posts";
 import Admin from "./pages/admin";
 import "./App.css";
-import TestSidebar from "./Test";
+import TestSidebar, {SidebarProvider, UseSidebar} from "./components/sidebar";
+import './styling/sidebar.css';
 
-export default function App() {
+function MyRoutes() {
+  const {open} = UseSidebar();
   return (
-    <BrowserRouter>
-      <AuthProvider>
-        <TestSidebar />
-        <div className="mainContent">
-        <Navigationbar />
+    <div className="routerdiv" style={{
+      marginLeft: open ? '240px' : '65px'
+    }}>
           <Routes>
             <Route exact path="/" element={<Posts />} />
             <Route exact path="/posts" element={<Posts />} />
@@ -39,6 +39,19 @@ export default function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
+  )
+}
+
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AuthProvider>
+        <SidebarProvider>
+        <TestSidebar />
+        <Navigationbar/>
+          <MyRoutes/>
+        </SidebarProvider>
       </AuthProvider>
     </BrowserRouter>
   );
