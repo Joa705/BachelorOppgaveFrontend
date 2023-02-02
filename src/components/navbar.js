@@ -41,8 +41,6 @@ export function Navigationbar() {
               <>
                 <Nav.Link disabled style={{color: "black"}}>Hei, ({userName})</Nav.Link>
                 <Nav.Link
-                  as={Link}
-                  to="/"
                   onClick={() => SignOutHandler(instance, onLogout)}
                 >
                    Logout

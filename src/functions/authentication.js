@@ -36,8 +36,7 @@ export async function SignInHandler(instance, onLogin) {
   .then((res) =>{
     console.log(res.account)
     onLogin(res.account.name ?? "none")
-    })
- 
+  })
 }
 
 
@@ -58,14 +57,6 @@ export function AuthProvider({ children }) {
   const [admin, setAdmin] = useState(false);
   const [userName, setUserName] = useState("");
 
-  const isVerified = (name) => {
-    setToken(true);
-    setAdmin(true);
-    setUserName(name);
-
-    
-  }
-
   const handleLogin = (name) => {
     setToken(true);
     setAdmin(true);
@@ -78,6 +69,7 @@ export function AuthProvider({ children }) {
     setToken(null);
     setAdmin(false);
     setUserName("");
+    navigate("/");
   };
 
   const value = {
@@ -85,8 +77,7 @@ export function AuthProvider({ children }) {
     admin,
     userName,
     onLogin: handleLogin,
-    onLogout: handleLogout,
-    isVerified: isVerified
+    onLogout: handleLogout
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
