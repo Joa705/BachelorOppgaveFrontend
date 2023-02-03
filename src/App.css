@@ -1,4 +1,8 @@
-.mainContent {
-    border: 2px solid red;
-    margin-left: 65px;
+.main-Content {
+    display: flex;
+    border: 1.5px solid lightgray;
+    border-top-left-radius: 15px;
+    margin-top: 5px;
+    padding: 10px;
+    
 }

@@ -34,7 +34,7 @@ export async function SignInHandler(instance, onLogin) {
    };
   await instance.loginPopup()
   .then((res) =>{
-    console.log(res.account)
+    console.log(JSON.stringify(res))
     onLogin(res.account.name ?? "none")
   })
 }

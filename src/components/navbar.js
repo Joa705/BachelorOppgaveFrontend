@@ -11,7 +11,6 @@ import { UseSidebar } from "./sidebar";
 export function Navigationbar() {
   const { token, admin, userName, onLogin, onLogout} = UseAuth();
   const {instance, accounts} = useMsal();
-  const {open} = UseSidebar();
 
   return (
     <Navbar expand="lg" className="navbar">
