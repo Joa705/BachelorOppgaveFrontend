@@ -2,12 +2,8 @@ import React, { useState, useContext, createContext } from "react";
 import { Navigate, useNavigate, useLocation } from "react-router-dom";
 import Cookies from 'universal-cookie';
 import { PublicClientApplication } from "@azure/msal-browser";
-import { AzureConfig } from "../config";
-import {
-  useMsal,
-  AuthenticatedTemplate,
-  UnauthenticatedTemplate,
-} from "@azure/msal-react";
+import { AzureConfig, UrlConfig } from "../config";
+
 
 const configs = {auth: {
     clientId : AzureConfig.appId,
@@ -34,9 +30,21 @@ export async function SignInHandler(instance, onLogin) {
    };
   await instance.loginPopup()
   .then((res) =>{
-    console.log(JSON.stringify(res))
-    onLogin(res.account.name ?? "none")
-  })
+    console.log(res);
+
+    const data = new FormData();
+    data.append('id', res.account.localAccountId);
+    data.append('name', res.account.name);
+    data.append('email', res.account.username)
+
+    // store user in backend
+    fetch(UrlConfig.serverUrl + "/azure", {
+      method: 'Post',
+      body: data
+    }).catch((e) => console.log(e))
+
+    onLogin(res.account.localAccountId, res.account.name)
+  }).catch((e) => console.log(e))
 }
 
 
@@ -57,8 +65,8 @@ export function AuthProvider({ children }) {
   const [admin, setAdmin] = useState(false);
   const [userName, setUserName] = useState("");
 
-  const handleLogin = (name) => {
-    setToken(true);
+  const handleLogin = (token, name) => {
+    setToken(token);
     setAdmin(true);
     setUserName(name);
     navigate("/");
