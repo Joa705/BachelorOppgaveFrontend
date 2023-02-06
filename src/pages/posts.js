@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import "../styling/posts.css";
 
 function Posts() {
-    const [displayData, setDisplayData] = useState([]);
+  const [displayData, setDisplayData] = useState([]);
 
   async function getData() {
     await fetch("http://localhost:5296/WeatherForecast")
@@ -12,18 +12,33 @@ function Posts() {
         console.log(res);
       });
   }
+
   return (
     <>
       <h1>Posts page hvor alle posts skal vises</h1>
       <button onClick={() => getData()}>Get data</button>
 
-      {displayData.map((res) => {
-        return(
-            <div className="dataDiv">
-                <p>{res.date}</p>
+      <div className="main-posts">
+        {
+        displayData.map((res) => {
+          return (
+            <div className={"data-posts post-" + res.weatherId}>
+              <div className="data-items-posts">
+                <p>Date: {res.date}</p>
+              </div>
+              <div className="data-items-posts">
+                <p>TempC: {res.temperatureC}</p>
+              </div>
+              <div className="data-items-posts">
+                <p>TempF: {res.temperatureF}</p>
+              </div>
+              <div className="data-items-posts">
+                <p>Summary: {res.summary}</p>
+              </div>
             </div>
-        )
-      })}
+          );
+        })}
+      </div>
     </>
   );
 }
