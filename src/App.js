@@ -1,22 +1,35 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import { Navigationbar, NavigationbarLogin } from "./components/navbar";
-import { AuthProvider, ProtectRouteAdmin, SignInHandler, SignoutHandler } from "./functions/authentication";
-import Login from "./pages/login";
+import { Navigationbar } from "./components/navbar";
+import { AuthProvider, ProtectRouteAdmin } from "./functions/authentication";
 import Posts from "./pages/posts";
 import NotFound from "./pages/notfound";
 import Post from "./pages/post";
 import MyPosts from "./pages/mine_posts";
 import Admin from "./pages/admin";
 import "./App.css";
+import NavigationSidebar from "./components/sidebar";
+import "./styling/sidebar.css";
 
 export default function App() {
+  const [expandSidebar, setExpandSidebar] = useState(false);
 
-   return (
+  const handleExpandSidebar = () => {
+    console.log(expandSidebar ? "Closing" : "Expanding")
+    setExpandSidebar(!expandSidebar);
+  }
+
+  return (
     <BrowserRouter>
       <AuthProvider>
         <Navigationbar />
-        <div>
+        <NavigationSidebar handleExpandSidebar={handleExpandSidebar}/>
+        <div
+          className="main-Content"
+          style={{
+            marginLeft: expandSidebar ? "245px" : "70px",
+          }}
+        >
           <Routes>
             <Route exact path="/" element={<Posts />} />
             <Route exact path="/posts" element={<Posts />} />
@@ -35,5 +48,5 @@ export default function App() {
         </div>
       </AuthProvider>
     </BrowserRouter>
-  ); 
+  );
 }

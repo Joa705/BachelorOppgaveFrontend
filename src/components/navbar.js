@@ -6,6 +6,7 @@ import React, { useContext } from "react";
 import { UseAuth, SignInHandler, SignOutHandler } from "../functions/authentication";
 import "../styling/navbar.css";
 import { useMsal } from "@azure/msal-react";
+import { UseSidebar } from "./sidebar";
 
 export function Navigationbar() {
   const { token, admin, userName, onLogin, onLogout} = UseAuth();
@@ -19,9 +20,8 @@ export function Navigationbar() {
             <img id="navbar-logo" src={require("../asplan.png")} />
           </Navbar.Brand>
         </div>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+
+         {/*  <Nav className="me-auto">
             <Nav.Link as={Link} to="/posts">
               Posts
             </Nav.Link>
@@ -35,14 +35,12 @@ export function Navigationbar() {
             ) : (
               ""
             )}
-          </Nav>
+          </Nav> */}
           <Nav className="mr-auto">
             {(token) ? (
               <>
                 <Nav.Link disabled style={{color: "black"}}>Hei, ({userName})</Nav.Link>
                 <Nav.Link
-                  as={Link}
-                  to="/"
                   onClick={() => SignOutHandler(instance, onLogout)}
                 >
                    Logout
@@ -55,7 +53,7 @@ export function Navigationbar() {
               </Nav.Link>
             )}
           </Nav>
-        </Navbar.Collapse>
+
       </Container>
     </Navbar>
   );

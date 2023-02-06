@@ -1,6 +1,9 @@
 .navbar {
-    min-height: 75px;
+    min-height: 65px;
     background-color: #f0f4e3 !important;
+    max-height: 65px !important;
+    border-bottom: 1px solid lightgray;
+
 }
 #navbar-logo {
     width: 120px;
