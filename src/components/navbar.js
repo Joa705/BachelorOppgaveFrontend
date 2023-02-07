@@ -17,7 +17,13 @@ export function Navigationbar() {
       <Container>
         <div className="nav-logo">
           <Navbar.Brand as={Link} to="/posts">
-            <img id="navbar-logo" src={require("../asplan.png")} />
+           <img id="navbar-logo" src={require("../navn.png")} /> 
+          </Navbar.Brand>
+        </div>
+
+        <div className="nav-logo">
+          <Navbar.Brand as={Link} to="/posts">
+           <img id="navbar-logo-second" src={require("../symbol.png")} /> 
           </Navbar.Brand>
         </div>
 
@@ -49,7 +55,7 @@ export function Navigationbar() {
 
             ) : (
               <Nav.Link onClick={() => SignInHandler(instance, onLogin)}>
-                Login
+                <button type="button" class="btn btn-success">Logg inn</button>
               </Nav.Link>
             )}
           </Nav>

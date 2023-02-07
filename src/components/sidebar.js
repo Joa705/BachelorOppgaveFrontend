@@ -24,11 +24,11 @@ export default function NavigationSidebar(props) {
     <SideNav.Nav defaultSelected="/">
       <NavItem eventKey="/posts">
         <NavIcon><i><MdForum  style={{fontSize: "25px"}} /></i></NavIcon>
-        <NavText>Posts</NavText>
+        <NavText>Innlegg</NavText>
       </NavItem>
       <NavItem eventKey="/posts/mine">
         <NavIcon><i><MdOutlineForum  style={{fontSize: "25px"}} /></i></NavIcon>
-        <NavText>Mine Posts</NavText>
+        <NavText>Mine Innlegg</NavText>
       </NavItem>
       {admin ? 
         <NavItem eventKey="/admin">
