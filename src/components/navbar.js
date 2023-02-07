@@ -49,7 +49,7 @@ export function Navigationbar() {
                 <Nav.Link
                   onClick={() => SignOutHandler(instance, onLogout)}
                 >
-                   Logout
+                   <button type="button" class="btn btn-success">Logg ut</button>
                 </Nav.Link>
               </>
 
