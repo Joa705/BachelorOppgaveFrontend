@@ -55,7 +55,7 @@ export function Navigationbar() {
 
             ) : (
               <Nav.Link onClick={() => SignInHandler(instance, onLogin)}>
-                <button type="button" class="btn btn-success">Logg inn</button>
+                <button type="button" class="btn btn-success">Logg inn med Azure AD</button>
               </Nav.Link>
             )}
           </Nav>

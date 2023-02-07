@@ -32,8 +32,8 @@ export default function App() {
           }}
         >
           <Routes>
-          <Route exact path="/hjemmeside" element={<Hjemmeside />} />
-            <Route exact path="/" element={<Posts />} />
+            <Route exact path="/" element={<Hjemmeside />} />
+            <Route exact path="/hjemmeside" element={<Hjemmeside />} />
             <Route exact path="/posts" element={<Posts />} />
             <Route exact path="/posts/mine" element={<MyPosts />} />
             <Route path="/posts/:id" element={<Post />} />

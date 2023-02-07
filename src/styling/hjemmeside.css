@@ -1,6 +1,33 @@
-.hjemmeside{
-    height: 50vh;
+.tittel{
+    height: 20vh;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    color: #1d3c34;
+    position: absolute;
+    top: 25%;
+    bottom: 50%;
+    left: 40%;
+
+}
+
+.undertittel{
+    height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #F6F8F1;
+    position: absolute;
+    top: 12%;
+    bottom: 50%;
+    left: 30%;
 }
+
+.picture{
+    max-width: 100%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
