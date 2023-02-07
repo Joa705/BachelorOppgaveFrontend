@@ -1,11 +1,14 @@
 .main-Content {
     display: flex;
+
+   /* 
     border: 1.5px solid lightgray;
     border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
+    border-bottom-left-radius: 15px; 
     margin-top: 5px;
-    padding: 10px;
+    padding: 10px; */
     flex-direction: column;
     overflow: hidden;
     height: 90vh;
+    background-color: #f0f4e3 !important;
 }
