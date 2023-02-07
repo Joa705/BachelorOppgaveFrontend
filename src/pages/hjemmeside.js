@@ -12,8 +12,7 @@ import asplan from "../illustrasjon.png"
 
 function Hjemmeside() {
     return (
-      <div className="">
-        
+      <div className="hjemmeside-container">
         <h1 className="tittel">User Feedback System</h1>
         <h5 className="undertittel">Registrer din tilbakemelding av våre tjenester utvilket av Asplan Viak</h5>
         <img src={asplan} alt="asplanviak" class="picture"/>
