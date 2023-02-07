@@ -16,7 +16,7 @@ export function Navigationbar() {
     <Navbar expand="lg" className="navbar">
       <Container>
         <div className="nav-logo">
-          <Navbar.Brand as={Link} to="/posts">
+          <Navbar.Brand as={Link} to="/hjemmeside">
            <img id="navbar-logo" src={require("../navn.png")} /> 
           </Navbar.Brand>
         </div>
