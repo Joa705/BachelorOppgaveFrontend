@@ -1,6 +1,6 @@
 import "../styling/hjemmeside.css";
 import React from 'react';
-import asplan from "../asplan_viak_1.jpg"
+import asplan from "../illustrasjon.png"
 
  /*export default function Hjemmeside() {
     return (
