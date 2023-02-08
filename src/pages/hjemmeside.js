@@ -22,16 +22,8 @@ function Hjemmeside() {
         <h5 className="undertittel">
           Registrer din tilbakemelding av våre tjenester utvilket av Asplan Viak
         </h5>
-      </div>
-      <div
-        className="image-container image-2-style"
-        style={{ backgroundImage: `url(${viak})` }}
-      >
-        <h1 className="tittel">User Feedback System</h1>
-        <h5 className="undertittel">
-          Registrer din tilbakemelding av våre tjenester utvilket av Asplan Viak
-        </h5>
-      </div>
+      </div> 
+      
     </div>
   );
 }
