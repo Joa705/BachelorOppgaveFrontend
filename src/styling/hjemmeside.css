@@ -60,7 +60,7 @@
   overflow: hidden;
 }
 
-/* .footer h2{
+ .footer h2{
     max-width: 500px;
     margin: 10px auto;
     line-height: 28px;
@@ -74,7 +74,15 @@
     line-height: 28px;
     font-size: 15px;
     color: #b7dc8f;
-} */
+} 
+
+.footer h4{
+    max-width: 500px;
+    margin: 10px auto;
+    line-height: 10px;
+    font-size: 10px;
+    color: #b7dc8f;
+} 
 
 .col-sm {
     border: 1px solid red;

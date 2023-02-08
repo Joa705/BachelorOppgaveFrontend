@@ -47,7 +47,8 @@ function Hjemmeside() {
 
       <div className="footer">
         <h2>Kontaktinformasjon</h2>
-        <h3>Har du flere spørsmål, ta gjerne kontakt med oss!</h3>
+        <h3>Kontakt oss på redaksjon@asplanviak.no!</h3>
+        <h4>Laget av UiA studenter for Asplan Viak © 2023</h4>
       </div>
     </>
   );
