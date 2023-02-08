@@ -3,7 +3,7 @@
     background-color: #f0f4e3 !important;
     max-height: 65px !important;
     z-index: 999;
-    position: absolute;
+    position: relative;
 }
 
 #navbar-logo {

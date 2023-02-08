@@ -24,13 +24,16 @@ export default function App() {
     <BrowserRouter>
       <AuthProvider>
         <Navigationbar />
-        <NavigationSidebar handleExpandSidebar={handleExpandSidebar}/>
+
+
+
         <div
-          className="main-Content"
+          className="test"
           style={{
             marginLeft: expandSidebar ? "240px" : "64px",
           }}
         >
+          <NavigationSidebar handleExpandSidebar={handleExpandSidebar}/>
           <Routes>
             <Route exact path="/" element={<Hjemmeside />} />
             <Route exact path="/hjemmeside" element={<Hjemmeside />} />
