@@ -1,17 +1,33 @@
 .navbar {
-    min-height: 10vh;
+    min-height: 65px;
     background-color: #f0f4e3 !important;
-    max-height: 10vh !important;
-
-
+    max-height: 65px !important;
+    z-index: 999;
+    position: absolute;
 }
-#navbar-logo {
-    width: 75px;
-    height: 54px;
 
+#navbar-logo {
+    height: 55px;
 }
 #navbar-logo-second {
-    width: 80px;
-    height: 54px;
+    height: 55px;
+}
 
+.login-button {
+    display: block;
+}
+
+.login-icon {
+    display: none;
+}
+
+@media only screen and (max-width: 1000px) {
+    .login-button {
+        display: none;
+    }
+
+    .login-icon {
+        display: block;
+    }
+    
 }

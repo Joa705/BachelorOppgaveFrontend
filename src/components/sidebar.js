@@ -38,7 +38,6 @@ export default function NavigationSidebar(props) {
        : 
        ""
       }
-     
     </SideNav.Nav>
 
   </SideNav>
