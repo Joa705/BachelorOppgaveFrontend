@@ -23,7 +23,12 @@ function Hjemmeside() {
           Registrer din tilbakemelding av våre tjenester utvilket av Asplan Viak
         </h5>
       </div> 
-      
+      <div class="row">
+    <div class="col">1. Enkel å komme i gang. Ingen registrering, logg inn med Azure AD</div>
+    <div class="col">2. Registrer tilbakemelding av din opplevelse av våre systemer</div>
+    <div class="col">3. Velg mellom ris, ros og forslag til ny funksjonalitet</div>
+    <div class="col">4. Du vil få svar av en av våre administratorer</div>
+  </div>
     </div>
   );
 }
