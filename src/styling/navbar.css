@@ -4,6 +4,7 @@
     max-height: 65px !important;
     z-index: 999;
     position: relative;
+    border-bottom: 1px solid gray;
 }
 
 #navbar-logo {
