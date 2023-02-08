@@ -5,6 +5,7 @@ import { AuthProvider, ProtectRouteAdmin } from "./functions/authentication";
 import Posts from "./pages/posts";
 import NotFound from "./pages/notfound";
 import Post from "./pages/post";
+import Hjemmeside from "./pages/hjemmeside";
 import MyPosts from "./pages/mine_posts";
 import Admin from "./pages/admin";
 import "./App.css";
@@ -23,15 +24,19 @@ export default function App() {
     <BrowserRouter>
       <AuthProvider>
         <Navigationbar />
-        <NavigationSidebar handleExpandSidebar={handleExpandSidebar}/>
+
+
+
         <div
-          className="main-Content"
+          className="test"
           style={{
-            marginLeft: expandSidebar ? "245px" : "70px",
+            marginLeft: expandSidebar ? "240px" : "64px",
           }}
         >
+          <NavigationSidebar handleExpandSidebar={handleExpandSidebar}/>
           <Routes>
-            <Route exact path="/" element={<Posts />} />
+            <Route exact path="/" element={<Hjemmeside />} />
+            <Route exact path="/hjemmeside" element={<Hjemmeside />} />
             <Route exact path="/posts" element={<Posts />} />
             <Route exact path="/posts/mine" element={<MyPosts />} />
             <Route path="/posts/:id" element={<Post />} />

@@ -1,0 +1,95 @@
+.hjemmeside-container {
+    height: 85%;
+    overflow: scroll;
+}
+
+.image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
+    position: relative;
+}
+
+.image-style {
+    background-size: contain;
+    background-repeat: no-repeat, repeat;
+}
+
+.image-2-style {
+    background-size: cover;
+    background-repeat: no-repeat, repeat;
+}
+
+
+.tittel{
+/*     height: 14vh;
+    display:flex;
+    align-items: center;
+    justify-content: center; */
+    color: #1d3c34;
+ /*    position: absolute;
+    top: 25%;
+    bottom: 50%;
+    left: 40%;  */
+    position: absolute;
+    top: 28%;
+    
+}
+
+
+.undertittel{
+/*      display: flex;
+    align-items: center;
+    justify-content: center; */
+    color: #0d5031;
+ /*    position: absolute;
+    top: 65%;
+    bottom: 50%;
+    left: 30%;  */
+    position: absolute;
+    top: 65%;
+}
+
+
+.footer{
+  background-color: #1d3c34;
+  height : 15%;
+  max-height: 15%;
+  overflow: hidden;
+}
+
+ .footer h2{
+    max-width: 500px;
+    margin: 10px auto;
+    line-height: 28px;
+    font-size: 25px;
+    color: #b7dc8f;
+}
+
+.footer h3{
+    max-width: 500px;
+    margin: 10px auto;
+    line-height: 28px;
+    font-size: 15px;
+    color: #b7dc8f;
+} 
+
+.footer h4{
+    max-width: 500px;
+    margin: 10px auto;
+    line-height: 10px;
+    font-size: 10px;
+    color: #b7dc8f;
+} 
+
+.col-sm {
+    border: 1px solid red;
+}
+
+@media (max-width: 800px) {
+    .col-sm {
+        padding: 50px !important;
+    }
+}

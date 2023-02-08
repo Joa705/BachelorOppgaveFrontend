@@ -1,17 +1,60 @@
+/* .navbar {
+    min-height: 65px;
+    background-color: #f0f4e3 !important;
+    max-height: 65px !important;
+    z-index: 999;
+    position: relative;
+    border-bottom: 1px solid gray;
+}
+
+.navbar-logo {
+    height: 55px;
+}
+#navbar-logo-second {
+    height: 55px;
+}
+
+.login-button {
+    display: block;
+}
+
+.login-icon {
+    display: none;
+}
+
+@media only screen and (max-width: 1000px) {
+    .login-button {
+        display: none;
+    }
+
+    .login-icon {
+        display: block;
+    }
+    
+} */
+
 .navbar {
     min-height: 65px;
     background-color: #f0f4e3 !important;
     max-height: 65px !important;
-    border-bottom: 1px solid lightgray;
-
+    z-index: 999;
+    position: relative;
+    border-bottom: 1px solid gray;
 }
-#navbar-logo {
-    width: 75px;
-    height: 54px;
+
+.navbar-logo {
+    height: 55px;
 }
-#navbar-logo-second {
-    width: 80px;
-    height: 54px;
 
+.navbar {
+    max-height: 65px;
+}
 
+.azure-btn {
+    color: #0d5031 !important;
+    border-color: #0d5031 !important;
+}
+
+.azure-btn:hover {
+    background-color: green !important;
 }
