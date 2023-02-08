@@ -1,5 +1,5 @@
 .hjemmeside-container {
-    height: 100%;
+    height: 85%;
     overflow: scroll;
 }
 
@@ -54,17 +54,13 @@
 
 
 .footer{
-    background-color: #1d3c34;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: auto;
-    width: auto;
-
+  background-color: #1d3c34;
+  height : 15%;
+  max-height: 15%;
+  overflow: hidden;
 }
 
-.footer h2{
+/* .footer h2{
     max-width: 500px;
     margin: 10px auto;
     line-height: 28px;
@@ -78,5 +74,14 @@
     line-height: 28px;
     font-size: 15px;
     color: #b7dc8f;
+} */
+
+.col-sm {
+    border: 1px solid red;
 }
 
+@media (max-width: 800px) {
+    .col-sm {
+        padding: 50px !important;
+    }
+}

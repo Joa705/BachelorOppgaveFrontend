@@ -1,4 +1,4 @@
-.navbar {
+/* .navbar {
     min-height: 65px;
     background-color: #f0f4e3 !important;
     max-height: 65px !important;
@@ -7,7 +7,7 @@
     border-bottom: 1px solid gray;
 }
 
-#navbar-logo {
+.navbar-logo {
     height: 55px;
 }
 #navbar-logo-second {
@@ -31,4 +31,30 @@
         display: block;
     }
     
+} */
+
+.navbar {
+    min-height: 65px;
+    background-color: #f0f4e3 !important;
+    max-height: 65px !important;
+    z-index: 999;
+    position: relative;
+    border-bottom: 1px solid gray;
+}
+
+.navbar-logo {
+    height: 55px;
+}
+
+.navbar {
+    max-height: 65px;
+}
+
+.azure-btn {
+    color: #0d5031 !important;
+    border-color: #0d5031 !important;
+}
+
+.azure-btn:hover {
+    background-color: green !important;
 }

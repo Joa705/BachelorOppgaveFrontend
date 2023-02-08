@@ -19,8 +19,19 @@ function Posts() {
       <button onClick={() => getData()}>Get data</button>
 
       <div className="main-posts">
-        {
-        displayData.map((res) => {
+        <div className="container">
+          <div className="row">
+            <div className="col-sm">One of three columns</div>
+            <div className="col-sm">One of three columns</div>
+            <div className="col-sm">One of three columns</div>
+          </div>
+          <div class="d-flex flex-row-reverse">
+            <div class="p-2">Flex item 1</div>
+            <div class="p-2">Flex item 2</div>
+            <div class="p-2">Flex item 3</div>
+          </div>
+        </div>
+        {displayData.map((res) => {
           return (
             <div className={"data-posts post-" + res.weatherId}>
               <div className="data-items-posts">

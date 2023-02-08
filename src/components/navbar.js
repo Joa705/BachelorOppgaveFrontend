@@ -1,7 +1,7 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useContext } from "react";
 import {
   UseAuth,
@@ -15,6 +15,29 @@ import { RiLoginCircleFill } from "react-icons/ri";
 export function Navigationbar() {
   const { token, admin, userName, onLogin, onLogout } = UseAuth();
   const { instance, accounts } = useMsal();
+
+  const navigate = useNavigate();
+  return (
+    <nav class="navbar navbar-expand-lg">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="navbar-brand" href="#" onClick={()=> navigate("/")}>
+            <img className="navbar-logo" src={require("../navn.png")} />
+          </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav mx-auto">
+        <img className="navbar-logo" src={require("../symbol.png")} onClick={()=> navigate("/")}/>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <button class="azure-btn btn btn-sm btn-outline-secondary mr-2" type="button">
+            Logg inn med Azure AD
+          </button>
+        </li>
+      </ul>
+    </nav>
+  );
 
   return (
     <Navbar expand="lg" className="navbar">
@@ -62,10 +85,7 @@ export function Navigationbar() {
             <>
               <Nav.Link onClick={() => SignInHandler(instance, onLogin)}>
                 <div className="login-button">
-                  <button
-                    type="button"
-                    className="btn btn-success"
-                  >
+                  <button type="button" className="btn btn-success">
                     Logg inn med Azure AD
                   </button>
                 </div>
@@ -73,9 +93,9 @@ export function Navigationbar() {
 
               <Nav.Link onClick={() => SignInHandler(instance, onLogin)}>
                 <div className="login-icon">
-                <i >
-                  <RiLoginCircleFill style={{ fontSize: "25px" }} />
-                </i>
+                  <i>
+                    <RiLoginCircleFill style={{ fontSize: "25px" }} />
+                  </i>
                 </div>
               </Nav.Link>
             </>
