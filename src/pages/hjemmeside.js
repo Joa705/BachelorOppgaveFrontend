@@ -1,8 +1,9 @@
 import "../styling/hjemmeside.css";
-import React from 'react';
-import asplan from "../illustrasjon.png"
+import React from "react";
+import asplan from "../illustrasjon.png";
+import viak from "../asplan_viak_1.jpg";
 
- /*export default function Hjemmeside() {
+/*export default function Hjemmeside() {
     return (
         <h1 className="hjemmeside">User Feedback System</h1>
         
@@ -11,13 +12,28 @@ import asplan from "../illustrasjon.png"
 */
 
 function Hjemmeside() {
-    return (
-      <div className="hjemmeside-container">
+  return (
+    <div className="hjemmeside-container">
+      <div
+        className="image-container image-style"
+        style={{ backgroundImage: `url(${asplan})` }}
+      >
         <h1 className="tittel">User Feedback System</h1>
-        <h5 className="undertittel">Registrer din tilbakemelding av våre tjenester utvilket av Asplan Viak</h5>
-        <img src={asplan} alt="asplanviak" class="picture"/>
+        <h5 className="undertittel">
+          Registrer din tilbakemelding av våre tjenester utvilket av Asplan Viak
+        </h5>
       </div>
-    );
-  }
-  
-  export default Hjemmeside;
+      <div
+        className="image-container image-2-style"
+        style={{ backgroundImage: `url(${viak})` }}
+      >
+        <h1 className="tittel">User Feedback System</h1>
+        <h5 className="undertittel">
+          Registrer din tilbakemelding av våre tjenester utvilket av Asplan Viak
+        </h5>
+      </div>
+    </div>
+  );
+}
+
+export default Hjemmeside;

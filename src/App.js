@@ -28,7 +28,7 @@ export default function App() {
         <div
           className="main-Content"
           style={{
-            marginLeft: expandSidebar ? "245px" : "70px",
+            marginLeft: expandSidebar ? "240px" : "64px",
           }}
         >
           <Routes>

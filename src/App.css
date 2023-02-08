@@ -1,6 +1,6 @@
 .main-Content {
     display: flex;
-
+    position: relative;
    /* 
     border: 1.5px solid lightgray;
     border-top-left-radius: 15px;

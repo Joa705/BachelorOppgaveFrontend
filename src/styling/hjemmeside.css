@@ -1,36 +1,50 @@
 .hjemmeside-container {
     height: 100%;
-    width: 100%;
     overflow: scroll;
 }
-.tittel{
-    height: 14vh;
-    display:flex;
+
+.image-container {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    height: 100%;
+}
+
+.image-style {
+    background-size: contain;
+    background-repeat: no-repeat, repeat;
+}
+
+.image-2-style {
+    background-size: cover;
+    background-repeat: no-repeat, repeat;
+}
+
+
+.tittel{
+/*     height: 14vh;
+    display:flex;
+    align-items: center;
+    justify-content: center; */
     color: #1d3c34;
-    position: absolute;
+ /*    position: absolute;
     top: 25%;
     bottom: 50%;
-    left: 40%;
+    left: 40%;  */
+    margin-bottom: 100px;
 
 }
 
 .undertittel{
-    display: flex;
+/*      display: flex;
     align-items: center;
-    justify-content: center;
-    color: #1d3c34;
-    position: absolute;
+    justify-content: center; */
+    margin-top: 100px;
+    color: #198754;
+ /*    position: absolute;
     top: 65%;
     bottom: 50%;
-    left: 30%;
+    left: 30%;  */
 }
 
-.picture{
-    max-width: 45%;
-    height: auto;
-    margin-left: auto;
-    margin-right: auto;
-
-}
