@@ -53,3 +53,30 @@
 }
 
 
+.footer{
+    background-color: #1d3c34;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: auto;
+    width: auto;
+
+}
+
+.footer h2{
+    max-width: 500px;
+    margin: 10px auto;
+    line-height: 28px;
+    font-size: 25px;
+    color: #b7dc8f;
+}
+
+.footer h3{
+    max-width: 500px;
+    margin: 10px auto;
+    line-height: 28px;
+    font-size: 15px;
+    color: #b7dc8f;
+}
+

@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+
 /*export default function Hjemmeside() {
     return (
         <h1 className="hjemmeside">User Feedback System</h1>
@@ -27,21 +28,20 @@ function Hjemmeside() {
         </h5>
       </div>
 
-      <Container>
-      <Row>
-        <Col>
-        Enkel å komme i gang. Ingen registrering, logg inn med Azure AD
-        
-        </Col>
-        <Col> 
-        Registrer tilbakemelding av din opplevelse av våre systemer
-        
-        </Col>
-        <Col>
-        Du vil få svar av en av våre administratorer
-        </Col>
-      </Row>
-    </Container>
+      <div className="container">
+        <div className="row">
+          <div className="col-sm">Enkel å komme i gang. Ingen registrering. Bare logg deg inn med Azure AD</div>
+          <div className="col-sm">Registrer tilbakemelding av din opplevelse av våre systemer. Enten det er ris, ros eller forslag til ny funksjonalitet</div>
+          <div className="col-sm">Du vil straks få svar av en av våre administratorer</div>
+        </div>
+      </div>
+
+    <div className="container">
+      <div className="footer">
+        <h2>Kontaktinformasjon</h2>
+        <h3>Har du flere spørsmål, ta gjerne kontakt med oss!</h3>
+      </div>
+      </div>
     </div>
   );
 }
