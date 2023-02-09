@@ -34,7 +34,7 @@ function Hjemmeside() {
           </div>
           <div className="undertittel">
             Registrer din tilbakemelding av våre tjenester utvilket av Asplan
-            Viak
+            Viak.
           </div>
         </div>
         <div className="container">

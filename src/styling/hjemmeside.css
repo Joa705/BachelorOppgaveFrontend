@@ -40,18 +40,20 @@
 .tittel{
     color: #1d3c34;
     position: absolute;
-    top: 26%;
+    top: 25%;
     transform: translate(-50%);
     left : 50%;
     font-size: 5vh;
-    text-align: center;
+    text-align:left;
+    font-weight: 500;
+  
 }
 
 
 .undertittel{
-    color: #0d5031;
+    color: #1d3c34;
     position: absolute;
-    top: 65%;
+    top: 75%;
     transform: translate(-50%);
     left : 50%;
     font-size: 2.5vh;
