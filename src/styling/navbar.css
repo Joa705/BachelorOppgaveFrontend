@@ -57,10 +57,11 @@
 }
 
 .azure-btn {
-    color: #0d5031 !important;
-    border-color: #0d5031 !important;
+    color: white !important;
+    border-color: #48a23f !important;
+    background-color: #48a23f !important;
 }
 
 .azure-btn:hover {
-    background-color: green !important;
+    background-color: #1d3c34 !important;
 }

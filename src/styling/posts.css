@@ -13,13 +13,21 @@
 
 .search-container {
     padding: 0 !important;
-    height: 10% !important;
+    height: 100% !important;
     border-radius: 15px;
 
 }
 
+.add-post {
+    background-color: #48a23f !important;
+    border-color: #48a23f !important;
+}
+.add-post:hover {
+    background-color: #1d3c34 !important;
+}
+
 .search {
-    font-size: 4vh;
+    font-size: 15px;
 }
 
 .search-field {
@@ -45,7 +53,7 @@
 .main-content-left {
     width: 80%;
     height: 100%;
-    overflow-y: scroll;
+    position: relative;
 }
 
 .left-inner-1 {
@@ -54,10 +62,26 @@
     border: 1px solid black;
 }
 
+.left-inner-item-1 {
+    width: 15%;
+    height: 100%;
+}
+
+.left-inner-item-2 {
+    width: 15%;
+    height: 100%;
+}
+
+.left-inner-item-3 {
+    width: 70%;
+    height: 100%;
+}
+
 .left-inner-2 {
     height: 90%;
     width: 100%;
     border: 1px solid red;
+    overflow: scroll;
 }
 
 .main-content-right {
@@ -78,8 +102,10 @@
 }
 
 .data-posts {
-
-
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 100px;
+    font-size: 2vh;
 }
 
 .data-posts:hover {

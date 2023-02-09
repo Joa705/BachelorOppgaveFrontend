@@ -22,11 +22,13 @@ function Hjemmeside() {
           className="image-container image-style"
           style={{ backgroundImage: `url(${asplan})` }}
         >
-          <h1 className="tittel">User Feedback System</h1>
-          <h5 className="undertittel">
+          <div className="tittel">
+            User Feedback System
+          </div>
+          <div className="undertittel">
             Registrer din tilbakemelding av våre tjenester utvilket av Asplan
             Viak
-          </h5>
+          </div>
         </div>
         <div className="container">
           <div className="row">
