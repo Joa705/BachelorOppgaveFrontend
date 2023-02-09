@@ -49,10 +49,17 @@
 
 .footer{
   background-color: #1d3c34;
-  height: 120px;
+  height: 20vh;
   width: 100%;
-  position: relative;
-  overflow: scroll;
+}
+
+.footer-text-large {
+    font-size: 4vh;
+    
+}
+
+.footer-text-small {
+    font-size: 2vh;
 }
 
 /*  .footer h2{
