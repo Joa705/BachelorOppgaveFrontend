@@ -48,31 +48,56 @@ export function Navigationbar() {
         <div className="nav-dropdown">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link ml-2" href="#" onClick={() => navigate("/posts")}>
+              <a
+                class="nav-link ml-2"
+                href="#"
+                onClick={() => navigate("/posts")}
+              >
                 Posts <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link ml-2" href="#" onClick={() => navigate("/posts/mine")}>
+              <a
+                class="nav-link ml-2"
+                href="#"
+                onClick={() => navigate("/posts/mine")}
+              >
                 Mine Posts
               </a>
             </li>
-            <li class="nav-item" onClick={() => navigate("/admin")}>
-              <a class="nav-link ml-2" href="#">
-                Admin
-              </a>
-            </li>
+            {admin ? (
+              <li class="nav-item" onClick={() => navigate("/admin")}>
+                <a class="nav-link ml-2" href="#">
+                  Admin
+                </a>
+              </li>
+            ) : (
+              ""
+            )}
           </ul>
         </div>
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item ml-2">
-            <button
-              class="azure-btn btn btn-sm btn-outline-secondary mr-2"
-              type="button"
-            >
-              Logg inn med Azure AD
-            </button>
-          </li>
+          {token ? (
+            <li class="nav-item ml-2">
+              <button
+                class="azure-btn btn btn-sm btn-outline-secondary mr-2"
+                type="button"
+                onClick={() => SignOutHandler(instance, onLogout)}
+              >
+                Logg ut
+              </button>
+            </li>
+          ) : (
+            <li class="nav-item ml-2">
+              <button
+                class="azure-btn btn btn-sm btn-outline-secondary mr-2"
+                type="button"
+                onClick={() => SignInHandler(instance, onLogin)}
+              >
+                Logg inn med Azure AD
+              </button>
+            </li>
+          )}
         </ul>
       </div>
     </nav>
