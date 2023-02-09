@@ -49,6 +49,12 @@
     height: 55px;
 }
 
+.nav-mid-logo {
+    position: absolute;
+    left: 50%;
+    top: 20px;
+    transform: translate(-50%);
+}
 
 .azure-btn {
     color: #0d5031 !important;

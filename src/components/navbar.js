@@ -26,7 +26,7 @@ export function Navigationbar() {
           </a>
         </li>
       </ul>
-      <ul class="navbar-nav mx-auto">
+      <ul class="navbar-nav mx-auto nav-mid-logo">
         <img
           className="navbar-logo"
           src={require("../symbol.png")}
