@@ -48,10 +48,35 @@
     overflow-y: scroll;
 }
 
+.left-inner-1 {
+    height: 10%;
+    width: 100%;
+    border: 1px solid black;
+}
+
+.left-inner-2 {
+    height: 90%;
+    width: 100%;
+    border: 1px solid red;
+}
+
 .main-content-right {
     width: 20%;
     height: 100%;
 }
+
+.right-inner-1 {
+    height: 10%;
+    width: 100%;
+    border: 1px solid black;
+}
+
+.right-inner-2 {
+    height: 90%;
+    width: 100%;
+    border: 1px solid red;
+}
+
 .data-posts {
 
 

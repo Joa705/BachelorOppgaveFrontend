@@ -29,27 +29,33 @@ function Posts() {
 
         <div className="main-content-container d-flex flex-row border">
           <div className="main-content-left border">
-            {displayData.map((res) => {
-              return (
-                <div className={"data-posts post-" + res.weatherId}>
-                  <div className="data-items-posts">
-                    <p>Date: {res.date}</p>
+            <div className="left-inner-1"></div>
+            <div className="left-inner-2">
+              {displayData.map((res) => {
+                return (
+                  <div className={"data-posts post-" + res.weatherId}>
+                    <div className="data-items-posts">
+                      <p>Date: {res.date}</p>
+                    </div>
+                    <div className="data-items-posts">
+                      <p>TempC: {res.temperatureC}</p>
+                    </div>
+                    <div className="data-items-posts">
+                      <p>TempF: {res.temperatureF}</p>
+                    </div>
+                    <div className="data-items-posts">
+                      <p>Summary: {res.summary}</p>
+                    </div>
                   </div>
-                  <div className="data-items-posts">
-                    <p>TempC: {res.temperatureC}</p>
-                  </div>
-                  <div className="data-items-posts">
-                    <p>TempF: {res.temperatureF}</p>
-                  </div>
-                  <div className="data-items-posts">
-                    <p>Summary: {res.summary}</p>
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
           <div className="main-content-right border">
-            <button onClick={() => getData()}>Get data</button>
+            <div className="right-inner-1">
+              <button onClick={() => getData()}>Get data</button>
+            </div>
+            <div className="right-inner-2"></div>
           </div>
         </div>
       </div>
