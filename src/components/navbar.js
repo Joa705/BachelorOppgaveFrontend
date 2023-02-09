@@ -48,16 +48,16 @@ export function Navigationbar() {
         <div className="nav-dropdown">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link ml-2" href="#">
+              <a class="nav-link ml-2" href="#" onClick={() => navigate("/posts")}>
                 Posts <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link ml-2" href="#">
+              <a class="nav-link ml-2" href="#" onClick={() => navigate("/posts/mine")}>
                 Mine Posts
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" onClick={() => navigate("/admin")}>
               <a class="nav-link ml-2" href="#">
                 Admin
               </a>
