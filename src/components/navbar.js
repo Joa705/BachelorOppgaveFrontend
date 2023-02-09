@@ -21,21 +21,60 @@ export function Navigationbar() {
     <nav class="navbar navbar-expand-lg">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item active">
-          <a class="navbar-brand" href="#" onClick={()=> navigate("/")}>
+          <a class="navbar-brand" href="#" onClick={() => navigate("/")}>
             <img className="navbar-logo" src={require("../navn.png")} />
           </a>
         </li>
       </ul>
       <ul class="navbar-nav mx-auto">
-        <img className="navbar-logo" src={require("../symbol.png")} onClick={()=> navigate("/")}/>
+        <img
+          className="navbar-logo"
+          src={require("../symbol.png")}
+          onClick={() => navigate("/")}
+        />
       </ul>
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <button class="azure-btn btn btn-sm btn-outline-secondary mr-2" type="button">
-            Logg inn med Azure AD
-          </button>
-        </li>
-      </ul>
+      <button
+        class="navbar-toggler mr-2"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div className="nav-dropdown">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link ml-2" href="#">
+                Posts <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link ml-2" href="#">
+                Mine Posts
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link ml-2" href="#">
+                Admin
+              </a>
+            </li>
+          </ul>
+        </div>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item ml-2">
+            <button
+              class="azure-btn btn btn-sm btn-outline-secondary mr-2"
+              type="button"
+            >
+              Logg inn med Azure AD
+            </button>
+          </li>
+        </ul>
+      </div>
     </nav>
   );
 

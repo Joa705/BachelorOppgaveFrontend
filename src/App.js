@@ -24,11 +24,8 @@ export default function App() {
     <BrowserRouter>
       <AuthProvider>
         <Navigationbar />
-
-
-
         <div
-          className="test"
+          className="main-content"
           style={{
             marginLeft: expandSidebar ? "240px" : "64px",
           }}

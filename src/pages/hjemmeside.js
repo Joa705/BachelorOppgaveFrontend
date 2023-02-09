@@ -43,12 +43,12 @@ function Hjemmeside() {
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="footer">
-        <h2>Kontaktinformasjon</h2>
-        <h3>Kontakt oss på redaksjon@asplanviak.no!</h3>
-        <h4>Laget av UiA studenter for Asplan Viak © 2023</h4>
+        <div className="footer d-flex flex-column align-items-center justify-content-center">
+          <h5 className="">Kontaktinformasjon</h5>
+          <p className="">Kontakt oss på redaksjon@asplanviak.no!</p>
+          <p className="">Laget av UiA studenter for Asplan Viak © 2023</p>
+        </div>
       </div>
     </>
   );

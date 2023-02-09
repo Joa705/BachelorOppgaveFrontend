@@ -1,5 +1,5 @@
 .hjemmeside-container {
-    height: 85%;
+    height: 100%;
     overflow: scroll;
 }
 
@@ -16,12 +16,6 @@
     background-size: contain;
     background-repeat: no-repeat, repeat;
 }
-
-.image-2-style {
-    background-size: cover;
-    background-repeat: no-repeat, repeat;
-}
-
 
 .tittel{
 /*     height: 14vh;
@@ -55,12 +49,13 @@
 
 .footer{
   background-color: #1d3c34;
-  height : 15%;
-  max-height: 15%;
-  overflow: hidden;
+  height: 120px;
+  width: 100%;
+  position: relative;
+  overflow: scroll;
 }
 
- .footer h2{
+/*  .footer h2{
     max-width: 500px;
     margin: 10px auto;
     line-height: 28px;
@@ -74,9 +69,9 @@
     line-height: 28px;
     font-size: 15px;
     color: #b7dc8f;
-} 
+}  */
 
-.footer h4{
+/* .footer h4{
     max-width: 500px;
     margin: 10px auto;
     line-height: 10px;
@@ -86,10 +81,17 @@
 
 .col-sm {
     border: 1px solid red;
-}
+} */
+
 
 @media (max-width: 800px) {
     .col-sm {
         padding: 50px !important;
+    }
+}
+
+@media (max-width: 375px) {
+    .footer {
+        height: 150px;
     }
 }
