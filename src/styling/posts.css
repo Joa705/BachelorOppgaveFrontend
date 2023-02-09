@@ -1,24 +1,111 @@
-.main-posts {
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 60%;
-    height: 90%;
-    border: 1px solid lightgray;
+.posts-container {
+    height: 100%;
+    width: 100%;
+    border: 2px solid goldenrod;
     overflow: scroll;
+    position: relative;
+
+}
+
+.search-container:hover {
+    border-color: black !important;
+}
+
+.search-container {
+    padding: 0 !important;
+    height: 100% !important;
     border-radius: 15px;
+
+}
+
+.add-post {
+    background-color: #48a23f !important;
+    border-color: #48a23f !important;
+}
+.add-post:hover {
+    background-color: #1d3c34 !important;
+}
+
+.search {
+    font-size: 15px;
+}
+
+.search-field {
+    width: 85% !important;
+}
+
+.search-button {
+    width: 15% !important;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+.search-button:hover {
+    background-color: lightslategray !important;
+}
+
+
+.main-content-container {
+    width: 100%;
+    height: 85%;
+    max-height: 600px;
+}
+
+.main-content-left {
+    width: 80%;
+    height: 100%;
+    position: relative;
+}
+
+.left-inner-1 {
+    height: 10%;
+    width: 100%;
+    border: 1px solid black;
+}
+
+.left-inner-item-1 {
+    width: 15%;
+    height: 100%;
+}
+
+.left-inner-item-2 {
+    width: 15%;
+    height: 100%;
+}
+
+.left-inner-item-3 {
+    width: 70%;
+    height: 100%;
+}
+
+.left-inner-2 {
+    height: 90%;
+    width: 100%;
+    border: 1px solid red;
+    overflow: scroll;
+}
+
+.main-content-right {
+    width: 20%;
+    height: 100%;
+}
+
+.right-inner-1 {
+    height: 10%;
+    width: 100%;
+    border: 1px solid black;
+}
+
+.right-inner-2 {
+    height: 90%;
+    width: 100%;
+    border: 1px solid red;
 }
 
 .data-posts {
-    width: 85%;
-    height: 50%;
-    display: flex;
-    flex-direction: row;
-    border: 1px solid lightgray;
-    margin: 10px;
-    border-radius: 10px;
-    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 100px;
+    font-size: 2vh;
 }
 
 .data-posts:hover {
@@ -26,5 +113,4 @@
 }
 
 .data-items-posts {
-    padding: 5px;
 }
