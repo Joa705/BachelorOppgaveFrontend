@@ -1,9 +1,9 @@
 .posts-container {
     height: 100%;
     width: 100%;
-    border: 2px solid goldenrod;
     overflow: scroll;
     position: relative;
+    color : #1d3c34 !important;
 
 }
 
@@ -15,15 +15,17 @@
     padding: 0 !important;
     height: 100% !important;
     border-radius: 15px;
-
+    border: 1px solid #48a23f;
 }
 
+
 .add-post {
-    background-color: #48a23f !important;
+    color : #1d3c34 !important;
+    background-color: #F0F4E3 !important; 
     border-color: #48a23f !important;
 }
 .add-post:hover {
-    background-color: #1d3c34 !important;
+    background-color: #48a23f !important;
 }
 
 .search {
@@ -36,11 +38,11 @@
 
 .search-button {
     width: 15% !important;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
+    border-top-right-radius: 14px;
+    border-bottom-right-radius: 14px;
 }
 .search-button:hover {
-    background-color: lightslategray !important;
+    background-color:  #48a23f !important;
 }
 
 
@@ -59,7 +61,6 @@
 .left-inner-1 {
     height: 10%;
     width: 100%;
-    border: 1px solid black;
 }
 
 .left-inner-item-1 {
@@ -75,7 +76,6 @@
 .left-inner-2 {
     height: 90%;
     width: 100%;
-    border: 1px solid red;
     overflow: scroll;
 }
 
@@ -85,15 +85,8 @@
 }
 
 .right-inner-1 {
-    height: 10%;
+    height: 100%;
     width: 100%;
-    border: 1px solid black;
-}
-
-.right-inner-2 {
-    height: 90%;
-    width: 100%;
-    border: 1px solid red;
 }
 
 .data-posts {
@@ -109,3 +102,15 @@
 
 .data-items-posts {
 }
+
+.list-group-item.active {
+    
+    background-color: #1d3c34 !important;
+    border-color: #1d3c34 !important;
+}
+
+.list-group-main {
+    color : #1d3c34 !important;
+
+}
+

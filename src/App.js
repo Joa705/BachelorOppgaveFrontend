@@ -12,7 +12,6 @@ import "./App.css";
 import NavigationSidebar from "./components/sidebar";
 import "./styling/sidebar.css";
 
-
 export default function App() {
   const [expandSidebar, setExpandSidebar] = useState(false);
 
