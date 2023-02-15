@@ -1,9 +1,10 @@
 .main-content {
     position: relative;
-    height: 100%;
+    height: calc(100% - 82px);
     margin-left: 64px !important;
     top : 82px !important;
     background-color: #f0f4e3 !important;
+    overflow: auto;
 }
 
 @media (max-width : 991px) {
