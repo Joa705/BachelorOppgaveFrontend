@@ -35,7 +35,8 @@
 
 .navbar {
     background-color: #f0f4e3 !important;
-    border-bottom: 5px solid white;
+    box-shadow: rgba(0, 0, 0, 0.102) 0px 3px 8px;
+
 }
 
 @media (min-width : 992px) {
@@ -43,6 +44,7 @@
         display: none;
     }
 }
+
 
 
 .navbar-logo {
