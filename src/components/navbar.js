@@ -18,7 +18,7 @@ export function Navigationbar() {
 
   const navigate = useNavigate();
   return (
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg fixed-top">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item active">
           <a class="navbar-brand" href="#" onClick={() => navigate("/")}>
