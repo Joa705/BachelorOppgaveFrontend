@@ -35,7 +35,7 @@
 
 .navbar {
     background-color: #f0f4e3 !important;
-    border-bottom: 1px solid #1d3c34;
+    border-bottom: 5px solid white;
 }
 
 @media (min-width : 992px) {

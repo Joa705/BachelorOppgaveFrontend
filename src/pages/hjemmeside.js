@@ -42,7 +42,7 @@ function Hjemmeside() {
             <div className="col-sm">
             <div className="image1"
           style={{ backgroundImage: `url(${il4})` }}></div>
-              Det er fort å komme i gang, vi krever ingen registrering. Logg deg inn på en-to-tre med
+              Det er lett å komme i gang. Vi krever ingen registrering. Logg deg inn på en-to-tre med
               Azure AD.
             </div>
             <div className="col-sm">

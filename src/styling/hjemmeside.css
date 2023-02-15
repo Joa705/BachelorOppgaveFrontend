@@ -3,17 +3,24 @@
 }
 
 .image-container {
-    height: 80%;
+    height: 60%;
     position: relative;
+    top: 10%;
+    
+    
 }
+
 
 .image-style {
     background-size: contain;
     background-repeat: no-repeat, repeat;
+    left:60%;
+    
 }
 
+
 .image1{
-    height:250px;
+    height:200px;
     position:relative;
     background-size: contain;
     background-repeat: no-repeat, repeat;
@@ -21,7 +28,7 @@
 }
 
 .image2{
-    height:250px;
+    height:200px;
     position:relative;
     background-size: contain;
     background-repeat: no-repeat, repeat;
@@ -29,7 +36,7 @@
 }
 
 .image3{
-    height:250px;
+    height:200px;
     position:relative;
     background-size: contain;
     background-repeat: no-repeat, repeat;
@@ -39,9 +46,9 @@
 .tittel{
     color: #1d3c34;
     position: absolute;
-    top: 25%;
+    top: 45%;
     transform: translate(-50%);
-    left : 50%;
+    left : -35%;
     font-size: 5vh;
     text-align:left;
     font-weight: 500;
@@ -52,11 +59,11 @@
 .undertittel{
     color: #1d3c34;
     position: absolute;
-    top: 75%;
+    top: 63%;
     transform: translate(-50%);
-    left : 50%;
-    font-size: 2.5vh;
-    text-align: center;
+    left: -32%;
+    font-size: 2vh;
+    text-align: left;
     font-weight: 450;
 }
 
@@ -115,8 +122,9 @@
     .undertittel {
        
         font-size: medium;
-        top: 81% !important;
-        padding: 4%
+        top: 96% !important;
+        transform: translate(-50%);
+        left: 50%;
     }
 }
 
@@ -126,5 +134,24 @@
        
         padding: 95px;
         right: -40px;
+        position: absolute;
+        top: 30%;
+        left: 50%;
+    }
+}
+
+@media (max-width: 414px) {
+
+    .image-container {
+        height: 80%;
+        position: relative;
+    }
+}
+
+@media (max-width: 414px) {
+
+    .image-style {
+        background-size: contain;
+        background-repeat: no-repeat, repeat;
     }
 }
