@@ -10,7 +10,7 @@ import { UseAuth } from "../functions/authentication";
 
 
 
-export default function NavigationSidebar(props) {
+export default function NavigationSidebar() {
   const navigate = useNavigate();
   const {admin} = UseAuth();
   return (
@@ -20,7 +20,7 @@ export default function NavigationSidebar(props) {
   }}
   >
      
-    <Toggle onClick={() => props.handleExpandSidebar()}></Toggle>
+    <Toggle></Toggle>
     <SideNav.Nav defaultSelected="/">
       <NavItem eventKey="/posts">
         <NavIcon><i><MdForum  style={{fontSize: "25px"}} /></i></NavIcon>

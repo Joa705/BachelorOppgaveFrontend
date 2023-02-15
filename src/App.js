@@ -13,24 +13,14 @@ import NavigationSidebar from "./components/sidebar";
 import "./styling/sidebar.css";
 
 export default function App() {
-  const [expandSidebar, setExpandSidebar] = useState(false);
 
-  const handleExpandSidebar = () => {
-    console.log(expandSidebar ? "Closing" : "Expanding")
-    setExpandSidebar(!expandSidebar);
-  }
 
   return (
     <BrowserRouter>
       <AuthProvider>
         <Navigationbar />
-        <div
-          className="main-content"
-          style={{
-            marginLeft: expandSidebar ? "240px" : "64px",
-          }}
-        >
-          <NavigationSidebar handleExpandSidebar={handleExpandSidebar}/>
+        <NavigationSidebar />
+        <div className="main-content">
           <Routes>
             <Route exact path="/" element={<Hjemmeside />} />
             <Route exact path="/hjemmeside" element={<Hjemmeside />} />

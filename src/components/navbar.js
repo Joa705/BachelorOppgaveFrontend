@@ -18,89 +18,99 @@ export function Navigationbar() {
 
   const navigate = useNavigate();
   return (
-    <nav class="navbar navbar-expand-lg">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-          <a class="navbar-brand" href="#" onClick={() => navigate("/")}>
-            <img className="navbar-logo" src={require("../navn.png")} />
-          </a>
-        </li>
-      </ul>
-      <ul class="navbar-nav mx-auto nav-mid-logo">
-        <img
-          className="navbar-logo"
-          src={require("../symbol.png")}
-          onClick={() => navigate("/")}
-        />
-      </ul>
-      <button
-        class="navbar-toggler mr-2"
-        type="button"
+    <>
+      <a
+        class="close-navbar-toggler collapsed"
         data-toggle="collapse"
         data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent"
         aria-expanded="false"
         aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div className="nav-dropdown">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a
-                class="nav-link ml-2"
-                href="#"
-                onClick={() => navigate("/posts")}
-              >
-                Posts <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link ml-2"
-                href="#"
-                onClick={() => navigate("/posts/mine")}
-              >
-                Mine Posts
-              </a>
-            </li>
-            {admin ? (
-              <li class="nav-item" onClick={() => navigate("/admin")}>
-                <a class="nav-link ml-2" href="#">
-                  Admin
+      ></a>
+      <nav class="navbar navbar-expand-lg fixed-top">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <a class="navbar-brand" href="#" onClick={() => navigate("/")}>
+              <img className="navbar-logo" src={require("../navn.png")} />
+            </a>
+          </li>
+        </ul>
+        <ul class="navbar-nav mx-auto nav-mid-logo">
+          <img
+            className="navbar-logo"
+            src={require("../symbol.png")}
+            onClick={() => navigate("/")}
+          />
+        </ul>
+        <button
+          class="navbar-toggler mr-2"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div className="nav-dropdown">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a
+                  class="nav-link ml-2"
+                  href="#"
+                  onClick={() => navigate("/posts")}
+                >
+                  Posts <span class="sr-only">(current)</span>
                 </a>
               </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link ml-2"
+                  href="#"
+                  onClick={() => navigate("/posts/mine")}
+                >
+                  Mine Posts
+                </a>
+              </li>
+              {admin ? (
+                <li class="nav-item" onClick={() => navigate("/admin")}>
+                  <a class="nav-link ml-2" href="#">
+                    Admin
+                  </a>
+                </li>
+              ) : (
+                ""
+              )}
+            </ul>
+          </div>
+          <ul class="navbar-nav ml-auto">
+            {token ? (
+              <li class="nav-item ml-2">
+                <button
+                  class="azure-btn btn btn-sm btn-outline-secondary mr-2"
+                  type="button"
+                  onClick={() => SignOutHandler(instance, onLogout)}
+                >
+                  Logg ut
+                </button>
+              </li>
             ) : (
-              ""
+              <li class="nav-item ml-2">
+                <button
+                  class="azure-btn btn btn-sm btn-outline-secondary mr-2"
+                  type="button"
+                  onClick={() => SignInHandler(instance, onLogin)}
+                >
+                  Logg inn med Azure AD
+                </button>
+              </li>
             )}
           </ul>
         </div>
-        <ul class="navbar-nav ml-auto">
-          {token ? (
-            <li class="nav-item ml-2">
-              <button
-                class="azure-btn btn btn-sm btn-outline-secondary mr-2"
-                type="button"
-                onClick={() => SignOutHandler(instance, onLogout)}
-              >
-                Logg ut
-              </button>
-            </li>
-          ) : (
-            <li class="nav-item ml-2">
-              <button
-                class="azure-btn btn btn-sm btn-outline-secondary mr-2"
-                type="button"
-                onClick={() => SignInHandler(instance, onLogin)}
-              >
-                Logg inn med Azure AD
-              </button>
-            </li>
-          )}
-        </ul>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 
   return (
