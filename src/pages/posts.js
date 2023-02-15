@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState} from "react";
 import "../styling/posts.css";
 import { BiSearchAlt } from "react-icons/bi";
-import { UrlConfig } from "../config";
+
+
 function Posts() {
   const [displayData, setDisplayData] = useState([]);
 
@@ -14,6 +15,7 @@ function Posts() {
       });
   }
 
+
   return (
     <>
       <div class="posts-container">
@@ -21,6 +23,7 @@ function Posts() {
           <button
             type="button"
             class="add-post btn btn-primary btn-lg btn-block"
+            data-toggle="modal" data-target="#exampleModalCenter"
           >
             Opprett et nytt innlegg
           </button>
@@ -81,7 +84,10 @@ function Posts() {
                 </a>
               </div> */}
               <div class="list-group list-group-main w-100">
-                <a href="#" class="list-group-item list-group-item-action list-group-main-items">
+                <a
+                  href="#"
+                  class="list-group-item list-group-item-action list-group-main-items"
+                >
                   <div class="d-flex w-100  justify-content-between">
                     <h5 class="mb-1">Endre farge</h5>
                     <small>3 days ago</small>
@@ -92,7 +98,10 @@ function Posts() {
                   </p>
                   <small>Kommentarer (200)</small>
                 </a>
-                <a href="#" class="list-group-item list-group-item-action  list-group-main-items">
+                <a
+                  href="#"
+                  class="list-group-item list-group-item-action  list-group-main-items"
+                >
                   <div class="d-flex w-100  justify-content-between">
                     <h5 class="mb-1">Endre farge</h5>
                     <small>3 days ago</small>
@@ -103,7 +112,10 @@ function Posts() {
                   </p>
                   <small>Kommentarer (200)</small>
                 </a>
-                <a href="#" class="list-group-item list-group-item-action  list-group-main-items">
+                <a
+                  href="#"
+                  class="list-group-item list-group-item-action  list-group-main-items"
+                >
                   <div class="d-flex w-100  justify-content-between">
                     <h5 class="mb-1">Endre farge</h5>
                     <small>3 days ago</small>
@@ -114,7 +126,10 @@ function Posts() {
                   </p>
                   <small>Kommentarer (200)</small>
                 </a>
-                <a href="#" class="list-group-item list-group-item-action  list-group-main-items">
+                <a
+                  href="#"
+                  class="list-group-item list-group-item-action  list-group-main-items"
+                >
                   <div class="d-flex w-100  justify-content-between">
                     <h5 class="mb-1">Endre farge</h5>
                     <small>3 days ago</small>
@@ -125,7 +140,10 @@ function Posts() {
                   </p>
                   <small>Kommentarer (200)</small>
                 </a>
-                <a href="#" class="list-group-item list-group-item-action list-group-main-items">
+                <a
+                  href="#"
+                  class="list-group-item list-group-item-action list-group-main-items"
+                >
                   <div class="d-flex w-100  justify-content-between">
                     <h5 class="mb-1">Endre farge</h5>
                     <small>3 days ago</small>
@@ -230,6 +248,46 @@ function Posts() {
                   </div>
                 </a>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="modal fade add-post-modal"
+        id="exampleModalCenter"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content modal-content-add-post">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">
+                Modal title
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">...</div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" class="btn btn-primary">
+                Save changes
+              </button>
             </div>
           </div>
         </div>
