@@ -25,44 +25,55 @@ function Hjemmeside() {
   return (
     <>
       <div className="hjemmeside-container">
-        <div
-          className="image-container image-style"
-          style={{ backgroundImage: `url(${asplan})` }}
-        >
-          <div className="tittel">
-            User Feedback System
+        <div className="main-container ">
+          <div className="main-container-item-1 d-flex align-items-center justify-content-center flex-column">
+            <div className="tittel">User Feedback System</div>
+            <div className="undertittel">
+              Registrer din tilbakemelding av våre tjenester utvilket av Asplan
+              Viak.
+            </div>
           </div>
-          <div className="undertittel">
-            Registrer din tilbakemelding av våre tjenester utvilket av Asplan
-            Viak.
+          <div className="main-container-item">
+            <img className="image-container" src={asplan} />
           </div>
         </div>
         <div className="container">
           <div className="row">
             <div className="col-sm">
-            <div className="image1"
-          style={{ backgroundImage: `url(${il4})` }}></div>
-              Det er lett å komme i gang. Vi krever ingen registrering. Logg deg inn på en-to-tre med
-              Azure AD.
+              <div
+                className="image1"
+                style={{ backgroundImage: `url(${il4})` }}
+              ></div>
+              Det er lett å komme i gang. Vi krever ingen registrering. Logg deg
+              inn på en-to-tre med Azure AD.
             </div>
             <div className="col-sm">
-            <div className="image2"
-          style={{ backgroundImage: `url(${il5})` }}></div>
-              Registrer en tilbakemelding av din opplevelse av våre tjenester. Velg
-              mellom ris, ros eller forbedringstips.
+              <div
+                className="image2"
+                style={{ backgroundImage: `url(${il5})` }}
+              ></div>
+              Registrer en tilbakemelding av din opplevelse av våre tjenester.
+              Velg mellom ris, ros eller forbedringstips.
             </div>
             <div className="col-sm">
-            <div className="image3"
-          style={{ backgroundImage: `url(${il6})` }}></div>
-              Sånn, da er det gjort! Vi skal gå gjennom feedbacken din. Du vil straks få svar av oss. Vi setter pris på det!
+              <div
+                className="image3"
+                style={{ backgroundImage: `url(${il6})` }}
+              ></div>
+              Sånn, da er det gjort! Vi skal gå gjennom feedbacken din. Du vil
+              straks få svar av oss. Vi setter pris på det!
             </div>
           </div>
         </div>
 
         <div className="footer d-flex flex-column align-items-center justify-content-center">
           <h5 className="footer-text-large">Kontaktinformasjon</h5>
-          <p className="footer-text-small">Kontakt oss på redaksjon@asplanviak.no</p>
-          <p className="footer-text-smaller">Laget av UiA studenter for Asplan Viak © 2023</p>
+          <p className="footer-text-small">
+            Kontakt oss på redaksjon@asplanviak.no
+          </p>
+          <p className="footer-text-smaller">
+            Laget av UiA studenter for Asplan Viak © 2023
+          </p>
         </div>
       </div>
     </>
