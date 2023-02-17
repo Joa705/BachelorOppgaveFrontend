@@ -26,7 +26,7 @@ function Hjemmeside() {
     <>
       <div className="hjemmeside-container">
         <div className="main-container ">
-          <div className="main-container-item-1 d-flex align-items-center justify-content-center flex-column">
+          <div className="main-container-item-1">
             <div className="tittel">User Feedback System</div>
             <div className="undertittel">
               Registrer din tilbakemelding av våre tjenester utvilket av Asplan
