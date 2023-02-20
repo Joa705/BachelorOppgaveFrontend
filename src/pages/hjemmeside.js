@@ -43,6 +43,9 @@ function Hjemmeside() {
         </div>
         <div className="container">
           <div className="row">
+          <div className="forklaring d-flex justify-content-center">
+             Hvordan fungerer det?
+            </div>
             <div className="col-sm">
               <div
                 className="image1"
