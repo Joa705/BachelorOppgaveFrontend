@@ -1,5 +1,4 @@
 
-@font-face {font-family: "Gotham Book";src: url("https://surveyanyplace.s3.amazonaws.com/custom/crs/GothamBook.ttf");}body {font-family: "Gotham Book";}
 @font-face {font-family: "AvenirNextLTPro";src: url("https://dutygestion.com/fuentes/FuenteKiri/AvenirNextLTPro-Regular.otf");}body {font-family: "AvenirNextLTPro";}
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Gloock&family=Open+Sans&display=swap');
 
@@ -74,7 +73,7 @@
   position: absolute;
   top: 40%;
   left: 3%; */
-  font-size: 4rem;
+  font-size: 60px;
   line-height: 1.25;
   font-weight: 600;
   margin-bottom: 2vw;
@@ -90,7 +89,7 @@
   left: 4%; */
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 500;
-  font-size: 1.5rem;
+  font-size: 23px;
   line-height: 1.7;
   text-align: left;
   font-family: 'AvenirNextLTPro';
@@ -99,7 +98,7 @@
 
 .col-sm {
   color: #1d3c34;
-  font-size: 1.3rem;
+  font-size: 20px;
   font-weight: 400;
   font-family: 'AvenirNextLTPro';
   /* padding: 70px; */
@@ -116,13 +115,13 @@
 }
 
 .footer-text-large {
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 600;
   color: #b7dc8f;
 }
 
 .footer-text-small {
-  font-size: 20px;
+  font-size: 18px;
   color: #b7dc8f;
 }
 
@@ -178,7 +177,7 @@
     flex-direction: column !important;
   }
   .image-container {
-    max-width: 60%;
+    max-width: 40%;
   }
 
   .main-container-item-1 {
