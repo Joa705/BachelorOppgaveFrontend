@@ -13,6 +13,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
+
 /*export default function Hjemmeside() {
     return (
         <h1 className="hjemmeside">User Feedback System</h1>
@@ -21,16 +22,19 @@ import Col from "react-bootstrap/Col";
 }
 */
 
+
+
 function Hjemmeside() {
   return (
     <>
+    
       <div className="hjemmeside-container">
         <div className="main-container ">
           <div className="main-container-item-1">
-            <div className="tittel">User Feedback System</div>
+            <div className="tittel">Asplan Viak <br />  Feedback System</div>
             <div className="undertittel">
               Registrer din tilbakemelding av våre tjenester utvilket av Asplan
-              Viak.
+              Viak. Vi er nysgjerrige på å høre hva du mener og vi hjelper deg så godt vi kan. 
             </div>
           </div>
           <div className="main-container-item">
@@ -53,7 +57,7 @@ function Hjemmeside() {
                 style={{ backgroundImage: `url(${il5})` }}
               ></div>
               Registrer en tilbakemelding av din opplevelse av våre tjenester.
-              Velg mellom ris, ros eller forbedringstips.
+              Du kan velge mellom ris, ros eller forbedringstips.
             </div>
             <div className="col-sm">
               <div

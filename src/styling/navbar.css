@@ -6,27 +6,22 @@
     position: relative;
     border-bottom: 1px solid gray;
 }
-
 .navbar-logo {
     height: 55px;
 }
 #navbar-logo-second {
     height: 55px;
 }
-
 .login-button {
     display: block;
 }
-
 .login-icon {
     display: none;
 }
-
 @media only screen and (max-width: 1000px) {
     .login-button {
         display: none;
     }
-
     .login-icon {
         display: block;
     }
