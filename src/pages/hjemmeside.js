@@ -23,7 +23,6 @@ import Col from "react-bootstrap/Col";
 */
 
 
-
 function Hjemmeside() {
   return (
     <>
@@ -51,15 +50,15 @@ function Hjemmeside() {
                 className="image1"
                 style={{ backgroundImage: `url(${il4})` }}
               ></div>
-              Det er lett å komme i gang. Vi krever ingen registrering. Logg deg
-              inn på en-to-tre med Azure AD.
+              <p class="text-left">1. Logg inn </p> Det er lett å komme i gang med vårt system. Vi krever ingen registrering. Logg deg
+              inn på en-to-tre med Azure AD. Helt gratis.
             </div>
             <div className="col-sm">
               <div
                 className="image2"
                 style={{ backgroundImage: `url(${il5})` }}
               ></div>
-              Registrer en tilbakemelding av din opplevelse av våre tjenester.
+              <p class="text-left">2. Registrer feedback </p>Registrer tilbakemelding av din opplevelse av våre tjenester.
               Du kan velge mellom ris, ros eller forbedringstips.
             </div>
             <div className="col-sm">
@@ -67,11 +66,23 @@ function Hjemmeside() {
                 className="image3"
                 style={{ backgroundImage: `url(${il6})` }}
               ></div>
-              Sånn, da er det gjort! Vi skal gå gjennom feedbacken din. Du vil
-              straks få svar av oss. Vi setter pris på det!
+               <p class="text-left">3. Vent på svar fra oss </p> Sånn, da er det gjort! Vi skal gå gjennom feedbacken din. Du vil
+              straks få et svar av oss. Vi setter pris på at du tok deg tid!
             </div>
           </div>
         </div>
+
+        <div className="forklaring2 d-flex flex-column align-items-center justify-content-center">
+             Hvordan logger du deg inn?
+            </div>
+
+            <div className="forklaring3 d-flex flex-column align-items-center justify-content-center">
+             Hvordan registrerer du feedbacken?
+            </div>
+
+            <div className="forklaring4 d-flex flex-column align-items-center justify-content-center">
+             Hva skjer videre?
+            </div>
 
         <div className="footer d-flex flex-column align-items-center justify-content-center">
           <h5 className="footer-text-large">Kontaktinformasjon</h5>

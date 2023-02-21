@@ -2,6 +2,10 @@
 @font-face {font-family: "AvenirNextLTPro";src: url("https://dutygestion.com/fuentes/FuenteKiri/AvenirNextLTPro-Regular.otf");}body {font-family: "AvenirNextLTPro";}
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Gloock&family=Open+Sans&display=swap');
 
+html {
+  scroll-behavior: smooth;
+}
+
 .hjemmeside-container {
   height: 100%;
 }
@@ -14,7 +18,7 @@
   display: flex;
   flex-direction: row;
   /*border: 2px solid red; */
-  height:750px;
+  height:850px;
 
 }
 
@@ -48,13 +52,18 @@
 }
 
 .image1 {
+  /*margin: 0 auto;
+  width: 50%; */
   height: 200px;
   position: relative;
   background-size: contain;
   background-repeat: no-repeat, repeat;
+
 }
 
 .image2 {
+ /* margin: 0 auto;
+  width: 50%; */
   height: 200px;
   position: relative;
   background-size: contain;
@@ -62,6 +71,8 @@
 }
 
 .image3 {
+ /* margin: 0 auto;
+  width: 50%; */
   height: 200px;
   position: relative;
   background-size: contain;
@@ -78,7 +89,7 @@
   font-weight: 600;
   margin-bottom: 2vw;
   font-family: 'AvenirNextLTPro';
-  color: #1d3c34;
+  color: #435A53;
 
 }
 
@@ -102,23 +113,63 @@
   font-family: 'AvenirNextLTPro';
   /* padding: 70px; */
   /*border: 2px solid green; */
-  padding:3%;
-
+  padding:12%;
+  height:650px;
+  text-align: left;
 }
 
 .forklaring {
+
   padding: 4%;
   font-weight: 500;
-  font-size: 33px;
+  font-size: 34px;
   font-family: 'AvenirNextLTPro';
-  color: white;
-  background-color: #1d3c34;
+  color: 1d3c34;
+  background-color: #b7dc8f;
+
+  /*position:absolute;
+  width: 100%;
+  left: 0; */
 
 }
 
+.forklaring2 {
+
+  height: 550px;
+  font-weight: 500;
+  font-size: 33px;
+  font-family: 'AvenirNextLTPro';
+  color: #1d3c34;
+  background-color: #D4EABC;
+
+}
+
+.forklaring3 {
+
+  height: 550px;
+  font-weight: 500;
+  font-size: 33px;
+  font-family: 'AvenirNextLTPro';
+  color: #1d3c34;
+  background-color: #b7dc8f;
+
+}
+
+.forklaring4 {
+
+  height: 550px;
+  font-weight: 500;
+  font-size: 33px;
+  font-family: 'AvenirNextLTPro';
+  color: #1d3c34;
+  background-color: #F0F4E3;
+
+}
+
+
 .footer {
   background-color: #1d3c34;
-  height: 150px;
+  height: 190px;
   width: 100%;
   font-family: 'AvenirNextLTPro';
 }
@@ -147,8 +198,14 @@
 
 @media (max-width: 414px) {
   .col-sm {
-    padding: 67px !important;
+    padding: 37px !important;
+    border: 1px solid lightgray;
+    border-style:dashed;
+    height:550px;
+    text-align: left;
+    
   }
+
 }
 
 @media (max-width: 375px) {
@@ -163,12 +220,37 @@
   }
 
   .tittel {
-    font-size: 8vw;
+
+    font-size: 42px;
+    font-weight: 600;
+    margin-bottom: 7vw;
+    font-family: 'AvenirNextLTPro';
+    color: #435A53;
   }
 
   .undertittel {
     font-size: 5vw;
   }
+  .image1 {
+ 
+      margin: 0 auto;
+      width: 50%;
+  }
+  .image1 {
+ 
+    margin: 0 auto;
+    width: 50%;
+}
+  .image2 {
+ 
+      margin: 0 auto;
+      width: 50%;
+  }
+  .image3 {
+ 
+    margin: 0 auto;
+    width: 50%;
+}
 }
 
 .main-text-box {
