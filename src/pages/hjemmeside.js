@@ -50,7 +50,7 @@ function Hjemmeside() {
                 className="image1"
                 style={{ backgroundImage: `url(${il4})` }}
               ></div>
-              <p class="text-left">1. Logg inn </p> Det er lett å komme i gang med vårt system. Vi krever ingen registrering. Logg deg
+              <p class="text-center">1. Logg inn </p> Det er lett å komme i gang med vårt system. Vi krever ingen registrering. Logg deg
               inn på en-to-tre med Azure AD. Helt gratis.
             </div>
             <div className="col-sm">
@@ -58,15 +58,15 @@ function Hjemmeside() {
                 className="image2"
                 style={{ backgroundImage: `url(${il5})` }}
               ></div>
-              <p class="text-left">2. Registrer feedback </p>Registrer tilbakemelding av din opplevelse av våre tjenester.
-              Du kan velge mellom ris, ros eller forbedringstips.
+              <p class="text-center">2. Registrer feedback </p>Registrer tilbakemelding av din opplevelse av våre tjenester som du har brukt.
+              Da kan du velge mellom ris, ros, tips eller forslag.
             </div>
             <div className="col-sm">
               <div
                 className="image3"
                 style={{ backgroundImage: `url(${il6})` }}
               ></div>
-               <p class="text-left">3. Vent på svar fra oss </p> Sånn, da er det gjort! Vi skal gå gjennom feedbacken din. Du vil
+               <p class="text-center">3. Vent på svar fra oss </p> Sånn, da er det gjort! Vi skal gå gjennom feedbacken din. Du vil
               straks få et svar av oss. Vi setter pris på at du tok deg tid!
             </div>
           </div>
