@@ -33,7 +33,7 @@ function Hjemmeside() {
             <div className="tittel">Asplan Viak <br />  Feedback System</div>
             <div className="undertittel">
               Registrer din tilbakemelding av våre tjenester utvilket av Asplan
-              Viak. Vi er nysgjerrige på å høre hva du mener og vi hjelper deg så godt vi kan. 
+              Viak. Vi er nysgjerrige på å høre hva du mener mens vi hjelper deg så godt vi kan. 
             </div>
           </div>
           <div className="main-container-item">
