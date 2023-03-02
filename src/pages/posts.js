@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from "react";
 import "../styling/posts.css";
 import { BiSearchAlt } from "react-icons/bi";
-
+import { Display } from "./mine_posts";
 
 function Posts() {
   const [displayData, setDisplayData] = useState([]);
