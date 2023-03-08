@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import logo from "../logo2.png";
+import logo from "../logo5.png";
 import "../styling/mine_posts.css";
 import {
     MDBBtn,
