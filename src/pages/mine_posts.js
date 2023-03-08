@@ -83,7 +83,7 @@ export default function MyPosts() {
         <MDBRange min="0" max="10" step="1" id="customRange3" />
 
         <div className="text-end mt-3">
-          <MDBBtn>Send inn</MDBBtn>
+          <MDBBtn>Velg</MDBBtn>
         </div>
       </div>
     </MDBContainer>
@@ -93,7 +93,7 @@ export default function MyPosts() {
 
               <form className="px-4" action="">
                 <p className="text-center">
-                  <strong><h5>Hva slags feedback du ønsker å registrere?</h5></strong>
+                  <strong><h5>Hva slags feedback ønsker du å registrere?</h5></strong>
                 </p>
                 <MDBRadio
                   name="flexRadioDefault"
@@ -117,7 +117,7 @@ export default function MyPosts() {
                 
                 
                 <p className="text-center">
-                  <strong><h5>Skriv til oss</h5></strong>
+                  <strong><h5>Skriv en melding til oss.</h5></strong>
                 </p>
                 <MDBTextArea className="mb-4" label='Takk for din tilbakemelding!' id='textAreaExample' rows={4} />
               </form>
