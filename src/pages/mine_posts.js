@@ -12,7 +12,8 @@ import {
     MDBRadio,
     MDBRow,
     MDBTextArea,
-    MDBRange
+    MDBRange,
+    MDBInput
   } from "mdb-react-ui-kit";
   
 
@@ -58,7 +59,8 @@ export default function MyPosts() {
           <h5>Vennligst fyll ut vårt skjema. Velg hva slags feedback du ønsker å registere, deretter skriv hva kan vi gjøre for å forbedre brukeropplevelse av våre tjenester.</h5>     
         </div>       
         </div>
-
+<br/>
+<br/>
         <MDBContainer>
       <MDBRow className="justify-content-center">
         <MDBCol size="11">
@@ -82,7 +84,7 @@ export default function MyPosts() {
 
         <MDBRange min="0" max="10" step="1" id="customRange3" />
 
-        <div className="text-end mt-3">
+        <div className="text-right mt-3">
           <MDBBtn>Velg</MDBBtn>
         </div>
       </div>
@@ -115,11 +117,11 @@ export default function MyPosts() {
                   className="mb-2"
                 />
                 
-                
                 <p className="text-center">
-                  <strong><h5>Skriv en melding til oss.</h5></strong>
+                  <strong><h5>Tittel</h5></strong>
                 </p>
-                <MDBTextArea className="mb-4" label='Takk for din tilbakemelding!' id='textAreaExample' rows={4} />
+                 <MDBTextArea className="mb-4" label='Skriv feedbacken din her:' id='tittel' rows={1} />
+                <MDBTextArea className="mb-4" label='Takk for din tilbakemelding! Vi skal gå gjennom den. Du vil høre fra oss.' id='textAreaExample' rows={10} />
               </form>
             </MDBCardBody>
             <MDBCardFooter>
