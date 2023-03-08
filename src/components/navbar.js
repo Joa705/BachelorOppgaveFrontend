@@ -66,7 +66,7 @@ export function Navigationbar() {
                   href="#"
                   onClick={() => navigate("/posts")}
                 >
-                  Posts <span class="sr-only">(current)</span>
+                  Alle innlegg <span class="sr-only">(current)</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -75,7 +75,7 @@ export function Navigationbar() {
                   href="#"
                   onClick={() => navigate("/posts/mine")}
                 >
-                  Mine Posts
+                  Registrer feedback
                 </a>
               </li>
               {admin ? (
