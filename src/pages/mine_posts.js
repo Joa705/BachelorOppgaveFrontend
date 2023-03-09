@@ -113,7 +113,7 @@ export default function MyPosts() {
                 <MDBRadio
                   name="flexRadioDefault"
                   id="flexRadioDefault3"
-                  label="Forslag til forbedring"
+                  label="Forbedring"
                   className="mb-2"
                 />
                 

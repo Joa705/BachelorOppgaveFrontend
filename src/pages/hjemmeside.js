@@ -59,7 +59,7 @@ function Hjemmeside() {
                 style={{ backgroundImage: `url(${il5})` }}
               ></div>
               <p class="text-center">2. Registrer feedback </p>Registrer tilbakemelding av din opplevelse av våre tjenester som du har brukt.
-              Da kan du velge mellom ris, ros, tips eller forslag.
+              Da kan du velge mellom ris, ros, tips eller forbedring.
             </div>
             <div className="col-sm">
               <div
