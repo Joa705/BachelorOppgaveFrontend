@@ -12,7 +12,7 @@ export default function Admin() {
               <th scope='col'>Tittel</th>
               <th scope='col'>Status</th>
               <th scope='col'>Kategori</th>
-              <th scope='col'>Karakter</th>
+              <th scope='col'>Vurdering</th>
               <th scope='col'>Administer innlegg</th>
             </tr>
           </MDBTableHead>

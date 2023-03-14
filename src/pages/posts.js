@@ -3,6 +3,7 @@ import "../styling/posts.css";
 import { BiSearchAlt } from "react-icons/bi";
 import { Display } from "./mine_posts";
 
+
 import {
   MDBCard,
   MDBCardBody,
@@ -14,31 +15,19 @@ import {
   MDBTypography,
 } from "mdb-react-ui-kit";
 
-
-
-        <div className="beskrivelse d-flex flex-column align-items-center justify-content-center">
-          <div className="beskrivelse2">
-          <h3>Din tilbakemelding betyr mye for oss!</h3>     
-        </div> 
-        </div>
-    
-
-  
-
-
  export default function RecentComments() {
     return (
-      <section style={{ backgroundColor: "white" }}>
+      <section style={{ backgroundColor: "#f0f4e3" }}>
         <MDBContainer className="py-5" style={{ maxWidth: "100%" }}>
           <MDBRow className="justify-content-center">
             <MDBCol md="12" lg="10">
               <MDBCard className="text-dark">
                 <MDBCardBody className="p-4">
-                  <MDBTypography tag="h1" className="mb-0">
-                    Feedback fra våre brukere
+                  <MDBTypography tag="h1" className="mb-2">
+                    Asplan Viak <br /> Feedback System 
                   </MDBTypography>
                   <p className="fw-light mb-4 pb-2">
-                    Se alle innleggene med ris, ros og forbedringsforslag sendt til oss 
+                    <br />Se alle feedbackene med ris, ros og forbedringsforslag sendt til oss. 
                   </p>
                   <br />
                   <div className="d-flex flex-start">
@@ -55,7 +44,7 @@ import {
                       </MDBTypography>
                       <div className="d-flex align-items-center mb-3">
                         <p className="mb-0">
-                          Publisert: 14.03.2023 <span className="badge bg-success">Ris</span> <span className="badge bg-primary">Karakter: 9 / 10</span>
+                          Publisert: 14.03.2023 <span className="badge bg-success">Ros</span> <span className="badge bg-primary">Vurdering: 9 / 10</span>
                         </p>
                         <a href="#!" className="link-muted">
                           <MDBIcon fas icon="pencil-alt ms-2" />
