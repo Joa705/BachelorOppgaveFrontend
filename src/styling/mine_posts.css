@@ -1,4 +1,8 @@
-@font-face {font-family: "AvenirNextLTPro";src: url("https://dutygestion.com/fuentes/FuenteKiri/AvenirNextLTPro-Regular.otf");}body {font-family: "AvenirNextLTPro";}
+@font-face {
+  font-family: 'AvenirNextLTPro-Regular';
+  src: url('../fonts/AvenirNextLTPro-Regular.otf') format('opentype');
+}
+
 
 .image-container2 {
 
@@ -24,7 +28,7 @@
     height: 250px;
     font-weight: 500;
 
-    font-family: 'AvenirNextLTPro';
+    font-family: 'AvenirNextLTPro-Regular', sans-serif;
     color: white;
    /* border: 2px solid green; */
     background-color: #1d3c34;
@@ -37,7 +41,7 @@
 
   .beskrivelse2 {
 
-    font-family: 'AvenirNextLTPro';
+    font-family: 'AvenirNextLTPro-Regular', sans-serif;
     color: #b7dc8f;
     text-align: center;
     /*border: 2px solid yellow; */
@@ -46,7 +50,7 @@
 
   .beskrivelse3 {
 
-    font-family: 'AvenirNextLTPro';
+    font-family: 'AvenirNextLTPro-Regular', sans-serif;
     color: white;
     /*border: 2px solid orange; */
     width: 80%;
@@ -74,7 +78,7 @@
 
         height: 500px;
     
-        font-family: 'AvenirNextLTPro';
+        font-family: 'AvenirNextLTPro-Regular', sans-serif;
         color: white;
        /* border: 2px solid green; */
         background-color: #1d3c34;
@@ -85,7 +89,7 @@
     
       .beskrivelse2 {
     
-        font-family: 'AvenirNextLTPro';
+        font-family: 'AvenirNextLTPro-Regular', sans-serif;
         color: white;
         width: 95%;
         text-align: left;
@@ -96,7 +100,7 @@
     
       .beskrivelse3 {
     
-        font-family: 'AvenirNextLTPro';
+        font-family: 'AvenirNextLTPro-Regular', sans-serif;
         color: white;
         /*border: 2px solid orange; */
         width: 95%;
