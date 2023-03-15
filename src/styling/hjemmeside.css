@@ -1,6 +1,14 @@
-
-@font-face {font-family: "AvenirNextLTPro";src: url("https://dutygestion.com/fuentes/FuenteKiri/AvenirNextLTPro-Regular.otf");}body {font-family: "AvenirNextLTPro";}
+/* @font-face {font-family: "AvenirNextLTPro";src: url("https://dutygestion.com/fuentes/FuenteKiri/AvenirNextLTPro-Regular.otf");}body {font-family: "AvenirNextLTPro";}
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Gloock&family=Open+Sans&display=swap');
+*/
+
+@font-face {
+  font-family: 'AvenirNextLTPro-Regular';
+  src: url('../fonts/AvenirNextLTPro-Regular.otf') format('opentype');
+}
+
+
+
 
 html {
   scroll-behavior: smooth;
@@ -88,7 +96,8 @@ html {
   line-height: 1.25;
   font-weight: 600;
   margin-bottom: 2vw;
-  font-family: 'AvenirNextLTPro';
+  /*font-family: 'AvenirNextLTPro'; */
+  font-family: 'AvenirNextLTPro-Regular', sans-serif;
   color: #435A53;
 
 }
@@ -102,7 +111,7 @@ html {
   font-size: 23px;
   line-height: 1.7;
   text-align: left;
-  font-family: 'AvenirNextLTPro';
+  font-family: 'AvenirNextLTPro-Regular', sans-serif;
   color: #1d3c34;
 }
 
@@ -110,7 +119,7 @@ html {
   color: #1d3c34;
   font-size: 20px;
   font-weight: 400;
-  font-family: 'AvenirNextLTPro';
+  font-family: 'AvenirNextLTPro-Regular', sans-serif;
   /* padding: 70px; */
   /*border: 2px solid green; */
   padding:12%;
@@ -123,7 +132,7 @@ html {
   padding: 4%;
   font-weight: 500;
   font-size: 34px;
-  font-family: 'AvenirNextLTPro';
+  font-family: 'AvenirNextLTPro-Regular', sans-serif;
   color: #1d3c34;
   background-color: #b7dc8f;
 
@@ -138,7 +147,7 @@ html {
   height: 550px;
   font-weight: 500;
   font-size: 33px;
-  font-family: 'AvenirNextLTPro';
+  font-family: 'AvenirNextLTPro-Regular', sans-serif;
   color: #1d3c34;
   background-color: #D4EABC;
 
@@ -149,7 +158,7 @@ html {
   height: 550px;
   font-weight: 500;
   font-size: 33px;
-  font-family: 'AvenirNextLTPro';
+  font-family: 'AvenirNextLTPro-Regular', sans-serif;
   color: #1d3c34;
   background-color: #b7dc8f;
 
@@ -160,7 +169,7 @@ html {
   height: 550px;
   font-weight: 500;
   font-size: 33px;
-  font-family: 'AvenirNextLTPro';
+  font-family: 'AvenirNextLTPro-Regular', sans-serif;
   color: #1d3c34;
   background-color: #F0F4E3;
 
@@ -171,7 +180,7 @@ html {
   background-color: #1d3c34;
   height: 190px;
   width: 100%;
-  font-family: 'AvenirNextLTPro';
+  font-family: 'AvenirNextLTPro-Regular', sans-serif;
 }
 
 .footer-text-large {
@@ -224,7 +233,7 @@ html {
     font-size: 42px;
     font-weight: 600;
     margin-bottom: 7vw;
-    font-family: 'AvenirNextLTPro';
+    font-family: 'AvenirNextLTPro-Regular', sans-serif;
     color: #435A53;
   }
 
