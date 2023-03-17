@@ -35,9 +35,9 @@ function PostDisplay(props) {
             <div className="d-flex align-items-center mb-3">
               <p className="mb-0">
                 {props.date}{" "}
-                <span className="badge bg-success">{props.status}</span>
+                <span className="badge bg-success">{props.status}</span>{" "}
                 <span className="badge bg-success">{props.category}</span>{" "}
-                <span className="badge bg-primary">{props.votes}</span>
+                <span className="badge bg-primary">{props.votes}</span>{" "}
               </p>
               <a href="#!" className="link-muted">
                 <MDBIcon fas icon="pencil-alt ms-2" />
