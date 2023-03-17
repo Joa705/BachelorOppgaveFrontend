@@ -1,7 +1,7 @@
 import SideNav, {Toggle, NavItem, NavIcon, NavText} from "@trendmicro/react-sidenav";
 import "@trendmicro/react-sidenav/dist/react-sidenav.css";
 import { FaCcJcb } from "react-icons/fa";
-import { MdForum, MdOutlineForum } from "react-icons/md";
+import { MdForum, MdOutlineForum, MdOutlinePostAdd, MdAddComment } from "react-icons/md";
 import { RiAdminFill} from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import '../styling/sidebar.css';
@@ -24,11 +24,11 @@ export default function NavigationSidebar() {
     <SideNav.Nav defaultSelected="/">
       <NavItem eventKey="/posts">
         <NavIcon><i><MdForum  style={{fontSize: "25px"}} /></i></NavIcon>
-        <NavText>Innlegg</NavText>
+        <NavText>Se alle innlegg</NavText>
       </NavItem>
       <NavItem eventKey="/posts/mine">
-        <NavIcon><i><MdOutlineForum  style={{fontSize: "25px"}} /></i></NavIcon>
-        <NavText>Mine Innlegg</NavText>
+        <NavIcon><i><MdAddComment style={{fontSize: "25px"}} /></i></NavIcon>
+        <NavText>Registrer ny feedback</NavText>
       </NavItem>
       {admin ? 
         <NavItem eventKey="/admin">

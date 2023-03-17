@@ -1,299 +1,200 @@
 import React, { useEffect, useState} from "react";
 import "../styling/posts.css";
 import { BiSearchAlt } from "react-icons/bi";
+import { Display } from "./mine_posts";
 
 
-function Posts() {
-  const [displayData, setDisplayData] = useState([]);
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardImage,
+  MDBCol,
+  MDBContainer,
+  MDBIcon,
+  MDBRow,
+  MDBTypography,
+} from "mdb-react-ui-kit";
 
-  async function getData() {
-    await fetch("http://localhost:5296/WeatherForecast")
-      .then((data) => data.json())
-      .then((res) => {
-        setDisplayData(res);
-        console.log(res);
-      });
+ export default function RecentComments() {
+    return (
+      <section style={{ backgroundColor: "#f0f4e3" }}>
+        <MDBContainer className="py-5" style={{ maxWidth: "100%" }}>
+          <MDBRow className="justify-content-center">
+            <MDBCol md="12" lg="10">
+              <MDBCard className="text-dark">
+                <MDBCardBody className="p-4">
+                  <MDBTypography tag="h1" className="mb-2">
+                    Asplan Viak <br /> Feedback System 
+                  </MDBTypography>
+                  <p className="fw-light mb-4 pb-2">
+                    <br />Se alle feedbackene med ris, ros og forbedringsforslag sendt til oss. 
+                  </p>
+                  <br />
+                  <div className="d-flex flex-start">
+                    <MDBCardImage
+                      className="rounded-circle shadow-1-strong me-3"
+                      src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(23).webp"
+                      alt="avatar"
+                      width="60"
+                      height="60"
+                    />
+                    <div>
+                      <MDBTypography tag="h6" className="fw-bold mb-1">
+                        Joachim Albertsen
+                      </MDBTypography>
+                      <div className="d-flex align-items-center mb-3">
+                        <p className="mb-0">
+                          Publisert: 14.03.2023 <span className="badge bg-success">Ros</span> <span className="badge bg-primary">Vurdering: 9 / 10</span>
+                        </p>
+                        <a href="#!" className="link-muted">
+                          <MDBIcon fas icon="pencil-alt ms-2" />
+                        </a>
+                        <a href="#!" className="link-muted">
+                          <MDBIcon fas icon="redo-alt ms-2" />
+                        </a>
+                        <a href="#!" className="link-muted">
+                          <MDBIcon fas icon="heart ms-2" />
+                        </a>
+                      </div>
+                      <p className="mb-0">
+                        <h4>Liker interiøret dere lager</h4>
+                        Det er faen meg dritt bra. Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry. Lorem Ipsum has been the industry's
+                        standard dummy text ever since the 1500s, when an unknown
+                        printer took a galley of type and scrambled it.
+                      </p>
+                    </div>
+                  </div>
+                </MDBCardBody>
+  
+                <hr className="my-0" />
+  
+                <MDBCardBody className="p-4">
+                  <div className="d-flex flex-start">
+                    <MDBCardImage
+                      className="rounded-circle shadow-1-strong me-3"
+                      src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(26).webp"
+                      alt="avatar"
+                      width="60"
+                      height="60"
+                    />
+                    <div>
+                      <MDBTypography tag="h6" className="fw-bold mb-1">
+                        Lara Stewart
+                      </MDBTypography>
+                      <div className="d-flex align-items-center mb-3">
+                        <p className="mb-0">
+                          March 15, 2021
+                          <span className="badge bg-success">Approved</span>
+                        </p>
+                        <a href="#!" className="link-muted">
+                          <MDBIcon fas icon="pencil-alt ms-2" />
+                        </a>
+                        <a href="#!" className="text-success">
+                          <MDBIcon fas icon="redo-alt ms-2" />
+                        </a>
+                        <a href="#!" className="link-danger">
+                          <MDBIcon fas icon="heart ms-2" />
+                        </a>
+                      </div>
+                      <p className="mb-0">
+                        Contrary to popular belief, Lorem Ipsum is not simply
+                        random text. It has roots in a piece of classical Latin
+                        literature from 45 BC, making it over 2000 years old.
+                        Richard McClintock, a Latin professor at Hampden-Sydney
+                        College in Virginia, looked up one of the more obscure
+                        Latin words, consectetur, from a Lorem Ipsum passage, and
+                        going through the cites.
+                      </p>
+                    </div>
+                  </div>
+                </MDBCardBody>
+  
+                <hr className="my-0" />
+  
+                <MDBCardBody className="p-4">
+                  <div className="d-flex flex-start">
+                    <MDBCardImage
+                      className="rounded-circle shadow-1-strong me-3"
+                      src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(33).webp"
+                      alt="avatar"
+                      width="60"
+                      height="60"
+                    />
+                    <div>
+                      <MDBTypography tag="h6" className="fw-bold mb-1">
+                        Alexa Bennett
+                      </MDBTypography>
+                      <div className="d-flex align-items-center mb-3">
+                        <p className="mb-0">
+                          March 24, 2021
+                          <span className="badge bg-danger">Rejected</span>
+                        </p>
+                        <a href="#!" className="link-muted">
+                          <MDBIcon fas icon="pencil-alt ms-2" />
+                        </a>
+                        <a href="#!" className="link-muted">
+                          <MDBIcon fas icon="redo-alt ms-2" />
+                        </a>
+                        <a href="#!" className="link-muted">
+                          <MDBIcon fas icon="heart ms-2" />
+                        </a>
+                      </div>
+                      <p className="mb-0">
+                        There are many variations of passages of Lorem Ipsum
+                        available, but the majority have suffered alteration in
+                        some form, by injected humour, or randomised words which
+                        don't look even slightly believable. If you are going to
+                        use a passage of Lorem Ipsum, you need to be sure.
+                      </p>
+                    </div>
+                  </div>
+                </MDBCardBody>
+  
+                <hr className="my-0" />
+  
+                <MDBCardBody className="p-4">
+                  <div className="d-flex flex-start">
+                    <MDBCardImage
+                      className="rounded-circle shadow-1-strong me-3"
+                      src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(24).webp"
+                      alt="avatar"
+                      width="60"
+                      height="60"
+                    />
+                    <div>
+                      <MDBTypography tag="h6" className="fw-bold mb-1">
+                        Alexa Bennett
+                      </MDBTypography>
+                      <div className="d-flex align-items-center mb-3">
+                        <p className="mb-0">
+                          March 30, 2021
+                          <span className="badge bg-primary">Pending</span>
+                        </p>
+                        <a href="#!" className="link-muted">
+                          <MDBIcon fas icon="pencil-alt ms-2" />
+                        </a>
+                        <a href="#!" className="link-muted">
+                          <MDBIcon fas icon="redo-alt ms-2" />
+                        </a>
+                        <a href="#!" className="link-muted">
+                          <MDBIcon fas icon="heart ms-2" />
+                        </a>
+                      </div>
+                      <p className="mb-0">
+                        It uses a dictionary of over 200 Latin words, combined
+                        with a handful of model sentence structures, to generate
+                        Lorem Ipsum which looks reasonable. The generated Lorem
+                        Ipsum is therefore always free from repetition, injected
+                        humour, or non-characteristic words etc.
+                      </p>
+                    </div>
+                  </div>
+                </MDBCardBody>
+              </MDBCard>
+            </MDBCol>
+          </MDBRow>
+        </MDBContainer>
+      </section>
+    );
   }
-
-
-  return (
-    <>
-      <div class="posts-container">
-        <div className="container-sm d-flex my-2  ">
-          <button
-            type="button"
-            class="add-post btn btn-primary btn-lg btn-block"
-            data-toggle="modal" data-target="#exampleModalCenter"
-          >
-            Opprett et nytt innlegg
-          </button>
-        </div>
-        <div className="main-content-container d-flex flex-row ">
-          <div className="main-content-left">
-            <div className="left-inner-1 d-flex flex-row">
-              <div className="left-inner-item-1">
-                <select class="form-select" aria-label="Default select example">
-                  <option selected>Nyeste Først</option>
-                  <option value="1">Mest likte</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-              </div>
-              <div className="left-inner-item-2 ml-2">
-                <div class="search-container container-sm d-flex ">
-                  <div class="search search-field  d-flex align-items-center justify-content-center ">
-                    Søk etter innlegg..
-                  </div>
-                  <div class="search search-button d-flex align-items-center justify-content-center ">
-                    <i>
-                      <BiSearchAlt />
-                    </i>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="left-inner-2 mt-2">
-              {/*  <div class="list-group w-100">
-                <a
-                  class="list-group-item list-group-item-action flex-column align-items-start mt-2 mr-4"
-                  href="#"
-                >
-                  <div class="d-flex w-100  justify-content-between">
-                    <h5 class="mb-1">Endre farge</h5>
-                    <small>3 days ago</small>
-                  </div>
-                  <p class="mb-1">
-                    Fargen på forsiden er ikke fin blabla blabla etest adakdka
-                    kdasld aklsdla
-                  </p>
-                  <small>Kommentarer (200)</small>
-                </a>
-                <a
-                  class="list-group-item list-group-item-action flex-column align-items-start mt-2"
-                  href="#"
-                >
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">Bug et sted</h5>
-                    <small>3 days ago</small>
-                  </div>
-                  <p class="mb-1">
-                    Det er en bug et sted. Donec id elit non mi porta gravida at
-                    eget metus. Maecenas sed diam eget risus varius blandit.
-                  </p>
-                  <small>Kommentarer (50)</small>
-                </a>
-              </div> */}
-              <div class="list-group list-group-main w-100">
-                <a
-                  href="#"
-                  class="list-group-item list-group-item-action list-group-main-items"
-                >
-                  <div class="d-flex w-100  justify-content-between">
-                    <h5 class="mb-1">Endre farge</h5>
-                    <small>3 days ago</small>
-                  </div>
-                  <p class="mb-1">
-                    Fargen på forsiden er ikke fin blabla blabla etest adakdka
-                    kdasld aklsdla
-                  </p>
-                  <small>Kommentarer (200)</small>
-                </a>
-                <a
-                  href="#"
-                  class="list-group-item list-group-item-action  list-group-main-items"
-                >
-                  <div class="d-flex w-100  justify-content-between">
-                    <h5 class="mb-1">Endre farge</h5>
-                    <small>3 days ago</small>
-                  </div>
-                  <p class="mb-1">
-                    Fargen på forsiden er ikke fin blabla blabla etest adakdka
-                    kdasld aklsdla
-                  </p>
-                  <small>Kommentarer (200)</small>
-                </a>
-                <a
-                  href="#"
-                  class="list-group-item list-group-item-action  list-group-main-items"
-                >
-                  <div class="d-flex w-100  justify-content-between">
-                    <h5 class="mb-1">Endre farge</h5>
-                    <small>3 days ago</small>
-                  </div>
-                  <p class="mb-1">
-                    Fargen på forsiden er ikke fin blabla blabla etest adakdka
-                    kdasld aklsdla
-                  </p>
-                  <small>Kommentarer (200)</small>
-                </a>
-                <a
-                  href="#"
-                  class="list-group-item list-group-item-action  list-group-main-items"
-                >
-                  <div class="d-flex w-100  justify-content-between">
-                    <h5 class="mb-1">Endre farge</h5>
-                    <small>3 days ago</small>
-                  </div>
-                  <p class="mb-1">
-                    Fargen på forsiden er ikke fin blabla blabla etest adakdka
-                    kdasld aklsdla
-                  </p>
-                  <small>Kommentarer (200)</small>
-                </a>
-                <a
-                  href="#"
-                  class="list-group-item list-group-item-action list-group-main-items"
-                >
-                  <div class="d-flex w-100  justify-content-between">
-                    <h5 class="mb-1">Endre farge</h5>
-                    <small>3 days ago</small>
-                  </div>
-                  <p class="mb-1">
-                    Fargen på forsiden er ikke fin blabla blabla etest adakdka
-                    kdasld aklsdla
-                  </p>
-                  <small>Kommentarer (200)</small>
-                </a>
-              </div>
-
-              {displayData.map((res) => {
-                return (
-                  <a href="#">
-                    <div
-                      className={
-                        "data-posts d-flex flex-row align-items-center justify-content-center m-4 post-" +
-                        res.weatherId
-                      }
-                    >
-                      <div className="data-items-posts p-2">
-                        <p>Date: {res.date}</p>
-                      </div>
-                      <div className="data-items-posts p-2">
-                        <p>TempC: {res.temperatureC}</p>
-                      </div>
-                      <div className="data-items-posts p-2">
-                        <p>TempF: {res.temperatureF}</p>
-                      </div>
-                      <div className="data-items-posts p-2">
-                        <p>Summary: {res.summary}</p>
-                      </div>
-                    </div>
-                  </a>
-                );
-              })}
-            </div>
-          </div>
-          <div className="main-content-right">
-            <div className="right-inner-1">
-              <h4 class="ml-2">Kategori</h4>
-              <div class="list-group ml-2">
-                <a
-                  class="list-group-item list-group-item-action"
-                  id="list-home-list"
-                  data-toggle="list"
-                  href="#list-home"
-                  role="tab"
-                  aria-controls="home"
-                >
-                  <div class="row">
-                    <div class="col">Alle</div>
-                    <div class="col d-flex justify-content-end">
-                      <span class="badge badge-primary badge-pill">800</span>
-                    </div>
-                  </div>
-                </a>
-                <a
-                  class="list-group-item list-group-item-action"
-                  id="list-home-list"
-                  data-toggle="list"
-                  href="#list-home"
-                  role="tab"
-                  aria-controls="home"
-                >
-                  <div class="row">
-                    <div class="col">Bugs</div>
-                    <div class="col d-flex justify-content-end">
-                      <span class="badge badge-primary badge-pill">140</span>
-                    </div>
-                  </div>
-                </a>
-                <a
-                  class="list-group-item list-group-item-action"
-                  id="list-home-list"
-                  data-toggle="list"
-                  href="#list-home"
-                  role="tab"
-                  aria-controls="home"
-                >
-                  <div class="row">
-                    <div class="col">Feature</div>
-                    <div class="col d-flex justify-content-end">
-                      <span class="badge badge-primary badge-pill">90</span>
-                    </div>
-                  </div>
-                </a>
-                <a
-                  class="list-group-item list-group-item-action"
-                  id="list-home-list"
-                  data-toggle="list"
-                  href="#list-home"
-                  role="tab"
-                  aria-controls="home"
-                >
-                  <div class="row">
-                    <div class="col">Design</div>
-                    <div class="col d-flex justify-content-end">
-                      <span class="badge badge-primary badge-pill">250</span>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="modal fade add-post-modal"
-        id="exampleModalCenter"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content modal-content-add-post">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">
-                Modal title
-              </h5>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">...</div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="button" class="btn btn-primary">
-                Save changes
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-}
-
-export default Posts;
