@@ -60,6 +60,18 @@ export default function NavigationSidebar() {
               </i>
             </NavIcon>
             <NavText>Admin</NavText>
+
+            <NavItem eventKey="/admin">
+                <NavText>
+                    Innlegg
+                </NavText>
+            </NavItem>
+            <NavItem eventKey="/admin/brukere">
+                <NavText>
+                    Brukere
+                </NavText>
+            </NavItem>
+
           </NavItem>
         ) : (
           ""
