@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import logo from "../logo5.png";
-import "../styling/mine_posts.css";
 import {
     MDBBtn,
     MDBCard,
@@ -17,23 +16,9 @@ import {
   } from "mdb-react-ui-kit";
   
 
-export function Display(props) {
-    return (
-        <>
-        <div style={{border : "2px solid black"}}>
-
-        <h1>Id {props.id}</h1>
-        <h1>Navn {props.name}</h1>
-        <button>En knapp</button>
-        </div>
-
-        </>
-        
-    )
-}
 
 
-export default function MyPosts() {    
+export default function NyPosts() {    
     return (
      <> 
         <div className="main-container-item2">

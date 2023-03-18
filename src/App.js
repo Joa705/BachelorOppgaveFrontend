@@ -7,6 +7,7 @@ import NotFound from "./pages/notfound";
 import Post from "./pages/post";
 import Hjemmeside from "./pages/hjemmeside";
 import MyPosts from "./pages/mine_posts";
+import NyPosts from "./pages/ny_post";
 import Admin from "./pages/admin";
 import "./App.css";
 import NavigationSidebar from "./components/sidebar";
@@ -25,8 +26,8 @@ export default function App() {
             <Route exact path="/" element={<Hjemmeside />} />
             <Route exact path="/hjemmeside" element={<Hjemmeside />} />
             <Route exact path="/posts" element={<Posts />} />
-            <Route exact path="/posts/mine" element={<MyPosts />} />
-            <Route path="/posts/:id" element={<Post />} />
+            <Route exact path="/posts/opprett" element={<MyPosts />} />
+            <Route path="/posts/id/:id" element={<Post />} />
             <Route
               path="/admin"
               element={

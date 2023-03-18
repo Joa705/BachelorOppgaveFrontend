@@ -143,7 +143,7 @@ export default function RecentComments() {
                 var newDate = new Date(element.created)
                 
                 return(
-                  <PostDisplay id={element.id} title={element.title} description={element.description} userName={element.user.userName} status={element.status.type} category={element.category.type} votes={element.voteCount} date={newDate.toDateString()}/>
+                  <PostDisplay id={element.id} title={element.title} description={element.description} userName={element.user.userName} status={element.status.type} category={element.category.type} votes={element.votes} date={newDate.toDateString()}/>
                 )
               })}
             </MDBCard>

@@ -15,7 +15,6 @@ import { RiLoginCircleFill } from "react-icons/ri";
 export function Navigationbar() {
   const { token, admin, userName, onLogin, onLogout } = UseAuth();
   const { instance, accounts } = useMsal();
-  
 
   const navigate = useNavigate();
   return (
@@ -27,8 +26,8 @@ export function Navigationbar() {
         aria-controls="navbarSupportedContent"
         aria-expanded="false"
         aria-label="Toggle navigation"
-      ></a> 
-      
+      ></a>
+
       <nav class="navbar navbar-expand-lg fixed-top">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item active">
@@ -44,9 +43,8 @@ export function Navigationbar() {
             onClick={() => navigate("/")}
           />
         </ul>
-        
+
         <button
-        
           class="navbar-toggler mr-2"
           type="button"
           data-toggle="collapse"
@@ -69,15 +67,20 @@ export function Navigationbar() {
                   Alle innlegg <span class="sr-only">(current)</span>
                 </a>
               </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link ml-2"
-                  href="#"
-                  onClick={() => navigate("/posts/mine")}
-                >
-                  Registrer feedback
-                </a>
-              </li>
+              {token ? (
+                <li class="nav-item">
+                  <a
+                    class="nav-link ml-2"
+                    href="#"
+                    onClick={() => navigate("/posts/opprett")}
+                  >
+                    Registrer feedback
+                  </a>
+                </li>
+              ) : (
+                ""
+              )}
+
               {admin ? (
                 <li class="nav-item" onClick={() => navigate("/admin")}>
                   <a class="nav-link ml-2" href="#">
@@ -107,7 +110,6 @@ export function Navigationbar() {
                   type="button"
                   onClick={() => SignInHandler(instance, onLogin)}
                 >
-
                   Logg inn med Azure AD
                 </button>
               </li>
@@ -116,9 +118,7 @@ export function Navigationbar() {
         </div>
       </nav>
     </>
-    
   );
-  
 
   return (
     <Navbar expand="lg" className="navbar">
