@@ -13,6 +13,7 @@ import {
 
 function PostDisplay(props) {
   const postsId = props.id;
+  const randImg = "https://mdbootstrap.com/img/new/avatars/" + Math.floor(Math.random() * 15) + ".jpg";
 
   return (
     <>
@@ -23,7 +24,7 @@ function PostDisplay(props) {
         <div className="d-flex flex-start">
           <MDBCardImage
             className="rounded-circle shadow-1-strong me-3"
-            src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(26).webp"
+            src={randImg}
             alt="avatar"
             width="60"
             height="60"
