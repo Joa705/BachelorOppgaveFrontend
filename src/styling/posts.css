@@ -1,1 +1,16 @@
 .link-muted { color: #aaa; } .link-muted:hover { color: #1266f1; }
+
+
+
+.posts-single-post {
+    cursor: pointer;
+}
+
+.posts-single-post:hover {
+    background-color: #aaa;
+}
+
+.posts-single-post:active {
+    background-color: #aaa;
+    border: 2px solid black;
+}
