@@ -30,11 +30,42 @@ export function Navigationbar() {
 
       <nav class="navbar navbar-expand-lg fixed-top">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-          <li class="nav-item active">
+          <li class="nav-item active logo-screen">
             <a class="navbar-brand" href="#" onClick={() => navigate("/")}>
               <img className="navbar-logo" src={require("../navn.png")} />
             </a>
           </li>
+          {token ? (
+            <li class="nav-item logo-phone ml-2">
+              <div class="btn-group">
+                <img
+                  class="logout-img dropdown-toggle"
+                  src="https://mdbootstrap.com/img/new/avatars/3.jpg"
+                  alt="Mitt Bildet"
+                  type="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                ></img>
+                <div class="dropdown-menu">
+                  <p class="dropdown-item">{userName}</p>
+                  <a class="dropdown-item" href="#" onClick={() => SignOutHandler(instance, onLogout)}>
+                    Logg ut
+                  </a>
+                </div>
+              </div>
+            </li>
+          ) : (
+            <li class="nav-item logo-phone ml-2">
+              <button
+                class="azure-btn btn btn-sm btn-outline-secondary"
+                type="button"
+                onClick={() => SignInHandler(instance, onLogin)}
+              >
+                Logg inn
+              </button>
+            </li>
+          )}
         </ul>
         <ul class="navbar-nav mx-auto nav-mid-logo">
           <img
@@ -79,36 +110,40 @@ export function Navigationbar() {
                 </li>
               ) : (
                 ""
-              )}  
+              )}
 
               {admin ? (
                 <>
-                <li
-                  class="nav-item dropdown ml-2"
-
-                >
-                  <a
-                    class="nav-link dropdown-toggle"
-                    href="#"
-                    id="navbarDropdown"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    Admin
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#" onClick={() => navigate("/admin")}>
-                      Innlegg
+                  <li class="nav-item dropdown ml-2">
+                    <a
+                      class="nav-link dropdown-toggle"
+                      href="#"
+                      id="navbarDropdown"
+                      role="button"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      Admin
                     </a>
-                    <a class="dropdown-item" href="#" onClick={() => navigate("/admin/brukere")}>
-                      Brukere
-                    </a>
-                  </div>
-                </li>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onClick={() => navigate("/admin")}
+                      >
+                        Innlegg
+                      </a>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onClick={() => navigate("/admin/brukere")}
+                      >
+                        Brukere
+                      </a>
+                    </div>
+                  </li>
                 </>
-
               ) : (
                 ""
               )}
@@ -116,17 +151,27 @@ export function Navigationbar() {
           </div>
           <ul class="navbar-nav ml-auto">
             {token ? (
-              <li class="nav-item ml-2 mt-4">
-                <button
-                  class="azure-btn btn btn-sm btn-outline-secondary mr-2"
-                  type="button"
-                  onClick={() => SignOutHandler(instance, onLogout)}
-                >
-                  Logg ut
-                </button>
+              <li class="nav-item ml-2 login-logout">
+                <div class="btn-grou dropleft mr-2">
+                  <img
+                    class="logout-img dropdown-toggle"
+                    src="https://mdbootstrap.com/img/new/avatars/3.jpg"
+                    alt="Mitt Bildet"
+                    type="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  ></img>
+                  <div class="dropdown-menu">
+                    <p class="dropdown-item">{userName}</p>
+                    <a class="dropdown-item" href="#" onClick={() => SignOutHandler(instance, onLogout)}>
+                      Logg ut
+                    </a>
+                  </div>
+                </div>
               </li>
             ) : (
-              <li class="nav-item ml-2">
+              <li class="nav-item ml-2 login-logout">
                 <button
                   class="azure-btn btn btn-sm btn-outline-secondary mr-2"
                   type="button"

@@ -96,6 +96,7 @@ export function AuthProvider({ children }) {
     token,
     admin,
     userName,
+    userEmail,
     onLogin: handleLogin,
     onLogout: handleLogout,
   };
