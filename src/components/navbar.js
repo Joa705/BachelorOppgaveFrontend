@@ -79,14 +79,36 @@ export function Navigationbar() {
                 </li>
               ) : (
                 ""
-              )}
+              )}  
 
               {admin ? (
-                <li class="nav-item" onClick={() => navigate("/admin")}>
-                  <a class="nav-link ml-2" href="#">
+                <>
+                <li
+                  class="nav-item dropdown ml-2"
+
+                >
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="navbarDropdown"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
                     Admin
                   </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#" onClick={() => navigate("/admin")}>
+                      Innlegg
+                    </a>
+                    <a class="dropdown-item" href="#" onClick={() => navigate("/admin/brukere")}>
+                      Brukere
+                    </a>
+                  </div>
                 </li>
+                </>
+
               ) : (
                 ""
               )}
@@ -94,7 +116,7 @@ export function Navigationbar() {
           </div>
           <ul class="navbar-nav ml-auto">
             {token ? (
-              <li class="nav-item ml-2">
+              <li class="nav-item ml-2 mt-4">
                 <button
                   class="azure-btn btn btn-sm btn-outline-secondary mr-2"
                   type="button"

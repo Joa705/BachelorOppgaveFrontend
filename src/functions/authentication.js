@@ -1,18 +1,18 @@
 import React, { useState, useContext, createContext } from "react";
 import { Navigate, useNavigate, useLocation } from "react-router-dom";
-import Cookies from 'universal-cookie';
+import Cookies from "universal-cookie";
 import { PublicClientApplication } from "@azure/msal-browser";
 import { AzureConfig, UrlConfig } from "../config";
 
+const configs = {
+  auth: {
+    clientId: AzureConfig.appId,
+    redirectUri: AzureConfig.redirectUri,
+    authority: AzureConfig.authority,
+  },
+};
 
-const configs = {auth: {
-    clientId : AzureConfig.appId,
-    redirectUri : AzureConfig.redirectUri,
-    authority : AzureConfig.authority
-  }};
-
-export const pcaInstance = new PublicClientApplication(configs)
-
+export const pcaInstance = new PublicClientApplication(configs);
 
 export async function SignOutHandler(instance, onLogout) {
   const logoutRequest = {
@@ -20,33 +20,38 @@ export async function SignOutHandler(instance, onLogout) {
     mainWindowRedirectUri: "http://localhost:3000",
     postLogoutRedirectUri: "http://localhost:3000",
   };
-  await instance.logoutPopup(logoutRequest).then(() => onLogout())
-  
+  await instance.logoutPopup(logoutRequest).then(() => onLogout());
 }
 
 export async function SignInHandler(instance, onLogin) {
   const loginRequest = {
-    scopes: AzureConfig.scopes
-   };
-  await instance.loginPopup()
-  .then((res) =>{
-    console.log(res);
+    scopes: AzureConfig.scopes,
+  };
+  await instance
+    .loginPopup()
+    .then((res) => {
+      console.log(res);
 
-    const data = new FormData();
-    data.append('id', res.account.localAccountId);
-    data.append('name', res.account.name);
-    data.append('email', res.account.username)
+      const data = new FormData();
+      data.append("azureId", res.account.localAccountId);
+      data.append("userName", res.account.name);
+      data.append("userEmail", res.account.username);
 
-    // store user in backend
-    fetch(UrlConfig.serverUrl + "/azure", {
-      method: 'Post',
-      body: data
-    }).catch((e) => console.log(e))
-
-    onLogin(res.account.localAccountId, res.account.name)
-  }).catch((e) => console.log(e))
+      // store user in backend
+      fetch(UrlConfig.serverUrl + "/User", {
+        method: "Post",
+        body: data,
+        headers: { token: "1234" },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data)
+          onLogin(data.id, data.userName, data.email, data.userRole.type)
+        })
+        .catch((e) => console.log(e));
+    })
+    .catch((e) => console.log(e));
 }
-
 
 export function ProtectRouteAdmin({ children }) {
   const { admin } = useContext(AuthContext);
@@ -64,19 +69,26 @@ export function AuthProvider({ children }) {
   const [token, setToken] = useState(null);
   const [admin, setAdmin] = useState(false);
   const [userName, setUserName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
 
-  const handleLogin = (token, name) => {
+  const handleLogin = (token, name, email, admin) => {
     setToken(token);
-    setAdmin(true);
+    if (admin == "Admin") {
+      setAdmin(true);
+    }
+
+    // set admin to true in test stage
+    setAdmin(true)
     setUserName(name);
+    setUserEmail(email);
     navigate("/");
-    
   };
 
   const handleLogout = () => {
     setToken(null);
     setAdmin(false);
     setUserName("");
+    setUserEmail("");
     navigate("/");
   };
 
@@ -85,7 +97,7 @@ export function AuthProvider({ children }) {
     admin,
     userName,
     onLogin: handleLogin,
-    onLogout: handleLogout
+    onLogout: handleLogout,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
