@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { UrlConfig } from "../config";
 import "../styling/posts.css";
 import {
   MDBCard,
@@ -13,7 +14,10 @@ import {
 
 function PostDisplay(props) {
   const postsId = props.id;
-  const randImg = "https://mdbootstrap.com/img/new/avatars/" + Math.floor(Math.random() * 15) + ".jpg";
+  const randImg =
+    "https://mdbootstrap.com/img/new/avatars/" +
+    Math.floor(Math.random() * 15) +
+    ".jpg";
 
   return (
     <>
@@ -69,55 +73,54 @@ export default function RecentComments() {
   useEffect(() => {
     async function fetchPostsData() {
       try {
-        await fetch("http://localhost:5296/Post")
-        .then((res) => res.json())
-        .then((data) => setPostsData(data));
-      }
-      catch {
+        await fetch(UrlConfig.serverUrl + "/Post")
+          .then((res) => res.json())
+          .then((data) => setPostsData(data));
+      } catch {
         setPostsData([
           {
-            "id": "15cfcc42-5e5e-42d0-94f4-d72a37542e9a",
-            "title": "Drit bra animasjoner",
-            "description": "10 av 10 animasjoner på forsiden. Dere har flinke utviklere",
-            "voteCount": 100,
-            "created": "2023-03-17T10:24:37.650147Z",
-            "user": {
-              "userId": "b2702bec-ad1a-40cf-8fd5-650c132d7bd6",
-              "userName": "Admin",
-              "email": "admin@admin.admin"
+            id: "15cfcc42-5e5e-42d0-94f4-d72a37542e9a",
+            title: "Drit bra animasjoner",
+            description:
+              "10 av 10 animasjoner på forsiden. Dere har flinke utviklere",
+            voteCount: 100,
+            created: "2023-03-17T10:24:37.650147Z",
+            user: {
+              userId: "b2702bec-ad1a-40cf-8fd5-650c132d7bd6",
+              userName: "Admin",
+              email: "admin@admin.admin",
             },
-            "category": {
-              "categoryId": "5a900b35-9b8f-43fe-8ca6-f1bec9e7dd34",
-              "type": "Ros"
+            category: {
+              categoryId: "5a900b35-9b8f-43fe-8ca6-f1bec9e7dd34",
+              type: "Ros",
             },
-            "status": {
-              "statusId": "ea167951-c80b-41ba-9c21-c44dbb4bed91",
-              "type": "Pending"
-            }
+            status: {
+              statusId: "ea167951-c80b-41ba-9c21-c44dbb4bed91",
+              type: "Pending",
+            },
           },
           {
-            "id": "f0301cda-60aa-48f7-9396-f9e044a67dac",
-            "title": "Elendig UX design",
-            "description": "Kunne gjort det mye bedre selv",
-            "voteCount": 100,
-            "created": "2023-03-17T10:24:37.650028Z",
-            "user": {
-              "userId": "482a49d6-a52b-4975-85d9-9297f6589c2f",
-              "userName": "Hans Henrik",
-              "email": "hans@henrik.no"
+            id: "f0301cda-60aa-48f7-9396-f9e044a67dac",
+            title: "Elendig UX design",
+            description: "Kunne gjort det mye bedre selv",
+            voteCount: 100,
+            created: "2023-03-17T10:24:37.650028Z",
+            user: {
+              userId: "482a49d6-a52b-4975-85d9-9297f6589c2f",
+              userName: "Hans Henrik",
+              email: "hans@henrik.no",
             },
-            "category": {
-              "categoryId": "0fc1250c-e6c3-4e98-88ba-1cba375ca414",
-              "type": "Ris"
+            category: {
+              categoryId: "0fc1250c-e6c3-4e98-88ba-1cba375ca414",
+              type: "Ris",
             },
-            "status": {
-              "statusId": "1b84119f-dc28-4ab8-92b8-7398311ea13c",
-              "type": "Pending"
-            }
-          }
-        ])
+            status: {
+              statusId: "1b84119f-dc28-4ab8-92b8-7398311ea13c",
+              type: "Pending",
+            },
+          },
+        ]);
       }
-
     }
 
     fetchPostsData();
@@ -140,12 +143,21 @@ export default function RecentComments() {
                 <br />
               </MDBCardBody>
 
-              {postsData.map(element => {
-                var newDate = new Date(element.created)
-                
-                return(
-                  <PostDisplay id={element.id} title={element.title} description={element.description} userName={element.user.userName} status={element.status.type} category={element.category.type} votes={element.votes} date={newDate.toDateString()}/>
-                )
+              {postsData.map((element) => {
+                var newDate = new Date(element.created);
+
+                return (
+                  <PostDisplay
+                    id={element.id}
+                    title={element.title}
+                    description={element.description}
+                    userName={element.user.userName}
+                    status={element.status.type}
+                    category={element.category.type}
+                    votes={element.votes}
+                    date={newDate.toDateString()}
+                  />
+                );
               })}
             </MDBCard>
           </MDBCol>
