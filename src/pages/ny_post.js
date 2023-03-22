@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, } from "react";
 import { UrlConfig } from "../config";
 import logo from "../logo5.png";
+import "../styling/ny_post.css"
+import { UseAuth } from "../functions/authentication";
+import { Navigate, useNavigate, useLocation } from "react-router-dom";
 import {
   MDBBtn,
   MDBCard,
@@ -18,8 +21,14 @@ import {
 } from "mdb-react-ui-kit";
 
 export default function NyPosts() {
+  const {token} = UseAuth();
   const [categories, setCategories] = useState([]);
-  const [categoryId, setCategoryId] = useState("")
+  const [categoryId, setCategoryId] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [labelTakk, setLabelTakk] = useState("");
+
+  const navgiate = useNavigate();
 
   useEffect(() => {
     fetch(UrlConfig.serverUrl + "/Category")
@@ -27,6 +36,29 @@ export default function NyPosts() {
       .then((data) => setCategories(data))
       .catch((e) => console.log(e));
   }, []);
+
+  async function submitData(){
+    let myForm = new FormData();
+    myForm.append("categoryId", categoryId)
+    myForm.append("title", title)
+    myForm.append("description", description)
+    let res = await fetch(UrlConfig.serverUrl + "/Post",
+    {
+      method: "post",
+      headers: {'userId' : token},
+      body: myForm
+    })
+    
+    if(res.status == "200") {
+      setLabelTakk("Takk for din tilbakemelding! Vi setter pris på det.")
+
+      setTimeout(() =>{
+      setLabelTakk("")
+      navgiate("/posts")
+
+      }, 3000)
+    }
+  }
 
   return (
     <>
@@ -49,7 +81,7 @@ export default function NyPosts() {
       <br />
       <br />
 
-      <form className="px-4" action="">
+      <form className="px-4" action="" onSubmit={(event) => event.preventDefault()}>
         <MDBContainer>
           <MDBRow className="justify-content-center">
             <MDBCol size="11">
@@ -93,17 +125,19 @@ export default function NyPosts() {
                     className="mb-4"
                     label="Skriv feedbacken din her:"
                     id="tittel"
+                    onChange={(e) => setTitle(e.target.value)}
                   />
                   <MDBTextArea
                     className="mb-4"
-                    label="Takk for din tilbakemelding! Vi skal gå gjennom den. Du vil høre fra oss."
+                    label={labelTakk}
                     id="textAreaExample"
+                    onChange={(e) => setDescription(e.target.value)}
                     rows={10}
                   />
                 </MDBCardBody>
                 <MDBCardFooter>
                   <div className="text-end">
-                    <MDBBtn>Send inn</MDBBtn>
+                    <button type="submit" className="submit-ny-innlegg btn btn-success" onClick={()=> submitData()}>Send inn</button>
                   </div>
                 </MDBCardFooter>
               </MDBCard>
@@ -111,6 +145,7 @@ export default function NyPosts() {
           </MDBRow>
         </MDBContainer>
       </form>
+      <br></br>
     </>
   );
 }

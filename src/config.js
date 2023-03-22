@@ -12,3 +12,7 @@ export const UrlConfig = {
     clientUrl : 'http://localhost:3000',
     serverUrl : 'http://localhost:5296'
 }
+
+export const SecretKeys = {
+    tokenName : "userId"
+}
