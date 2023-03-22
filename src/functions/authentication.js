@@ -60,6 +60,13 @@ export function ProtectRouteAdmin({ children }) {
   return children;
 }
 
+export function ProtectRouteLogin({ children }) {
+  const { token } = useContext(AuthContext);
+  // Add logic for verifying that the user is a admin
+  if (!token) return <Navigate to="/" replace />;
+  return children;
+}
+
 export const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
@@ -96,6 +103,7 @@ export function AuthProvider({ children }) {
     token,
     admin,
     userName,
+    userEmail,
     onLogin: handleLogin,
     onLogout: handleLogout,
   };

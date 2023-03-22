@@ -1,32 +1,4 @@
-/* .navbar {
-    min-height: 65px;
-    background-color: #f0f4e3 !important;
-    max-height: 65px !important;
-    z-index: 999;
-    position: relative;
-    border-bottom: 1px solid gray;
-}
-.navbar-logo {
-    height: 55px;
-}
-#navbar-logo-second {
-    height: 55px;
-}
-.login-button {
-    display: block;
-}
-.login-icon {
-    display: none;
-}
-@media only screen and (max-width: 1000px) {
-    .login-button {
-        display: none;
-    }
-    .login-icon {
-        display: block;
-    }
-    
-} */
+
 @font-face {font-family: "AvenirNextLTPro";src: url("https://dutygestion.com/fuentes/FuenteKiri/AvenirNextLTPro-Regular.otf");}body {font-family: "AvenirNextLTPro";}
 .navbar {
     background-color: #f0f4e3 !important;
@@ -38,9 +10,28 @@
     .nav-dropdown {
         display: none;
     }
+    .logo-phone {
+        display: none;
+    }
+    
+    
+}
+
+@media (max-width : 991px) {
+    .login-logout {
+        display: none;
+    }
+
+    .logo-screen {
+        display: none;
+    }
 }
 
 
+.logout-img {
+    border-radius: 50%;
+    height: 55px;
+  }
 
 .navbar-logo {
     height: 55px;
@@ -49,7 +40,7 @@
 .nav-mid-logo {
     position: absolute;
     left: 50%;
-    top: 20px;
+    top: 15px;
     transform: translate(-50%);
 }
 

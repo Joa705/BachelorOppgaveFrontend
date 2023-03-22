@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { Navigationbar } from "./components/navbar";
-import { AuthProvider, ProtectRouteAdmin } from "./functions/authentication";
+import {
+  AuthProvider,
+  ProtectRouteAdmin,
+  ProtectRouteLogin,
+} from "./functions/authentication";
 import Posts from "./pages/posts";
 import NotFound from "./pages/notfound";
 import Post from "./pages/post";
@@ -15,8 +19,6 @@ import NavigationSidebar from "./components/sidebar";
 import "./styling/sidebar.css";
 
 export default function App() {
-
-
   return (
     <BrowserRouter>
       <AuthProvider>
@@ -27,8 +29,17 @@ export default function App() {
             <Route exact path="/" element={<Hjemmeside />} />
             <Route exact path="/hjemmeside" element={<Hjemmeside />} />
             <Route exact path="/posts" element={<Posts />} />
-            <Route exact path="/posts/opprett" element={<NyPosts />} />
+            <Route
+              exact
+              path="/posts/opprett"
+              element={
+                <ProtectRouteLogin>
+                  <NyPosts />
+                </ProtectRouteLogin>
+              }
+            />
             <Route path="/posts/id/:id" element={<Post />} />
+
             <Route
               path="/admin"
               element={
@@ -36,9 +47,15 @@ export default function App() {
                   <Admin />
                 </ProtectRouteAdmin>
               }
-            >
-            </Route>
-            <Route path="/admin/brukere" element={<ProtectRouteAdmin><Brukere /></ProtectRouteAdmin>}/>
+            ></Route>
+            <Route
+              path="/admin/brukere"
+              element={
+                <ProtectRouteAdmin>
+                  <Brukere />
+                </ProtectRouteAdmin>
+              }
+            />
 
             <Route path="*" element={<NotFound />} />
           </Routes>

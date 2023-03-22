@@ -1,5 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, } from "react";
+import { UrlConfig } from "../config";
 import logo from "../logo5.png";
+import "../styling/ny_post.css"
+import { UseAuth } from "../functions/authentication";
+import { Navigate, useNavigate, useLocation } from "react-router-dom";
 import {
   MDBBtn,
   MDBCard,
@@ -17,6 +21,45 @@ import {
 } from "mdb-react-ui-kit";
 
 export default function NyPosts() {
+  const {token} = UseAuth();
+  const [categories, setCategories] = useState([]);
+  const [categoryId, setCategoryId] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [labelTakk, setLabelTakk] = useState("");
+
+  const navgiate = useNavigate();
+
+  useEffect(() => {
+    fetch(UrlConfig.serverUrl + "/Category")
+      .then((res) => res.json())
+      .then((data) => setCategories(data))
+      .catch((e) => console.log(e));
+  }, []);
+
+  async function submitData(){
+    let myForm = new FormData();
+    myForm.append("categoryId", categoryId)
+    myForm.append("title", title)
+    myForm.append("description", description)
+    let res = await fetch(UrlConfig.serverUrl + "/Post",
+    {
+      method: "post",
+      headers: {'userId' : token},
+      body: myForm
+    })
+    
+    if(res.status == "200") {
+      setLabelTakk("Takk for din tilbakemelding! Vi setter pris på det.")
+
+      setTimeout(() =>{
+      setLabelTakk("")
+      navgiate("/posts")
+
+      }, 3000)
+    }
+  }
+
   return (
     <>
       <div className="main-container-item2">
@@ -37,74 +80,43 @@ export default function NyPosts() {
       </div>
       <br />
       <br />
-      <MDBContainer>
-        <MDBRow className="justify-content-center">
-          <MDBCol size="11">
-            <MDBCard>
-              <MDBCardBody>
-                <div className="text-center">
-                  <MDBIcon far icon="file-alt mb-3 text-primary" size="4x" />
 
-                  <MDBContainer style={{ maxWidth: "800px" }}>
-                    <div className="mx-0 mx-sm-auto">
-                      <p className="fw-bold text-center">
-                        <h5>
-                          Hvor fornøyd er du med tjenester levert av Asplan
-                          Viak?
-                        </h5>
-                      </p>
-
-                      <label
-                        htmlFor="customRange3"
-                        className="form-label float-start"
-                      >
-                        Svært lite
-                      </label>
-                      <label
-                        htmlFor="customRange3"
-                        className="form-label float-end"
-                      >
-                        Veldig fornøyd
-                      </label>
-
-                      <MDBRange min="0" max="10" step="1" id="customRange3" />
-
-                      <div className="text-right mt-3">
-                        <MDBBtn>Velg</MDBBtn>
-                      </div>
-                    </div>
-                  </MDBContainer>
-                </div>
-
-                <hr />
-
-                <form className="px-4" action="">
+      <form className="px-4" action="" onSubmit={(e)=> {e.preventDefault(); submitData();}}>
+        <MDBContainer>
+          <MDBRow className="justify-content-center">
+            <MDBCol size="11">
+              <MDBCard>
+                <MDBCardBody>
+                  <div className="text-center">
+                    <MDBIcon far icon="file-alt mb-3 text-primary" size="4x" />
+                  </div>
                   <p className="text-center">
                     <strong>
                       <h5>Hva slags feedback ønsker du å registrere?</h5>
                     </strong>
                   </p>
-                  
-                  <MDBRadio
-                    name="flexRadioDefault"
-                    id="flexRadioDefault1"
-                    label="Ris"
-                    className="mb-2"
-                    defaultChecked
-                  />
-                  <MDBRadio
-                    name="flexRadioDefault"
-                    id="flexRadioDefault2"
-                    label="Ros"
-                    className="mb-2"
-                  />
-                  <MDBRadio
-                    name="flexRadioDefault"
-                    id="flexRadioDefault3"
-                    label="Forbedring"
-                    className="mb-2"
-                  />
 
+                  <div>
+                    <select
+                      required
+                      className="form-control"
+                      aria-label="Floating label select example"
+                      onChange={(e) => setCategoryId(e.target.value)}
+                    >
+                      <option value="" disabled selected="selected">
+                        -- Velg --
+                      </option>
+                      {categories.map((element) => {
+                        return (
+                          <option value={element.id}>
+                            {element.type}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
+                  
+                  <hr></hr>
                   <p className="text-center">
                     <strong>
                       <h5>Tittel</h5>
@@ -114,24 +126,31 @@ export default function NyPosts() {
                     className="mb-4"
                     label="Skriv feedbacken din her:"
                     id="tittel"
+                    onChange={(e) => setTitle(e.target.value)}
+                    type="text"
+                    required
                   />
                   <MDBTextArea
                     className="mb-4"
-                    label="Takk for din tilbakemelding! Vi skal gå gjennom den. Du vil høre fra oss."
+                    label={labelTakk}
                     id="textAreaExample"
+                    onChange={(e) => setDescription(e.target.value)}
                     rows={10}
+                    type="text"
+                    required
                   />
-                </form>
-              </MDBCardBody>
-              <MDBCardFooter>
-                <div className="text-end">
-                  <MDBBtn>Send inn</MDBBtn>
-                </div>
-              </MDBCardFooter>
-            </MDBCard>
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
+                </MDBCardBody>
+                <MDBCardFooter>
+                  <div className="text-end">
+                    <button type="submit" className="submit-ny-innlegg btn btn-success">Send inn</button>
+                  </div>
+                </MDBCardFooter>
+              </MDBCard>
+            </MDBCol>
+          </MDBRow>
+        </MDBContainer>
+      </form>
+      <br></br>
     </>
   );
 }

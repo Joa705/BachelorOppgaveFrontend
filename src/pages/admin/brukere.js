@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { UrlConfig } from "../../config";
 import {
   MDBBadge,
   MDBBtn,
@@ -9,9 +10,12 @@ import {
 import { stringify } from "uuid";
 
 function DisplayBruker(props) {
-    const userId = props.userId
-    
-    const randImg = "https://mdbootstrap.com/img/new/avatars/" + Math.floor(Math.random() * 15) + ".jpg";
+  const userId = props.userId;
+
+  const randImg =
+    "https://mdbootstrap.com/img/new/avatars/" +
+    Math.floor(Math.random() * 15) +
+    ".jpg";
   return (
     <>
       <tr>
@@ -51,11 +55,13 @@ function DisplayBruker(props) {
 }
 
 export default function Brukere() {
-    const [displayBruker, setDisplayBruker] = useState([]);
+  const [displayBruker, setDisplayBruker] = useState([]);
 
-    useEffect(()=> {
-        fetch("http://localhost:5296/User").then(res => res.json()).then(data => setDisplayBruker(data));
-    }, [])
+  useEffect(() => {
+    fetch(UrlConfig.serverUrl + "/User")
+      .then((res) => res.json())
+      .then((data) => setDisplayBruker(data));
+  }, []);
   return (
     <MDBTable align="middle">
       <MDBTableHead>
@@ -68,15 +74,19 @@ export default function Brukere() {
         </tr>
       </MDBTableHead>
       <MDBTableBody>
-        {
-            displayBruker.map((element) => {
-                let newdate = new Date(element.created)
+        {displayBruker.map((element) => {
+          let newdate = new Date(element.created);
 
-                return(
-                    <DisplayBruker userId={element.id} userName={element.userName} userEmail={element.email} rolle={element.userRole.type} opprettet={newdate.toDateString()}/>
-                )
-            })
-        }
+          return (
+            <DisplayBruker
+              userId={element.id}
+              userName={element.userName}
+              userEmail={element.email}
+              rolle={element.userRole.type}
+              opprettet={newdate.toDateString()}
+            />
+          );
+        })}
       </MDBTableBody>
     </MDBTable>
   );
