@@ -103,7 +103,7 @@ export default function NyPosts() {
                       aria-label="Floating label select example"
                       onChange={(e) => setCategoryId(e.target.value)}
                     >
-                      <option disabled selected="selected">
+                      <option value="" disabled selected="selected">
                         -- Velg --
                       </option>
                       {categories.map((element) => {

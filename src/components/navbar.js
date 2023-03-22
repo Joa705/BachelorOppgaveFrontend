@@ -73,11 +73,12 @@ export function Navigationbar() {
           )}
         </ul>
         <ul class="navbar-nav mx-auto nav-mid-logo">
+          <a onClick={() => navigate("/")} href="#">
           <img
             className="navbar-logo"
             src={require("../symbol.png")}
-            onClick={() => navigate("/")}
           />
+          </a>
         </ul>
 
         <button
