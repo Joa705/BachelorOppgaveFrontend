@@ -47,9 +47,14 @@ export function Navigationbar() {
                   aria-haspopup="true"
                   aria-expanded="false"
                 ></img>
-                <div class="dropdown-menu">
-                  <p class="dropdown-item">{userName}</p>
-                  <a class="dropdown-item" href="#" onClick={() => SignOutHandler(instance, onLogout)}>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <span class="dropdown-item-text">{userName}</span>
+                  <hr></hr>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    onClick={() => SignOutHandler(instance, onLogout)}
+                  >
                     Logg ut
                   </a>
                 </div>
@@ -126,7 +131,7 @@ export function Navigationbar() {
                     >
                       Admin
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu mr-2" aria-labelledby="navbarDropdown">
                       <a
                         class="dropdown-item"
                         href="#"
@@ -162,9 +167,16 @@ export function Navigationbar() {
                     aria-haspopup="true"
                     aria-expanded="false"
                   ></img>
-                  <div class="dropdown-menu">
-                    <p class="dropdown-item">{userName}</p>
-                    <a class="dropdown-item" href="#" onClick={() => SignOutHandler(instance, onLogout)}>
+                  <div class="dropdown-menu dropdown-menu-right">
+                    <span class="dropdown-item-text">
+                      {userName}
+                      </span>
+                    <hr></hr>
+                    <a
+                      class="dropdown-item"
+                      href="#"
+                      onClick={() => SignOutHandler(instance, onLogout)}
+                    >
                       Logg ut
                     </a>
                   </div>
