@@ -81,7 +81,7 @@ export default function NyPosts() {
       <br />
       <br />
 
-      <form className="px-4" action="" onSubmit={(event) => event.preventDefault()}>
+      <form className="px-4" action="" onSubmit={(e)=> {e.preventDefault(); submitData();}}>
         <MDBContainer>
           <MDBRow className="justify-content-center">
             <MDBCol size="11">
@@ -98,11 +98,12 @@ export default function NyPosts() {
 
                   <div>
                     <select
+                      required
                       className="form-control"
                       aria-label="Floating label select example"
                       onChange={(e) => setCategoryId(e.target.value)}
                     >
-                      <option value="choose" disabled selected="selected">
+                      <option disabled selected="selected">
                         -- Velg --
                       </option>
                       {categories.map((element) => {
@@ -126,6 +127,8 @@ export default function NyPosts() {
                     label="Skriv feedbacken din her:"
                     id="tittel"
                     onChange={(e) => setTitle(e.target.value)}
+                    type="text"
+                    required
                   />
                   <MDBTextArea
                     className="mb-4"
@@ -133,11 +136,13 @@ export default function NyPosts() {
                     id="textAreaExample"
                     onChange={(e) => setDescription(e.target.value)}
                     rows={10}
+                    type="text"
+                    required
                   />
                 </MDBCardBody>
                 <MDBCardFooter>
                   <div className="text-end">
-                    <button type="submit" className="submit-ny-innlegg btn btn-success" onClick={()=> submitData()}>Send inn</button>
+                    <button type="submit" className="submit-ny-innlegg btn btn-success">Send inn</button>
                   </div>
                 </MDBCardFooter>
               </MDBCard>
