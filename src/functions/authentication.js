@@ -4,6 +4,7 @@ import Cookies from "universal-cookie";
 import { PublicClientApplication } from "@azure/msal-browser";
 import { AzureConfig, UrlConfig } from "../config";
 
+
 const configs = {
   auth: {
     clientId: AzureConfig.appId,
@@ -17,8 +18,8 @@ export const pcaInstance = new PublicClientApplication(configs);
 export async function SignOutHandler(instance, onLogout) {
   const logoutRequest = {
     account: instance.getAccountByHomeId(),
-    mainWindowRedirectUri: "http://localhost:3000",
-    postLogoutRedirectUri: "http://localhost:3000",
+    mainWindowRedirectUri: UrlConfig.clientUrl,
+    postLogoutRedirectUri: UrlConfig.clientUrl,
   };
   await instance.logoutPopup(logoutRequest).then(() => onLogout());
 }

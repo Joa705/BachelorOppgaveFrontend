@@ -11,18 +11,27 @@ import {
   MDBRow,
   MDBTypography,
 } from "mdb-react-ui-kit";
+import { useNavigate, Link } from "react-router-dom";
+import Footer from "../components/footer";
+
 
 function PostDisplay(props) {
+  const navigate = useNavigate();
+
   const postsId = props.id;
+  const postsRef = "posts/id/"
+
   const randImg =
     "https://mdbootstrap.com/img/new/avatars/" +
     Math.floor(Math.random() * 15) +
     ".jpg";
 
+
+    
   return (
     <>
+    <a className="post-anchor" href={postsRef + postsId}>
       <MDBCardBody
-        onClick={() => console.log(postsId)}
         className="p-4 posts-single-post"
       >
         <div className="d-flex flex-start">
@@ -61,8 +70,9 @@ function PostDisplay(props) {
           </div>
         </div>
       </MDBCardBody>
+      </a>
 
-      <hr className="my-0" />
+
     </>
   );
 }
@@ -126,8 +136,9 @@ export default function RecentComments() {
     fetchPostsData();
   }, []);
   return (
+    <>
     <section style={{ backgroundColor: "#f0f4e3" }}>
-      <MDBContainer className="py-5" style={{ maxWidth: "100%" }}>
+      <MDBContainer className="py-5" style={{ maxWidth: "100%"}}>
         <MDBRow className="justify-content-center">
           <MDBCol md="12" lg="10">
             <MDBCard className="text-dark">
@@ -147,6 +158,7 @@ export default function RecentComments() {
                 var newDate = new Date(element.created);
 
                 return (
+                  <>
                   <PostDisplay
                     id={element.id}
                     title={element.title}
@@ -157,6 +169,9 @@ export default function RecentComments() {
                     votes={element.votes}
                     date={newDate.toDateString()}
                   />
+                  <div className="blank-space"></div>
+                  </>
+
                 );
               })}
             </MDBCard>
@@ -164,5 +179,8 @@ export default function RecentComments() {
         </MDBRow>
       </MDBContainer>
     </section>
+
+    <Footer />
+    </>
   );
 }

@@ -20,6 +20,8 @@ import "./styling/sidebar.css";
 
 export default function App() {
   return (
+    <>
+    
     <BrowserRouter>
       <AuthProvider>
         <Navigationbar />
@@ -62,5 +64,7 @@ export default function App() {
         </div>
       </AuthProvider>
     </BrowserRouter>
+
+    </>
   );
 }
