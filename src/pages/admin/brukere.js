@@ -8,6 +8,8 @@ import {
   MDBTableBody,
 } from "mdb-react-ui-kit";
 import { stringify } from "uuid";
+import Footer from "../../components/footer";
+import "../../styling/brukere.css"
 
 function DisplayBruker(props) {
   const userId = props.userId;
@@ -63,31 +65,37 @@ export default function Brukere() {
       .then((data) => setDisplayBruker(data));
   }, []);
   return (
-    <MDBTable align="middle">
-      <MDBTableHead>
-        <tr>
-          <th scope="col">Navn</th>
-          <th scope="col">Email</th>
-          <th scope="col">Rolle</th>
-          <th scope="col">Opprettet</th>
-          <th scope="col">Administer</th>
-        </tr>
-      </MDBTableHead>
-      <MDBTableBody>
-        {displayBruker.map((element) => {
-          let newdate = new Date(element.created);
+    <>
+      <div className="screen-height">
+        <MDBTable align="middle">
+          <MDBTableHead>
+            <tr>
+              <th scope="col">Navn</th>
+              <th scope="col">Email</th>
+              <th scope="col">Rolle</th>
+              <th scope="col">Opprettet</th>
+              <th scope="col">Administer</th>
+            </tr>
+          </MDBTableHead>
+          <MDBTableBody>
+            {displayBruker.map((element) => {
+              let newdate = new Date(element.created);
 
-          return (
-            <DisplayBruker
-              userId={element.id}
-              userName={element.userName}
-              userEmail={element.email}
-              rolle={element.userRole.type}
-              opprettet={newdate.toDateString()}
-            />
-          );
-        })}
-      </MDBTableBody>
-    </MDBTable>
+              return (
+                <DisplayBruker
+                  userId={element.id}
+                  userName={element.userName}
+                  userEmail={element.email}
+                  rolle={element.userRole.type}
+                  opprettet={newdate.toDateString()}
+                />
+              );
+            })}
+          </MDBTableBody>
+        </MDBTable>
+      </div>
+
+      <Footer />
+    </>
   );
 }
