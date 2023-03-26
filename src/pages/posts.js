@@ -42,6 +42,7 @@ function PostDisplay(props) {
             width="60"
             height="60"
           />
+          
           <div>
             <MDBTypography tag="h6" className="fw-bold mb-1">
               {props.userName}
@@ -53,9 +54,11 @@ function PostDisplay(props) {
                 <span className="badge bg-success">{props.category}</span>{" "}
                 <span className="badge bg-primary">{props.votes}</span>{" "}
               </p>
+              
               <a href="#!" className="link-muted">
                 <MDBIcon fas icon="pencil-alt ms-2" />
               </a>
+              
               <a href="#!" className="text-success">
                 <MDBIcon fas icon="redo-alt ms-2" />
               </a>
@@ -67,11 +70,39 @@ function PostDisplay(props) {
               <h4>{props.title}</h4>
               {props.description}
             </p>
+
+            <div className="d-flex flex-start mt-4">
+                          <a className="me-3" href="#">
+                            <MDBCardImage
+                              className="rounded-circle shadow-1-strong me-3"
+                              src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(11).webp"
+                              alt="avatar"
+                              width="65"
+                              height="65"
+                            />
+                          </a>
+
+                          <div className="flex-grow-1 flex-shrink-1">
+                            <div>
+                              <div className="d-flex justify-content-between align-items-center">
+                                <p className="mb-1">
+                                  Simona Disa{" "}
+                                  <span className="small">- 3 hours ago</span>
+                                </p>
+                              </div>
+                              <p className="small mb-0">
+                                Ikke enig
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+            
           </div>
         </div>
+      
+        
       </MDBCardBody>
       </a>
-
 
     </>
   );
@@ -144,17 +175,18 @@ export default function RecentComments() {
             <MDBCard className="text-dark">
               <MDBCardBody className="p-4 header-text">
                 <MDBTypography tag="h1" className="mb-2">
-                  Asplan Viak <br /> Feedback System
+                 Asplan Viak <br /> Feedback System
                 </MDBTypography>
                 <p className="fw-light mb-4 pb-2">
                   <br />
-                  Se alle feedbackene med ris, ros og forbedringsforslag sendt
-                  til oss.
+                  <h5>Se alle feedbackene med ris, ros og forbedringsforslag sendt
+                  til oss</h5>
                 </p>
                 <br />
               </MDBCardBody>
               <div className="blank-space-header">
               </div>
+
 
               {postsData.map((element) => {
                 var newDate = new Date(element.created);
