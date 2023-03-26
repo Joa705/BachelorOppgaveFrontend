@@ -4,7 +4,6 @@
     margin-left: 64px !important;
     top : 82px !important;
     background-color: #f0f4e3 !important;
-    overflow: auto;
 }
 
 @media (max-width : 991px) {
@@ -13,4 +12,8 @@
         margin-left: 0 !important;
         top: 90px !important;
     }
+}
+
+.container {
+    min-height: 100vh;
 }

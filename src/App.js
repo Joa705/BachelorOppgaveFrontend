@@ -17,6 +17,8 @@ import Brukere from "./pages/admin/brukere";
 import "./App.css";
 import NavigationSidebar from "./components/sidebar";
 import "./styling/sidebar.css";
+import Footer from "./components/footer";
+
 
 export default function App() {
   return (
@@ -61,6 +63,7 @@ export default function App() {
 
             <Route path="*" element={<NotFound />} />
           </Routes>
+        <Footer />
         </div>
       </AuthProvider>
     </BrowserRouter>

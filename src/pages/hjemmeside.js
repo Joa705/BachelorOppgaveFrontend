@@ -24,7 +24,6 @@ import Col from "react-bootstrap/Col";
 function Hjemmeside() {
   return (
     <>
-      <div className="hjemmeside-container">
         <div className="main-container ">
           <div className="main-container-item-1">
             <div className="tittel">
@@ -86,8 +85,6 @@ function Hjemmeside() {
         <div className="forklaring4 d-flex flex-column align-items-center justify-content-center">
           Hva skjer videre?
         </div>
-        <Footer />
-      </div>
     </>
   );
 }

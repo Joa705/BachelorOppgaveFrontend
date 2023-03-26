@@ -8,8 +8,8 @@ import {
   MDBTableBody,
 } from "mdb-react-ui-kit";
 import { stringify } from "uuid";
-import Footer from "../../components/footer";
 import "../../styling/brukere.css"
+import "../../App.css"
 
 function DisplayBruker(props) {
   const userId = props.userId;
@@ -66,7 +66,7 @@ export default function Brukere() {
   }, []);
   return (
     <>
-      <div className="screen-height">
+      <div className="container">
         <MDBTable align="middle">
           <MDBTableHead>
             <tr>
@@ -94,8 +94,6 @@ export default function Brukere() {
           </MDBTableBody>
         </MDBTable>
       </div>
-
-      <Footer />
     </>
   );
 }
