@@ -142,7 +142,7 @@ export default function RecentComments() {
         <MDBRow className="justify-content-center">
           <MDBCol md="12" lg="10">
             <MDBCard className="text-dark">
-              <MDBCardBody className="p-4">
+              <MDBCardBody className="p-4 header-text">
                 <MDBTypography tag="h1" className="mb-2">
                   Asplan Viak <br /> Feedback System
                 </MDBTypography>
@@ -153,6 +153,8 @@ export default function RecentComments() {
                 </p>
                 <br />
               </MDBCardBody>
+              <div className="blank-space-header">
+              </div>
 
               {postsData.map((element) => {
                 var newDate = new Date(element.created);
