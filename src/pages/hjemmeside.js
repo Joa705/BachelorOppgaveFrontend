@@ -14,7 +14,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useRef } from 'react';
 import { motion } from "framer-motion";
-import { MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
 
 /*export default function Hjemmeside() {
     return (
@@ -120,11 +119,12 @@ function Hjemmeside() {
         <div ref={scroll3}className="forklaring4 d-flex flex-column align-items-center justify-content-center">
         <div className="row">
         <div className="col-sm-8 d-flex flex-column align-items-center justify-content-center "><h1><p class="font-weight-bold">Vi leser grundig alle tilbakemeldinger<h3>Og selvsagt svarer på dem</h3></p></h1></div> 
-        <div className="col-sm-4 p-4"><h3>Vi får et varsel når det kommer en ny melding til oss. En av våre administratore skal gå gjennom feedbackem din. Kanskje du skal være med på å endre fremtiden.</h3> </div>
+        <div className="col-sm-4 p-4"><h3>Vi får et varsel når det kommer en ny melding til oss. En av våre administratore skal gå gjennom feedbackem din. Kanskje du skal være med på å endre fremtiden?</h3> </div>
         </div> 
         </div>
         <br/>
 </div>
+
     </>
   );
 }
