@@ -61,11 +61,6 @@ function PostDisplay(props) {
                 <MDBIcon fas icon="heart ms-2" />
               </a>
             </div>
-            <p className="mb-0">
-              <h4>{props.title}</h4>
-              {props.description}
-            </p>
-
             <div className="d-flex flex-start mt-4">
                           <a className="me-3" href="#">
                             <MDBCardImage
