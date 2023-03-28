@@ -13,6 +13,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useRef } from 'react';
+import { motion } from "framer-motion";
 
 /*export default function Hjemmeside() {
     return (
@@ -52,9 +53,20 @@ function Hjemmeside() {
             </div>
           </div>
           <div className="main-container-item">
-            <img className="image-container" src={asplan} />
+          <motion.h1
+                animate={{ x: [1, 1, 1], opacity: 1, scale: 1 }}
+                transition={{
+                    duration: 3,
+                    delay: 0.5,
+                    ease: [0.5, 0.71, 1, 1.5],
+                }}
+                initial={{ opacity: 0, scale: 0.5 }}
+            >
+            <img className="image-container" src={asplan}  />
+            </motion.h1>
           </div>
         </div>
+
         <div className="container">
           <div className="row">
             <div className="forklaring d-flex justify-content-center">
