@@ -6,6 +6,9 @@ import {
   MDBTable,
   MDBTableHead,
   MDBTableBody,
+  MDBCardBody,
+  MDBTypography, 
+
 } from "mdb-react-ui-kit";
 import { stringify } from "uuid";
 import "../../styling/brukere.css"
@@ -19,7 +22,10 @@ function DisplayBruker(props) {
     Math.floor(Math.random() * 15) +
     ".jpg";
   return (
+
+    
     <>
+      
       <tr>
         <td>
           <div className="d-flex align-items-center">
@@ -66,6 +72,19 @@ export default function Brukere() {
   }, []);
   return (
     <>
+
+<MDBCardBody className="p-4 header-text">
+                <MDBTypography tag="h1" className="mb-2">
+                 Admin Panel
+                </MDBTypography>
+                <p className="fw-light mb-4 pb-2">
+                  <br />
+                  <h5>Her kan du finne oversikt over alle brukere. Endre rolle til brukeren eller slett brukere.</h5>
+                </p>
+                <br />
+              </MDBCardBody>
+              <div className="blank-space-header">
+              </div>
       <div className="container">
         <MDBTable align="middle">
           <MDBTableHead>

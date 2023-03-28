@@ -13,6 +13,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useRef } from 'react';
+import { motion } from "framer-motion";
 
 /*export default function Hjemmeside() {
     return (
@@ -46,19 +47,30 @@ function Hjemmeside() {
               Asplan Viak <br /> Feedback System
             </div>
             <div className="undertittel">
-              Registrer din tilbakemelding av våre tjenester utvilket av Asplan
-              Viak. Vi er nysgjerrige på å høre hva du mener mens vi hjelper deg
-              så godt vi kan.
+              <h3>Registrer din tilbakemelding av våre tjenester utvilket av Asplan
+              Viak. Vi er nysgjerrige på å høre hva du mener om oss mens vi hjelper deg
+              så godt vi kan.</h3>
             </div>
           </div>
           <div className="main-container-item">
-            <img className="image-container" src={asplan} />
+          <motion.h1
+                animate={{ x: [1, 1, 1], opacity: 1, scale: 1 }}
+                transition={{
+                    duration: 2,
+                    delay: 0.5,
+                    ease: [0.5, 0.71, 1, 1.5],
+                }}
+                initial={{ opacity: 0, scale: 0.5 }}
+            >
+            <img className="image-container" src={asplan}  />
+            </motion.h1>
           </div>
         </div>
+
         <div className="container">
           <div className="row">
             <div className="forklaring d-flex justify-content-center">
-              Hvordan fungerer det?
+           Hvordan fungerer det?
             </div>
             <div className="col-sm">
               <div
@@ -89,18 +101,30 @@ function Hjemmeside() {
             </div>
           </div>
         </div>
-
+        <div className="container">
         <div  ref={scroll1} className="forklaring2 d-flex flex-column align-items-center justify-content-center">
-          Hvordan logger du deg inn?
+        <div className="row">
+        <div className="col-sm-8 d-flex flex-column align-items-center justify-content-center "><h1><p class="font-weight-bold">Enkelt og trygt innlogging med Azure AD <h3>For din sikkerhet</h3></p></h1></div> 
+        <div className="col-sm-4 p-4"><h3>Vårt mål er at du skal kunne ta raskt i bruk vårt system. Derfor bruker vi bare løsninger du kan virkelig stole på, med Microsoft innloggingsystem. <br /> <br />Enklere blir det ikke. </h3> </div>
+        </div> 
         </div>
-
+        <br/>
         <div ref={scroll2}className="forklaring3 d-flex flex-column align-items-center justify-content-center">
-          Hvordan registrerer du feedbacken?
+        <div className="row">
+        <div className="col-sm-5 p-5"><h3>Asplan Viak ønsker å få alle slags tilbakemeldinger av sine tjenester fra brukere. Derfor ber vi deg om å registerere alt det du ønsker å si til oss. Slik kan vi bli bedre.</h3></div> 
+        <div className="col-sm-7 p-3 d-flex flex-column align-items-center justify-content-center "><h1><p class="font-weight-bold">Feedbacksystem for våre kunder<h3>Utviklet av oss til deg</h3></p></h1></div>
         </div>
+        </div>
+        <br/>
+        <div ref={scroll3}className="forklaring4 d-flex flex-column align-items-center justify-content-center">
+        <div className="row">
+        <div className="col-sm-8 d-flex flex-column align-items-center justify-content-center "><h1><p class="font-weight-bold">Vi leser grundig alle tilbakemeldinger<h3>Og selvsagt svarer på dem</h3></p></h1></div> 
+        <div className="col-sm-4 p-4"><h3>Vi får et varsel når det kommer en ny melding til oss. En av våre administratore skal gå gjennom feedbackem din. Kanskje du skal være med på å endre fremtiden?</h3> </div>
+        </div> 
+        </div>
+        <br/>
+</div>
 
-        <div  ref={scroll3}className="forklaring4 d-flex flex-column align-items-center justify-content-center">
-          Hva skjer videre?
-        </div>
     </>
   );
 }
