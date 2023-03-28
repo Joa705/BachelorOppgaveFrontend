@@ -118,6 +118,17 @@ html {
   color: #1d3c34;
 }
 
+.undertittel h3{
+  /*  color: #1d3c34;
+  position: absolute;
+  top: 50%;
+  left: 4%; */
+  line-height: 1.5;
+  text-align: left;
+  font-family: 'AvenirNextLTPro-Regular', sans-serif;
+  color: #1d3c34;
+}
+
 .col-sm {
   color: #1d3c34;
   font-size: 20px;
@@ -154,6 +165,14 @@ html {
   color: #1d3c34;
   background-color: #D4EABC;
 
+}
+
+.col-sm-4 h3{
+  line-height: 1.6;
+}
+
+.col-sm-5 h3{
+  line-height: 1.6;
 }
 
 .forklaring3 {
