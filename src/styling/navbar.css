@@ -24,6 +24,11 @@
     .logo-screen {
         display: none;
     }
+
+    .azure-btn {
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
 }
 
 

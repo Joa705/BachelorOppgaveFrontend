@@ -12,6 +12,7 @@ import viak from "../asplan_viak_1.jpg";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { useRef } from 'react';
 
 /*export default function Hjemmeside() {
     return (
@@ -22,6 +23,21 @@ import Col from "react-bootstrap/Col";
 */
 
 function Hjemmeside() {
+  const scroll1 = useRef(null);
+  const scroll2 = useRef(null);
+  const scroll3 = useRef(null);
+
+  function handlePictureClick() {
+    scroll1.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  function handlePictureClick2() {
+    scroll2.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  function handlePictureClick3() {
+    scroll3.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+
   return (
     <>
         <div className="main-container ">
@@ -47,7 +63,7 @@ function Hjemmeside() {
             <div className="col-sm">
               <div
                 className="image1"
-                style={{ backgroundImage: `url(${il4})` }}
+                style={{ backgroundImage: `url(${il4})` }}onClick={handlePictureClick}
               ></div>
               <p class="text-center">1. Logg inn </p> Det er lett å komme i gang
               med vårt system. Vi krever ingen registrering. Logg deg inn på
@@ -56,7 +72,7 @@ function Hjemmeside() {
             <div className="col-sm">
               <div
                 className="image2"
-                style={{ backgroundImage: `url(${il5})` }}
+                style={{ backgroundImage: `url(${il5})` }}onClick={handlePictureClick2}
               ></div>
               <p class="text-center">2. Registrer feedback </p>Registrer
               tilbakemelding av din opplevelse av våre tjenester som du har
@@ -65,7 +81,7 @@ function Hjemmeside() {
             <div className="col-sm">
               <div
                 className="image3"
-                style={{ backgroundImage: `url(${il6})` }}
+                style={{ backgroundImage: `url(${il6})` }}onClick={handlePictureClick3}
               ></div>
               <p class="text-center">3. Vent på svar fra oss </p> Sånn, da er
               det gjort! Vi skal gå gjennom feedbacken din. Du vil straks få et
@@ -74,15 +90,15 @@ function Hjemmeside() {
           </div>
         </div>
 
-        <div className="forklaring2 d-flex flex-column align-items-center justify-content-center">
+        <div  ref={scroll1} className="forklaring2 d-flex flex-column align-items-center justify-content-center">
           Hvordan logger du deg inn?
         </div>
 
-        <div className="forklaring3 d-flex flex-column align-items-center justify-content-center">
+        <div ref={scroll2}className="forklaring3 d-flex flex-column align-items-center justify-content-center">
           Hvordan registrerer du feedbacken?
         </div>
 
-        <div className="forklaring4 d-flex flex-column align-items-center justify-content-center">
+        <div  ref={scroll3}className="forklaring4 d-flex flex-column align-items-center justify-content-center">
           Hva skjer videre?
         </div>
     </>

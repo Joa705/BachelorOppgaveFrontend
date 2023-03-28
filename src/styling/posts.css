@@ -18,23 +18,35 @@
 
 .posts-single-post:active {
   background-color: #f0f4e3 ;
-  border: 1px solid green;
+  border: 1px solid #1d3c34;
 }
 
 .post-anchor {
   color: inherit !important;
   text-decoration: none !important;
-  white-space: nowrap !important;
   
 }
 
 
 .blank-space {
-    height: 15px;
+    height: 20px;
     background-color: #f0f4e3 !important;
+
+}
+
+
+.blank-space-header {
+  height: 50px;
+  background-color: #f0f4e3 !important;
 
 }
 
 .card {
     border: 0 !important;
 }
+
+.header-text {
+  background-color: #D4EABC !important;
+  color: #1d3c34 !important;
+} 
+
