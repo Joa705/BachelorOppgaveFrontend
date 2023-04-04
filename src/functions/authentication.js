@@ -20,7 +20,7 @@ export async function SignOutHandler(instance, onLogout) {
     mainWindowRedirectUri: UrlConfig.clientUrl,
     postLogoutRedirectUri: UrlConfig.clientUrl,
   };
-  sessionStorage.removeItem("session");
+  localStorage.removeItem("session");
   await instance.logoutPopup(logoutRequest).then(() => onLogout());
 }
 
