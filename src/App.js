@@ -5,6 +5,7 @@ import {
   AuthProvider,
   ProtectRouteAdmin,
   ProtectRouteLogin,
+  SessionHandler
 } from "./functions/authentication";
 import Posts from "./pages/posts";
 import NotFound from "./pages/notfound";
@@ -23,9 +24,9 @@ import Footer from "./components/footer";
 export default function App() {
   return (
     <>
-    
     <BrowserRouter>
       <AuthProvider>
+        <SessionHandler />
         <Navigationbar />
         <NavigationSidebar />
         <div className="main-content">
