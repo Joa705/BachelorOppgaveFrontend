@@ -4,7 +4,6 @@ import Cookies from "universal-cookie";
 import { PublicClientApplication } from "@azure/msal-browser";
 import { AzureConfig, UrlConfig } from "../config";
 
-
 const configs = {
   auth: {
     clientId: AzureConfig.appId,
@@ -47,10 +46,21 @@ export async function SignInHandler(instance, onLogin) {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data)
-          let s = {"token": data.id, "userName": data.userName, "email": data.email, "role": data.userRole.type}
-          sessionStorage.setItem("session", JSON.stringify(s))
-          onLogin(data.id, data.userName, data.email, data.userRole.type)
+          console.log(data);
+
+          if (localStorage.getItem("session") == null) {
+            var dd = new Date();
+            dd.setHours(dd.getHours() + 24);
+            let s = {
+              token: data.id,
+              userName: data.userName,
+              email: data.email,
+              role: data.userRole.type,
+              expire: dd,
+            };
+            localStorage.setItem("session", JSON.stringify(s));
+          }
+          onLogin(data.id, data.userName, data.email, data.userRole.type);
         })
         .catch((e) => console.log(e));
     })
@@ -89,7 +99,7 @@ export function AuthProvider({ children }) {
     }
 
     // set admin to true in test stage
-    setAdmin(true)
+    setAdmin(true);
     setUserName(name);
     setUserEmail(email);
     navigate("/");
@@ -110,13 +120,12 @@ export function AuthProvider({ children }) {
     }
 
     // set admin to true in test stage
-    setAdmin(true)
+    setAdmin(true);
     setUserName(name);
     setUserEmail(email);
 
-    console.log("Handled session")
+    console.log("Handled session");
   };
-  
 
   const value = {
     token,
@@ -135,20 +144,27 @@ export function UseAuth() {
   return useContext(AuthContext);
 }
 
+export function SessionHandler() {
+  const { onSession, token } = UseAuth();
+  console.log("is it working?");
 
-export function SessionHandler(){
-  const {onSession, token} = UseAuth()
-  console.log("is it working?")
-
-  if(token != null) return
-  let isSession = (sessionStorage.getItem("session"));
+  if (token != null) return;
+  let isSession = localStorage.getItem("session");
   if (isSession == null) {
-    console.log("not found sessions")
-    return
-  } 
-  
-  let session = JSON.parse(sessionStorage.session);
-  console.log(session)
-  onSession(session.token, session.userName, session.email, session.role)
-  return
+    console.log("not found sessions");
+    return;
+  }
+
+  let session = JSON.parse(localStorage.session);
+  let currentDate = new Date();
+  let expiredDate = new Date(session.expire);
+  var isExpired = currentDate.getTime() >= expiredDate.getTime();
+  console.log("Has expired: ", isExpired)
+  if (isExpired){
+    localStorage.removeItem("session");
+    return;
+  }
+
+  onSession(session.token, session.userName, session.email, session.role);
+  return;
 }
