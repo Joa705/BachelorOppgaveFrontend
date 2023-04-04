@@ -21,6 +21,7 @@ export async function SignOutHandler(instance, onLogout) {
     postLogoutRedirectUri: UrlConfig.clientUrl,
   };
   localStorage.removeItem("session");
+  console.log("Removed session")
   await instance.logoutPopup(logoutRequest).then(() => onLogout());
 }
 
@@ -49,14 +50,15 @@ export async function SignInHandler(instance, onLogin) {
           console.log(data);
 
           if (localStorage.getItem("session") == null) {
+            console.log("Setting new session")
             var dd = new Date();
             dd.setHours(dd.getHours() + 24);
             let s = {
-              token: data.id,
-              userName: data.userName,
-              email: data.email,
-              role: data.userRole.type,
-              expire: dd,
+              "token": data.id,
+              "userName": data.userName,
+              "email": data.email,
+              "role": data.userRole.type,
+              "expire": dd
             };
             localStorage.setItem("session", JSON.stringify(s));
           }
@@ -146,7 +148,6 @@ export function UseAuth() {
 
 export function SessionHandler() {
   const { onSession, token } = UseAuth();
-  console.log("is it working?");
 
   if (token != null) return;
   let isSession = localStorage.getItem("session");
@@ -155,7 +156,7 @@ export function SessionHandler() {
     return;
   }
 
-  let session = JSON.parse(localStorage.session);
+  let session = JSON.parse(localStorage.getItem("session"));
   let currentDate = new Date();
   let expiredDate = new Date(session.expire);
   var isExpired = currentDate.getTime() >= expiredDate.getTime();
