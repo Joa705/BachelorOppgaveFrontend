@@ -1,5 +1,5 @@
 import React, { useState, useContext, createContext } from "react";
-import { Navigate, useNavigate, useLocation } from "react-router-dom";
+import { Navigate, useNavigate, useLocation, json } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { PublicClientApplication } from "@azure/msal-browser";
 import { AzureConfig, UrlConfig } from "../config";
@@ -21,6 +21,7 @@ export async function SignOutHandler(instance, onLogout) {
     mainWindowRedirectUri: UrlConfig.clientUrl,
     postLogoutRedirectUri: UrlConfig.clientUrl,
   };
+  sessionStorage.removeItem("session");
   await instance.logoutPopup(logoutRequest).then(() => onLogout());
 }
 
@@ -47,6 +48,8 @@ export async function SignInHandler(instance, onLogin) {
         .then((res) => res.json())
         .then((data) => {
           console.log(data)
+          let s = {"token": data.id, "userName": data.userName, "email": data.email, "role": data.userRole.type}
+          sessionStorage.setItem("session", JSON.stringify(s))
           onLogin(data.id, data.userName, data.email, data.userRole.type)
         })
         .catch((e) => console.log(e));
@@ -100,6 +103,21 @@ export function AuthProvider({ children }) {
     navigate("/");
   };
 
+  const handleSession = (token, name, email, admin) => {
+    setToken(token);
+    if (admin == "Admin") {
+      setAdmin(true);
+    }
+
+    // set admin to true in test stage
+    setAdmin(true)
+    setUserName(name);
+    setUserEmail(email);
+
+    console.log("Handled session")
+  };
+  
+
   const value = {
     token,
     admin,
@@ -107,6 +125,7 @@ export function AuthProvider({ children }) {
     userEmail,
     onLogin: handleLogin,
     onLogout: handleLogout,
+    onSession: handleSession,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
@@ -114,4 +133,22 @@ export function AuthProvider({ children }) {
 
 export function UseAuth() {
   return useContext(AuthContext);
+}
+
+
+export function SessionHandler(){
+  const {onSession, token} = UseAuth()
+  console.log("is it working?")
+
+  if(token != null) return
+  let isSession = (sessionStorage.getItem("session"));
+  if (isSession == null) {
+    console.log("not found sessions")
+    return
+  } 
+  
+  let session = JSON.parse(sessionStorage.session);
+  console.log(session)
+  onSession(session.token, session.userName, session.email, session.role)
+  return
 }
