@@ -10,7 +10,7 @@ export const AzureConfig = {
 
 export const UrlConfig = {
     clientUrl : 'http://localhost:3000',
-    serverUrl : 'https://localhost:7262'
+    serverUrl : 'http://localhost:5296'
 }
 
 export const SecretKeys = {

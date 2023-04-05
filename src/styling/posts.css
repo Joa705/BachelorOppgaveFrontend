@@ -12,12 +12,12 @@
 }
 
 .posts-single-post:hover {
-  background-color: #ebebeb ;
+  background-color: #f0f4e3 ;
   
 }
 
 .posts-single-post:active {
-  background-color: #ebebeb ;
+  background-color: #f0f4e3 ;
   border: 1px solid #1d3c34;
 }
 

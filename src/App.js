@@ -19,14 +19,11 @@ import "./App.css";
 import NavigationSidebar from "./components/sidebar";
 import "./styling/sidebar.css";
 import Footer from "./components/footer";
-import { QueryClient, QueryClientProvider } from "react-query";
 
-const queryClient = new QueryClient();
 
 export default function App() {
   return (
     <>
-    <QueryClientProvider client={queryClient}>
     <BrowserRouter>
       <AuthProvider>
         <SessionHandler />
@@ -71,7 +68,7 @@ export default function App() {
         </div>
       </AuthProvider>
     </BrowserRouter>
-    </QueryClientProvider>
+
     </>
   );
 }
