@@ -67,8 +67,14 @@ export default function Brukere() {
 
   useEffect(() => {
     fetch(UrlConfig.serverUrl + "/User")
-      .then((res) => res.json())
-      .then((data) => setDisplayBruker(data));
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("No response", {cause: res})
+        }else{
+          var data = res.json()
+          setDisplayBruker(data)
+        }
+      });
   }, []);
   return (
     <>
