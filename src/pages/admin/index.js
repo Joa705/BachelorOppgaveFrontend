@@ -17,11 +17,7 @@ import { UseAuth } from "../../functions/authentication";
 export default function Admin() {
   const [displayBruker, setDisplayBruker] = useState([]);
   const {token} = UseAuth();
-  const { isLoading, error, data } = useQuery(
-    [],
-    () => fetchPosts(token),
-    setDisplayBruker(data)
-  );
+  const { isLoading, error, data } = useQuery("fetchPosts" ,fetchPosts(token));
 
   
 
@@ -74,7 +70,7 @@ export default function Admin() {
           </tr>
         </MDBTableHead>
         <MDBTableBody>
-          {displayBruker.map((element) => {
+          {data.map((element) => {
             let nyDato = new Date(element.created).toDateString();
 
             return (
