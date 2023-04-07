@@ -16,9 +16,7 @@ export async function fetchPosts(userId) {
       userId: userId,
     },
   }).then((res) => {
-    const result = res.json();
-    console.log(result);
-    return result;
+    return res.json()
   });
 }
 

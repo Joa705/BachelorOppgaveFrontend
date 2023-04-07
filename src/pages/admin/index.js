@@ -13,17 +13,17 @@ import DisplayPosts, { fetchPosts } from "../../components/admin";
 import { UseAuth } from "../../functions/authentication";
 import Loader from "../../components/loader";
 import ErrorNotification from "../../components/errorNotification";
+import "../../App.css";
 
 export default function Admin() {
   const { token } = UseAuth();
 
-  const {
-    data: posts,
-    isError,
-    isLoading,
-  } = useQuery(["posts", token], () => fetchPosts(token));
+  const { data: posts, status } = useQuery({
+    queryKey: ["posts"],
+    queryFn: () => fetchPosts(token),
+  });
 
-  if (isLoading) {
+  if (status == "loading") {
     return (
       <>
         <Loader />
@@ -31,7 +31,7 @@ export default function Admin() {
     );
   }
 
-  if (isError) {
+  if (status == "error") {
     return (
       <>
         <ErrorNotification />
@@ -41,51 +41,53 @@ export default function Admin() {
 
   return (
     <>
-      <MDBCardBody className="p-4 header-text">
-        <MDBTypography tag="h1" className="mb-2">
-          Admin Panel
-        </MDBTypography>
-        <p className="fw-light mb-4 pb-2">
+      <div className="container">
+        <MDBCardBody className="p-4 header-text">
+          <MDBTypography tag="h1" className="mb-2">
+            Admin Panel
+          </MDBTypography>
+          <p className="fw-light mb-4 pb-2">
+            <br />
+            <h5>
+              Her kan du administrere alle innlegg. Åpne, svar, set status eller
+              slett innlegg.
+            </h5>
+          </p>
           <br />
-          <h5>
-            Her kan du administrere alle innlegg. Åpne, svar, set status eller
-            slett innlegg.
-          </h5>
-        </p>
-        <br />
-      </MDBCardBody>
-      <div className="blank-space-header"></div>
+        </MDBCardBody>
+        <div className="blank-space-header"></div>
 
-      <MDBTable align="middle">
-        <MDBTableHead>
-          <tr>
-            <th scope="col">Bruker</th>
-            <th scope="col">Tittel</th>
-            <th scope="col">Status</th>
-            <th scope="col">Kategori</th>
-            <th scope="col">Dato opprettet</th>
-            <th scope="col">Administer innlegg</th>
-          </tr>
-        </MDBTableHead>
-        <MDBTableBody>
-          {posts.map((element) => {
-            let nyDato = new Date(element.created).toDateString();
+        <MDBTable align="middle">
+          <MDBTableHead>
+            <tr>
+              <th scope="col">Bruker</th>
+              <th scope="col">Tittel</th>
+              <th scope="col">Status</th>
+              <th scope="col">Kategori</th>
+              <th scope="col">Dato opprettet</th>
+              <th scope="col">Administer innlegg</th>
+            </tr>
+          </MDBTableHead>
+          <MDBTableBody>
+            {posts.map((element) => {
+              let nyDato = new Date(element.created).toDateString();
 
-            return (
-              <DisplayPosts
-                title={element.title}
-                category={element.category.type}
-                description={element.description}
-                userName={element.user.userName}
-                status={element.status.type}
-                id={element.user.userId}
-                created={nyDato}
-                email={element.user.email}
-              />
-            );
-          })}
-        </MDBTableBody>
-      </MDBTable>
+              return (
+                <DisplayPosts
+                  title={element.title}
+                  category={element.category.type}
+                  description={element.description}
+                  userName={element.user.userName}
+                  status={element.status.type}
+                  id={element.user.userId}
+                  created={nyDato}
+                  email={element.user.email}
+                />
+              );
+            })}
+          </MDBTableBody>
+        </MDBTable>
+      </div>
     </>
   );
 }
