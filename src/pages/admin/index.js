@@ -15,28 +15,50 @@ import Loader from "../../components/loader";
 import ErrorNotification from "../../components/errorNotification";
 import "../../App.css";
 
+
 export default function Admin() {
+  const [searchQuery, setSearchQuery] = useState("")
+
+  useEffect(() => {
+    const delaySearchQuery = setTimeout(() => {
+      console.log(searchQuery)
+      refetchPosts()
+    }, 1000);
+
+    return () => clearTimeout(delaySearchQuery)
+  }, [searchQuery])
+
+
   const { token } = UseAuth();
 
-  const { data: posts, status } = useQuery({
+  const { data: posts, status, refetch: refetchPosts } = useQuery({
     queryKey: ["posts"],
-    queryFn: () => fetchPosts(token),
+    queryFn: () => fetchPosts(token, searchQuery, "title"),
   });
 
-  if (status == "loading") {
-    return (
-      <>
-        <Loader />
-      </>
-    );
-  }
+  const mapPosts = () => {
+    return posts.map((element) => {
+      let nyDato = new Date(element.created).toDateString();
 
-  if (status == "error") {
-    return (
-      <>
-        <ErrorNotification />
-      </>
-    );
+      return (
+        <DisplayPosts
+          id={element.id}
+          title={element.title}
+          category={element.category.type}
+          description={element.description}
+          userName={element.user.userName}
+          status={element.status.type}
+          created={nyDato}
+          email={element.user.email}
+        />
+      );
+    });
+  };
+
+
+  const submitSearch = (e) => {
+    e.preventDefault()
+    refetchPosts()
   }
 
   return (
@@ -56,6 +78,25 @@ export default function Admin() {
           <br />
         </MDBCardBody>
         <div className="blank-space-header"></div>
+        <MDBCardBody className="p-4">
+          <form action="#" onSubmit={(e) => submitSearch(e)}>
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Søk..."
+                aria-label="Søk.."
+                aria-describedby="basic-addon2"
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">
+                  Button
+                </button>
+              </div>
+            </div>
+          </form>
+        </MDBCardBody>
 
         <MDBTable align="middle">
           <MDBTableHead>
@@ -68,24 +109,10 @@ export default function Admin() {
               <th scope="col">Administer innlegg</th>
             </tr>
           </MDBTableHead>
-          <MDBTableBody>
-            {posts.map((element) => {
-              let nyDato = new Date(element.created).toDateString();
+          {status == "loading" ? <Loader /> : ""}
 
-              return (
-                <DisplayPosts
-                  title={element.title}
-                  category={element.category.type}
-                  description={element.description}
-                  userName={element.user.userName}
-                  status={element.status.type}
-                  id={element.user.userId}
-                  created={nyDato}
-                  email={element.user.email}
-                />
-              );
-            })}
-          </MDBTableBody>
+          {status == "error" ? <ErrorNotification /> : ""}
+          <MDBTableBody>{status == "success" ? mapPosts() : ""}</MDBTableBody>
         </MDBTable>
       </div>
     </>

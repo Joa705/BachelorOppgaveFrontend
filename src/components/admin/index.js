@@ -7,20 +7,27 @@ import {
   MDBCardBody,
   MDBTypography,
 } from "mdb-react-ui-kit";
-import { useQuery } from "react-query";
 import { UrlConfig } from "../../config";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
-export async function fetchPosts(userId) {
-  return await fetch(UrlConfig.serverUrl + "/Post", {
+export async function fetchPosts(userId, search, filter) {
+    let url = new URL(UrlConfig.serverUrl + "/Post")
+    if (filter == "title") {
+        url.searchParams.append("title", search)
+    }
+  return await fetch(url, {
     headers: {
       userId: userId,
     },
   }).then((res) => {
-    return res.json()
+    return res.json();
   });
 }
 
 export default function DisplayPosts(props) {
+  const navigate = useNavigate();
+
   return (
     <>
       <tr>
@@ -55,9 +62,14 @@ export default function DisplayPosts(props) {
           <p className="fw-normal">{props.created}</p>
         </td>
         <td>
-          <MDBBtn color="link" rounded size="sm">
+          <button
+            color="link"
+            rounded
+            size="sm"
+            onClick={() => navigate("/posts/id/" + props.id)}
+          >
             Åpne
-          </MDBBtn>
+          </button>
           <MDBBtn color="link" rounded size="sm">
             Svar
           </MDBBtn>
