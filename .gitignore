@@ -23,4 +23,4 @@ src/pages/mine_posts.js
 
 /.vscode
 
-src/.config.js
+/src/config.js
