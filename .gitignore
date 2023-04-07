@@ -22,3 +22,5 @@ yarn-error.log*
 src/pages/mine_posts.js
 
 /.vscode
+
+src/.config.js
