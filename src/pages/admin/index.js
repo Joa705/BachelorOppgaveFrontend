@@ -75,10 +75,6 @@ export default function Admin() {
     refetchPosts();
   };
 
-  if (status == "loading") {
-    return <Loader />;
-  }
-
   return (
     <>
       <div className="Appcontainer">
