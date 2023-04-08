@@ -9,9 +9,9 @@ import {
   MDBCardBody,
   MDBTypography,
 } from "mdb-react-ui-kit";
-import { stringify } from "uuid";
 import "../../styling/brukere.css";
 import "../../App.css";
+import AdminPanel from "../../components/admin/panel";
 
 function DisplayBruker(props) {
   const userId = props.userId;
@@ -62,33 +62,26 @@ export default function Brukere() {
   const [displayBruker, setDisplayBruker] = useState([]);
 
   useEffect(() => {
-    fetch(UrlConfig.serverUrl + "/User")
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("No response", {cause: res})
-        }else{
-          var data = res.json()
-          setDisplayBruker(data)
-        }
-      });
+    fetch(UrlConfig.serverUrl + "/User").then((res) => {
+      if (!res.ok) {
+        throw new Error("No response", { cause: res });
+      } else {
+        var data = res.json();
+        setDisplayBruker(data);
+      }
+    });
   }, []);
+
   return (
     <>
-      <MDBCardBody className="p-4 header-text">
-        <MDBTypography tag="h1" className="mb-2">
-          Admin Panel
-        </MDBTypography>
-        <p className="fw-light mb-4 pb-2">
-          <br />
-          <h5>
-            Her kan du finne oversikt over alle brukere. Endre rolle til
-            brukeren eller slett brukere.
-          </h5>
-        </p>
-        <br />
-      </MDBCardBody>
+      <div className="Appcontainer">
+
+      <AdminPanel
+        title={
+          "Her kan du finne oversikt over alle brukere. Endre rolle til brukeren eller slett brukere."
+        }
+      />
       <div className="blank-space-header"></div>
-      <div className="container">
         <MDBTable align="middle">
           <MDBTableHead>
             <tr>

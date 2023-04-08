@@ -14,6 +14,7 @@ import { UseAuth } from "../../functions/authentication";
 import Loader from "../../components/loader";
 import ErrorNotification from "../../components/errorNotification";
 import "../../App.css";
+import AdminPanel from "../../components/admin/panel";
 
 
 export default function Admin() {
@@ -23,7 +24,7 @@ export default function Admin() {
     const delaySearchQuery = setTimeout(() => {
       console.log(searchQuery)
       refetchPosts()
-    }, 1000);
+    }, 700);
 
     return () => clearTimeout(delaySearchQuery)
   }, [searchQuery])
@@ -63,20 +64,8 @@ export default function Admin() {
 
   return (
     <>
-      <div className="container">
-        <MDBCardBody className="p-4 header-text">
-          <MDBTypography tag="h1" className="mb-2">
-            Admin Panel
-          </MDBTypography>
-          <p className="fw-light mb-4 pb-2">
-            <br />
-            <h5>
-              Her kan du administrere alle innlegg. Åpne, svar, set status eller
-              slett innlegg.
-            </h5>
-          </p>
-          <br />
-        </MDBCardBody>
+      <div className="Appcontainer">
+        <AdminPanel title={"Her kan du administrere alle innlegg.Åpne, svar, set status eller slett innlegg"}/>
         <div className="blank-space-header"></div>
         <MDBCardBody className="p-4">
           <form action="#" onSubmit={(e) => submitSearch(e)}>
