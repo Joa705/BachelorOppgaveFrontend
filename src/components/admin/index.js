@@ -55,12 +55,67 @@ export default function DisplayPosts(props) {
               Åpne
             </a>
 
-            <a color="link" rounded size="sm" href="#">
+            <a
+              color="link"
+              rounded
+              size="sm"
+              href="#"
+              data-toggle="modal"
+              data-target={"#modal-for-" + props.id}
+            >
               Sett status
             </a>
           </div>
         </td>
       </tr>
+
+      <StatusModal postId={props.id} />
+    </>
+  );
+}
+
+function StatusModal({ postId }) {
+  return (
+    <>
+      <div
+        class="modal fade"
+        id={"modal-for-" + postId}
+        tabindex="-1"
+        role="dialog"
+        aria-label={"modal-for-" + postId}
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id={"modal-for-" + postId}>
+                Modal title
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">...</div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" class="btn btn-primary">
+                Save changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

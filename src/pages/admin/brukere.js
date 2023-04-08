@@ -12,9 +12,10 @@ import {
 import "../../styling/brukere.css";
 import "../../App.css";
 import AdminPanel from "../../components/admin/panel";
-
-
-
+import { UseAuth } from "../../functions/authentication";
+import { useQuery } from "react-query";
+import Loader from "../../components/loader";
+import ErrorNotification from "../../components/errorNotification";
 
 function DisplayBruker(props) {
   const userId = props.userId;
@@ -63,28 +64,33 @@ function DisplayBruker(props) {
 
 export default function Brukere() {
   const [displayBruker, setDisplayBruker] = useState([]);
+  const { token } = UseAuth();
 
-  useEffect(() => {
-    fetch(UrlConfig.serverUrl + "/User").then((res) => {
-      if (!res.ok) {
-        throw new Error("No response", { cause: res });
-      } else {
-        var data = res.json();
-        setDisplayBruker(data);
-      }
+  const { data: users, status: userStatus } = useQuery({
+    queryKey: ["users"],
+    queryFn: () => fetchUsers(token),
+  });
+
+  async function fetchUsers(userId) {
+    let url = new URL(UrlConfig.serverUrl + "/User");
+    return await fetch(url, {
+      headers: {
+        userId: userId,
+      },
+    }).then((res) => {
+      return res.json();
     });
-  }, []);
+  }
 
   return (
     <>
       <div className="Appcontainer">
-
-      <AdminPanel
-        title={
-          "Her kan du finne oversikt over alle brukere. Endre rolle til brukeren eller slett brukere."
-        }
-      />
-      <div className="blank-space-header"></div>
+        <AdminPanel
+          title={
+            "Her kan du finne oversikt over alle brukere. Endre rolle til brukeren eller slett brukere."
+          }
+        />
+        <div className="blank-space-header"></div>
         <MDBTable align="middle">
           <MDBTableHead>
             <tr>
@@ -96,19 +102,25 @@ export default function Brukere() {
             </tr>
           </MDBTableHead>
           <MDBTableBody>
-            {displayBruker.map((element) => {
-              let newdate = new Date(element.created);
+            {userStatus == "loading" ? <Loader /> : ""}
 
-              return (
-                <DisplayBruker
-                  userId={element.id}
-                  userName={element.userName}
-                  userEmail={element.email}
-                  rolle={element.userRole.type}
-                  opprettet={newdate.toDateString()}
-                />
-              );
-            })}
+            {userStatus == "error" ? <ErrorNotification /> : ""}
+
+            {userStatus == "success"
+              ? users.map((element) => {
+                  let newdate = new Date(element.created);
+
+                  return (
+                    <DisplayBruker
+                      userId={element.id}
+                      userName={element.userName}
+                      userEmail={element.email}
+                      rolle={element.userRole.type}
+                      opprettet={newdate.toLocaleDateString()}
+                    />
+                  );
+                })
+              : ""}
           </MDBTableBody>
         </MDBTable>
       </div>

@@ -42,21 +42,16 @@ export default function Admin() {
     queryFn: () => fetchPosts(token, searchQuery, categoryId, statusType),
   });
 
-
-  const {data: categories, status: categoryStatus} = useQuery({
+  const { data: categories, status: categoryStatus } = useQuery({
     queryKey: ["category"],
-    queryFn: () => fetchCategories()
-  })
-
+    queryFn: () => fetchCategories(),
+  });
 
   const mapPosts = () => {
-
-    if(posts.length == 0) {
-      return (
-        <div>No posts</div>
-      )
+    if (posts.length == 0) {
+      return <div>No posts</div>;
     }
-    
+
     return posts?.map((element) => {
       let nyDato = new Date(element.created).toDateString();
 
@@ -79,7 +74,11 @@ export default function Admin() {
     e.preventDefault();
     refetchPosts();
   };
- 
+
+  if (status == "loading") {
+    return <Loader />;
+  }
+
   return (
     <>
       <div className="Appcontainer">
@@ -118,14 +117,11 @@ export default function Admin() {
               <option value="all" selected="selected">
                 -- Alle --
               </option>
-              {categoryStatus == "success" ? 
-              categories?.map((element) => {
-                return <option value={element.id}>{element.type}</option>;
-              })
-              :
-              ""
-              }
-              
+              {categoryStatus == "success"
+                ? categories?.map((element) => {
+                    return <option value={element.id}>{element.type}</option>;
+                  })
+                : ""}
             </select>
           </div>
 
@@ -142,30 +138,29 @@ export default function Admin() {
               <option value={"Venter"}>Venter</option>
               <option value={"Besvart"}>Besvart</option>
               <option value={"Avlyst"}>Avlyst</option>
-              
             </select>
           </div>
         </MDBCardBody>
-        <div className="mainContent" style={{overflow: "scroll"}}>
-        <MDBTable align="middle">
-          <MDBTableHead>
-            <tr>
-              <th scope="col">Bruker</th>
-              <th scope="col">Ide</th>
-              <th scope="col">Status</th>
-              <th scope="col">Kategori</th>
-              <th scope="col">Opprettet</th>
-              <th scope="col">Administrer</th>
-            </tr>
-          </MDBTableHead>
-          {status == "loading" ? <Loader /> : ""}
+        <div className="mainContent" style={{ overflow: "scroll" }}>
+          <MDBTable align="middle">
+            <MDBTableHead>
+              <tr>
+                <th scope="col">Bruker</th>
+                <th scope="col">Ide</th>
+                <th scope="col">Status</th>
+                <th scope="col">Kategori</th>
+                <th scope="col">Opprettet</th>
+                <th scope="col">Administrer</th>
+              </tr>
+            </MDBTableHead>
+            {status == "loading" ? <Loader /> : ""}
 
-          {status == "error" ? <ErrorNotification /> : ""}
-          <MDBTableBody>{status == "success" ? mapPosts() : ""}</MDBTableBody>
-        </MDBTable>
-      </div>
-      <div className="blank-space-header"></div>
+            {status == "error" ? <ErrorNotification /> : ""}
+            <MDBTableBody>{status == "success" ? mapPosts() : ""}</MDBTableBody>
+          </MDBTable>
         </div>
+        <div className="blank-space-header"></div>
+      </div>
     </>
   );
 }
