@@ -13,6 +13,9 @@ import "../../styling/brukere.css";
 import "../../App.css";
 import AdminPanel from "../../components/admin/panel";
 
+
+
+
 function DisplayBruker(props) {
   const userId = props.userId;
 

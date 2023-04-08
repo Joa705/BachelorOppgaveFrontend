@@ -7,27 +7,9 @@ import {
   MDBCardBody,
   MDBTypography,
 } from "mdb-react-ui-kit";
-import { UrlConfig } from "../../config";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-
-export async function fetchPosts(userId, search, filter) {
-    let url = new URL(UrlConfig.serverUrl + "/Post")
-    if (filter == "title") {
-        url.searchParams.append("title", search)
-    }
-  return await fetch(url, {
-    headers: {
-      userId: userId,
-    },
-  }).then((res) => {
-    return res.json();
-  });
-}
 
 export default function DisplayPosts(props) {
-  const navigate = useNavigate();
-
   return (
     <>
       <tr>
@@ -62,23 +44,21 @@ export default function DisplayPosts(props) {
           <p className="fw-normal">{props.created}</p>
         </td>
         <td>
-          <button
-            color="link"
-            rounded
-            size="sm"
-            onClick={() => navigate("/posts/id/" + props.id)}
-          >
-            Åpne
-          </button>
-          <MDBBtn color="link" rounded size="sm">
-            Svar
-          </MDBBtn>
-          <MDBBtn color="link" rounded size="sm">
-            Set status
-          </MDBBtn>
-          <MDBBtn color="link" rounded size="sm">
-            Slett
-          </MDBBtn>
+          <div className="d-flex flex-column align-items-center">
+            <a
+              className="pr-2"
+              color="link"
+              rounded
+              size="sm"
+              href={"/posts/id/" + props.id}
+            >
+              Åpne
+            </a>
+
+            <a color="link" rounded size="sm" href="#">
+              Sett status
+            </a>
+          </div>
         </td>
       </tr>
     </>
