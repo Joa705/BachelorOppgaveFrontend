@@ -109,16 +109,41 @@ export default function DisplayPosts(props) {
 }
 
 function StatusModal({ postId, status, statusStatus }) {
+  const { token } = UseAuth();
   const typeOfStatuses = ["venter", "Besvart", "Avslått"];
   const [statusType, setStatusType] = useState("");
   const [statusDescription, setStatusDescription] = useState("");
+  const [displayTakk, setDisplayTakk] = useState("");
 
   useEffect(() => {
-    console.log("rerednering this blabla")
+    console.log("rerednering this blabla");
     if (status != undefined) {
       setStatusDescription(status.description);
     }
   }, [status]);
+
+  async function postStatus() {
+    let url = new URL(UrlConfig.serverUrl + "/Status");
+
+    let myForm = new FormData();
+    myForm.append("postId", postId)
+    myForm.append("type", statusType);
+    myForm.append("description", statusDescription);
+
+    let res = await fetch(url, {
+      method: "post",
+      headers: { userId: token },
+      body: myForm,
+    });
+
+    if (res.status == "200") {
+      setDisplayTakk("Status oppdatert");
+
+      setTimeout(() => {
+        setDisplayTakk("");
+      }, 3000);
+    }
+  }
 
   function displayCurrentStatus() {
     return (
@@ -158,9 +183,15 @@ function StatusModal({ postId, status, statusStatus }) {
       </>
     );
   }
+
   return (
     <>
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          postStatus();
+        }}
+      >
         <div
           class="modal fade"
           id={"modal-for-" + postId}
@@ -196,6 +227,7 @@ function StatusModal({ postId, status, statusStatus }) {
               {statusStatus == "success" ? (
                 <>
                   <div class="modal-footer">
+                    <div>{displayTakk}</div>
                     <button
                       type="button"
                       class="btn btn-secondary"

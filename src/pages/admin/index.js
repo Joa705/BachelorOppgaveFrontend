@@ -133,7 +133,7 @@ export default function Admin() {
               </option>
               <option value={"Venter"}>Venter</option>
               <option value={"Besvart"}>Besvart</option>
-              <option value={"Avlyst"}>Avslått</option>
+              <option value={"Avslått"}>Avslått</option>
             </select>
           </div>
         </MDBCardBody>
