@@ -133,7 +133,7 @@ export default function Admin() {
               </option>
               <option value={"Venter"}>Venter</option>
               <option value={"Besvart"}>Besvart</option>
-              <option value={"Avlyst"}>Avlyst</option>
+              <option value={"Avlyst"}>Avslått</option>
             </select>
           </div>
         </MDBCardBody>
@@ -149,10 +149,10 @@ export default function Admin() {
                 <th scope="col">Administrer</th>
               </tr>
             </MDBTableHead>
-            {status == "loading" ? <Loader /> : ""}
+            {status === "loading" ? <Loader /> : ""}
 
-            {status == "error" ? <ErrorNotification /> : ""}
-            <MDBTableBody>{status == "success" ? mapPosts() : ""}</MDBTableBody>
+            {status === "error" ? <ErrorNotification message={"An error occured"} /> : ""}
+            <MDBTableBody>{status === "success" ? mapPosts() : ""}</MDBTableBody>
           </MDBTable>
         </div>
         <div className="blank-space-header"></div>

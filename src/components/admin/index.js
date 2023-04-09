@@ -7,12 +7,41 @@ import {
   MDBCardBody,
   MDBTypography,
 } from "mdb-react-ui-kit";
-import { useNavigate } from "react-router-dom";
+import { useQuery } from "react-query";
+import React, { useEffect, useState } from "react";
+import { UrlConfig } from "../../config";
+import { UseAuth } from "../../functions/authentication";
+import Loader from "../loader";
+import ErrorNotification from "../errorNotification";
 
 export default function DisplayPosts(props) {
+  const { token } = UseAuth();
+
+  async function fetchStatus() {
+    let url = new URL(UrlConfig.serverUrl + "/Status/post/" + props.id);
+    return await fetch(url, {
+      headers: {
+        userId: token,
+      },
+    }).then((res) => {
+      return res.json();
+    });
+  }
+
+  const {
+    data: status,
+    status: statusStatus,
+    refetch: refetchStatus,
+  } = useQuery({
+    refetchOnWindowFocus: false,
+    enabled: false,
+    queryKey: ["status", props.id],
+    queryFn: () => fetchStatus(),
+  });
+
   return (
     <>
-      <tr>
+      <tr id={props.id}>
         <td>
           <div className="d-flex align-items-center">
             <img
@@ -62,6 +91,7 @@ export default function DisplayPosts(props) {
               href="#"
               data-toggle="modal"
               data-target={"#modal-for-" + props.id}
+              onClick={() => refetchStatus()}
             >
               Sett status
             </a>
@@ -69,53 +99,122 @@ export default function DisplayPosts(props) {
         </td>
       </tr>
 
-      <StatusModal postId={props.id} />
+      <StatusModal
+        postId={props.id}
+        status={status}
+        statusStatus={statusStatus}
+      />
     </>
   );
 }
 
-function StatusModal({ postId }) {
+function StatusModal({ postId, status, statusStatus }) {
+  const typeOfStatuses = ["venter", "Besvart", "Avslått"];
+  const [statusType, setStatusType] = useState("");
+  const [statusDescription, setStatusDescription] = useState("");
+
+  useEffect(() => {
+    console.log("rerednering this blabla")
+    if (status != undefined) {
+      setStatusDescription(status.description);
+    }
+  }, [status]);
+
+  function displayCurrentStatus() {
+    return (
+      <>
+        <div class="form-group">
+          <label for="statusDescription">Beskrivelse</label>
+          <input
+            type="text"
+            class="form-control"
+            id="statusDescription"
+            aria-describedby="description"
+            placeholder="status description"
+            onChange={(e) => setStatusDescription(e.target.value)}
+            value={statusDescription}
+          />
+          <small id="statusHelp" class="form-text text-muted">
+            Gi en status beskrivelse
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="selectStatus">Velg status</label>
+          <select
+            class="form-control"
+            id="selectStatus"
+            onChange={(e) => setStatusType(e.target.value)}
+          >
+            {typeOfStatuses.map((el) => {
+              if (status.type == el) {
+                return <option selected>{el}</option>;
+              } else {
+                return <option>{el}</option>;
+              }
+            })}
+          </select>
+        </div>
+      </>
+    );
+  }
   return (
     <>
-      <div
-        class="modal fade"
-        id={"modal-for-" + postId}
-        tabindex="-1"
-        role="dialog"
-        aria-label={"modal-for-" + postId}
-        aria-hidden="true"
-      >
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id={"modal-for-" + postId}>
-                Modal title
-              </h5>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">...</div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="button" class="btn btn-primary">
-                Save changes
-              </button>
+      <form>
+        <div
+          class="modal fade"
+          id={"modal-for-" + postId}
+          tabindex="-1"
+          role="dialog"
+          aria-label={"modal-for-" + postId}
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id={"modal-for-" + postId}>
+                  Status
+                </h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                {statusStatus == "loading" ? <Loader /> : ""}
+                {statusStatus == "error" ? (
+                  <ErrorNotification message="error" />
+                ) : (
+                  ""
+                )}
+                {statusStatus == "success" ? displayCurrentStatus() : ""}
+              </div>
+              {statusStatus == "success" ? (
+                <>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-dismiss="modal"
+                    >
+                      Avbryt
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                      Lagre
+                    </button>
+                  </div>
+                </>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>
-      </div>
+      </form>
     </>
   );
 }
