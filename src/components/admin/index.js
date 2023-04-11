@@ -15,6 +15,7 @@ import Loader from "../loader";
 import ErrorNotification from "../errorNotification";
 
 export default function DisplayPosts(props) {
+  const [postStatus, setPostStatus] = useState(props.status);
   const { token } = UseAuth();
 
   async function fetchStatus() {
@@ -39,6 +40,21 @@ export default function DisplayPosts(props) {
     queryFn: () => fetchStatus(),
   });
 
+  const whatStatusColor = () => {
+    let color = "";
+    if (postStatus == "Besvart") color = "success";
+    else if (postStatus == "Venter") color = "warning";
+    else if (postStatus == "Avslått") color = "danger";
+
+    return (
+      <>
+        <MDBBadge color={color} pill>
+          {postStatus}
+        </MDBBadge>
+      </>
+    );
+  };
+
   return (
     <>
       <tr id={props.id}>
@@ -59,11 +75,7 @@ export default function DisplayPosts(props) {
         <td>
           <p className="fw-normal mb-1">{props.title}</p>
         </td>
-        <td>
-          <MDBBadge color="success" pill>
-            {props.status}
-          </MDBBadge>
-        </td>
+        <td>{whatStatusColor()}</td>
         <td>
           <MDBBadge color="warning" pill>
             {props.category}
@@ -73,7 +85,7 @@ export default function DisplayPosts(props) {
           <p className="fw-normal">{props.created}</p>
         </td>
         <td>
-          <div className="d-flex flex-column align-items-center">
+          <div className="d-flex flex-column">
             <a
               className="pr-2"
               color="link"
@@ -103,12 +115,13 @@ export default function DisplayPosts(props) {
         postId={props.id}
         status={status}
         statusStatus={statusStatus}
+        setPostStatus={setPostStatus}
       />
     </>
   );
 }
 
-function StatusModal({ postId, status, statusStatus }) {
+function StatusModal({ postId, status, statusStatus, setPostStatus }) {
   const { token } = UseAuth();
   const typeOfStatuses = ["venter", "Besvart", "Avslått"];
   const [statusType, setStatusType] = useState("");
@@ -126,7 +139,7 @@ function StatusModal({ postId, status, statusStatus }) {
     let url = new URL(UrlConfig.serverUrl + "/Status");
 
     let myForm = new FormData();
-    myForm.append("postId", postId)
+    myForm.append("postId", postId);
     myForm.append("type", statusType);
     myForm.append("description", statusDescription);
 
@@ -141,6 +154,7 @@ function StatusModal({ postId, status, statusStatus }) {
 
       setTimeout(() => {
         setDisplayTakk("");
+        setPostStatus(statusType);
       }, 3000);
     }
   }

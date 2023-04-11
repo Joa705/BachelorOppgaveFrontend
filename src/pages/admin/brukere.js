@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { UrlConfig } from "../../config";
 import {
   MDBBadge,
@@ -18,12 +18,42 @@ import Loader from "../../components/loader";
 import ErrorNotification from "../../components/errorNotification";
 
 function DisplayBruker(props) {
-  const userId = props.userId;
+  const { token } = UseAuth();
+  const rolleRef = useRef();
+  const [curURole, setCurURole] = useState(props.userRoleId);
+
+  const {
+    data: userRoles,
+    status: userRoleStatus,
+    refetch,
+  } = useQuery({
+    refetchOnWindowFocus: false,
+    enabled: false,
+    queryKey: ["userRoles", props.userId],
+    queryFn: () => fetchUserRoles(token),
+  });
+
+  async function fetchUserRoles(userId) {
+    let url = new URL(UrlConfig.serverUrl + "/Role");
+    return await fetch(url, {
+      headers: {
+        userId: userId,
+      },
+    }).then((res) => {
+      return res.json();
+    });
+  }
 
   const randImg =
     "https://mdbootstrap.com/img/new/avatars/" +
     Math.floor(Math.random() * 15) +
     ".jpg";
+
+  function setUserRole() {
+    console.log(curURole)
+    console.log(rolleRef.current.innerHTML);
+  }
+
   return (
     <>
       <tr>
@@ -44,26 +74,115 @@ function DisplayBruker(props) {
           <p className="fw-normal mb-1">{props.userEmail}</p>
         </td>
         <td>
-          <p className="fw-normal mb-1">{props.rolle}</p>
+          <p ref={rolleRef} className="fw-normal mb-1">
+            {props.rolle}
+          </p>
         </td>
         <td>
           <p className="fw-normal mb-1">{props.opprettet}</p>
         </td>
         <td>
-          <MDBBtn color="link" rounded size="sm">
-            Endre
-          </MDBBtn>
-          <MDBBtn color="link" rounded size="sm">
-            Slett
-          </MDBBtn>
+          <div className="d-flex flex-column">
+            <a
+              color="link"
+              rounded
+              size="sm"
+              href="#"
+              data-toggle="modal"
+              data-target={"#bruker-modal-" + props.userId}
+              onClick={() => refetch()}
+            >
+              Endre
+            </a>
+            <a color="link" rounded size="sm" href="#">
+              Slett
+            </a>
+          </div>
         </td>
       </tr>
+
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          setUserRole();
+        }}
+      >
+        <div
+          class="modal fade"
+          id={"bruker-modal-" + props.userId}
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby={"bruker-modal-" + props.userId}
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id={"bruker-modal-" + props.userId}>
+                  Modal title
+                </h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                {userRoleStatus == "loading" ? <Loader /> : ""}
+
+                {userRoleStatus == "error" ? <ErrorNotification /> : ""}
+
+                {userRoleStatus == "success" ? (
+                  <>
+                    <div class="form-group">
+                      <label for="selectStatus">Velg rolle</label>
+                      <select
+                        class="form-control"
+                        id="selectStatus"
+                        onChange={(e) => setCurURole(e.target.value)}
+                      >
+                        {userRoles.map((el) => {
+                            if (el.type == props.rolle) {
+                              return <option value={el.id} selected>{el.type}</option>;
+                            } else {
+                              return <option value={el.id}>{el.type}</option>;
+                            }
+                        })}
+                      </select>
+                    </div>
+                  </>
+                ) : (
+                  ""
+                )}
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  onClick={() => setUserRole("En test")}
+                >
+                  Save changes
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
     </>
   );
 }
 
 export default function Brukere() {
-  const [displayBruker, setDisplayBruker] = useState([]);
   const { token } = UseAuth();
 
   const { data: users, status: userStatus } = useQuery({
@@ -81,6 +200,24 @@ export default function Brukere() {
       return res.json();
     });
   }
+
+  const display = () => {
+    return users.map((element) => {
+      if (element.id == token) return;
+
+      let newdate = new Date(element.created);
+      return (
+        <DisplayBruker
+          userId={element.id}
+          userName={element.userName}
+          userEmail={element.email}
+          rolle={element.userRole.type}
+          opprettet={newdate.toLocaleDateString()}
+          userRoleId={element.userRole.id}
+        />
+      );
+    });
+  };
 
   return (
     <>
@@ -106,21 +243,7 @@ export default function Brukere() {
 
             {userStatus == "error" ? <ErrorNotification /> : ""}
 
-            {userStatus == "success"
-              ? users.map((element) => {
-                  let newdate = new Date(element.created);
-
-                  return (
-                    <DisplayBruker
-                      userId={element.id}
-                      userName={element.userName}
-                      userEmail={element.email}
-                      rolle={element.userRole.type}
-                      opprettet={newdate.toLocaleDateString()}
-                    />
-                  );
-                })
-              : ""}
+            {userStatus == "success" ? display() : ""}
           </MDBTableBody>
         </MDBTable>
       </div>

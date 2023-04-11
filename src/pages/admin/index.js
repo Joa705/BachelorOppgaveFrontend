@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import { useQuery } from "react-query";
 import {
   MDBBadge,
@@ -15,6 +15,7 @@ import { UseAuth } from "../../functions/authentication";
 import Loader from "../../components/loader";
 import ErrorNotification from "../../components/errorNotification";
 import "../../App.css";
+import "../../styling/admin/index.css";
 import AdminPanel from "../../components/admin/panel";
 import { fetchCategories } from "../../functions/category";
 
@@ -22,10 +23,12 @@ export default function Admin() {
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryId, setCategoryId] = useState("all");
   const [statusType, setStatusType] = useState("all");
+  const [count, setCount] = useState(0)
   const { token } = UseAuth();
 
   useEffect(() => {
     const delaySearchQuery = setTimeout(() => {
+      setCount(c => c + 1)
       console.log(searchQuery);
       refetchPosts();
     }, 700);
@@ -38,7 +41,7 @@ export default function Admin() {
     status,
     refetch: refetchPosts,
   } = useQuery({
-    queryKey: ["posts"],
+    queryKey: ["posts", count],
     queryFn: () => fetchPosts(token, searchQuery, categoryId, statusType),
   });
 
@@ -49,11 +52,11 @@ export default function Admin() {
 
   const mapPosts = () => {
     if (posts.length == 0) {
-      return <div>No posts</div>;
+      return <div>No results</div>;
     }
 
     return posts?.map((element) => {
-      let nyDato = new Date(element.created).toDateString();
+      let nyDato = new Date(element.created).toLocaleDateString();
 
       return (
         <DisplayPosts
