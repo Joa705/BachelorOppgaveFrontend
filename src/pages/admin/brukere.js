@@ -16,11 +16,15 @@ import { UseAuth } from "../../functions/authentication";
 import { useQuery } from "react-query";
 import Loader from "../../components/loader";
 import ErrorNotification from "../../components/errorNotification";
+import { Put } from "react-axios";
 
 function DisplayBruker(props) {
   const { token } = UseAuth();
   const rolleRef = useRef();
-  const [curURole, setCurURole] = useState(props.userRoleId);
+  const [curURoleId, setCurURoleId] = useState(props.userRoleId);
+  const [curURole, setCurURole] = useState(props.rolle);
+
+  const [updateStatus, setUpdateStatus] = useState("");
 
   const {
     data: userRoles,
@@ -49,9 +53,33 @@ function DisplayBruker(props) {
     Math.floor(Math.random() * 15) +
     ".jpg";
 
-  function setUserRole() {
+  async function updateUserRole(token) {
+    let url = new URL(UrlConfig.serverUrl + "/User/id/" + props.userId);
+    url.searchParams.append("userRoleId", curURoleId)
+
+    let res = await fetch(url, {
+      method: "put",
+      headers: { userId: token }
+    });
+
+    console.log(curURoleId)
     console.log(curURole)
-    console.log(rolleRef.current.innerHTML);
+
+    if (res.status == "200") {
+      setUpdateStatus("Bruker rolle endret");
+
+      setTimeout(() => {
+        setUpdateStatus("");
+        rolleRef.current.innerHTML = curURole;
+      }, 3000);
+    }
+    else {
+      setUpdateStatus("Kunne ikke endre rolle");
+
+      setTimeout(() => {
+        setUpdateStatus("");
+      }, 3000);
+    }
   }
 
   return (
@@ -104,7 +132,7 @@ function DisplayBruker(props) {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          setUserRole();
+          updateUserRole(token);
         }}
       >
         <div
@@ -142,14 +170,20 @@ function DisplayBruker(props) {
                       <select
                         class="form-control"
                         id="selectStatus"
-                        onChange={(e) => setCurURole(e.target.value)}
+                        onChange={(e) => {
+                          setCurURoleId(e.target.value);
+                        }}
                       >
                         {userRoles.map((el) => {
-                            if (el.type == props.rolle) {
-                              return <option value={el.id} selected>{el.type}</option>;
-                            } else {
-                              return <option value={el.id}>{el.type}</option>;
-                            }
+                          if (el.type == props.rolle) {
+                            return (
+                              <option value={el.id} selected>
+                                {el.type}
+                              </option>
+                            );
+                          } else {
+                            return <option value={el.id}>{el.type}</option>;
+                          }
                         })}
                       </select>
                     </div>
@@ -159,6 +193,7 @@ function DisplayBruker(props) {
                 )}
               </div>
               <div class="modal-footer">
+                <div>{updateStatus}</div>
                 <button
                   type="button"
                   class="btn btn-secondary"
@@ -166,11 +201,7 @@ function DisplayBruker(props) {
                 >
                   Close
                 </button>
-                <button
-                  type="button"
-                  class="btn btn-primary"
-                  onClick={() => setUserRole("En test")}
-                >
+                <button type="submit" class="btn btn-primary">
                   Save changes
                 </button>
               </div>
