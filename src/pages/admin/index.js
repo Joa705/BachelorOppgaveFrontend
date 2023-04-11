@@ -9,6 +9,7 @@ import {
   MDBCardBody,
   MDBTypography,
 } from "mdb-react-ui-kit";
+import { MdSearch } from "react-icons/md";
 import DisplayPosts from "../../components/admin";
 import { fetchPosts } from "../../functions/admin";
 import { UseAuth } from "../../functions/authentication";
@@ -86,19 +87,18 @@ export default function Admin() {
         <div className="blank-space-header"></div>
         <MDBCardBody className="p-4">
           <form action="#" onSubmit={(e) => submitSearch(e)}>
-            <div class="input-group mb-3">
-              <input
+            <div class="form-inline my-2 my-lg-3">  <MdSearch style={{ fontSize: "25px" }} /> 
+              <input 
                 type="text"
-                class="form-control"
-                placeholder="Søk etter tittel eller bruker"
+                class="form-control" 
+                placeholder="Søk..."
                 aria-label="Søk etter tittel eller bruker"
                 aria-describedby="basic-addon2"
                 onChange={(e) => setSearchQuery(e.target.value)}
-              />
+              /> 
+              
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="submit">
-                  Button
-                </button>
+             
               </div>
             </div>
           </form>
