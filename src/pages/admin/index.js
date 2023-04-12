@@ -147,6 +147,7 @@ export default function Admin() {
               <tr>
                 <th scope="col">Bruker</th>
                 <th scope="col">Ide</th>
+                <th scope="col">Beskrivelse</th>
                 <th scope="col">Status</th>
                 <th scope="col">Kategori</th>
                 <th scope="col">Opprettet</th>

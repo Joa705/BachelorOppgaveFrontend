@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { UrlConfig } from "../config";
 import logo from "../logo5.png";
 import "../styling/ny_post.css";
@@ -30,6 +30,7 @@ export default function NyPosts() {
   const [categoryId, setCategoryId] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const descriptionRef = useRef()
   const [labelTakk, setLabelTakk] = useState("");
 
   const navgiate = useNavigate();
@@ -46,7 +47,7 @@ export default function NyPosts() {
     let myForm = new FormData();
     myForm.append("categoryId", categoryId);
     myForm.append("title", title);
-    myForm.append("description", description);
+    myForm.append("description", descriptionRef.current.value);
     let res = await fetch(UrlConfig.serverUrl + "/Post", {
       method: "post",
       headers: { userId: token },
@@ -145,11 +146,11 @@ export default function NyPosts() {
                     />
                     <div className="editorContainer">
                     <ReactQuill 
+                      ref={descriptionRef}
                       theme="snow" 
                       className="editor"
                       id="textAreaExample" 
                       label={labelTakk}
-                      onChange={(e) => setDescription(e.target.value)}
                       type="text"
                       required
                        />

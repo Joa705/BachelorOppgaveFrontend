@@ -75,6 +75,9 @@ export default function DisplayPosts(props) {
         <td>
           <p className="fw-normal mb-1">{props.title}</p>
         </td>
+        <td>
+          <div dangerouslySetInnerHTML={{__html: props.description}}></div>
+        </td>
         <td>{whatStatusColor()}</td>
         <td>
           <MDBBadge color="warning" pill>
