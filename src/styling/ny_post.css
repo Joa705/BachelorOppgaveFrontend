@@ -1,0 +1,9 @@
+.editorContainer{
+    height: 300px;
+    overflow: scroll;
+}   
+      .editor{
+        height:100%;
+        border: none;
+    }
+
