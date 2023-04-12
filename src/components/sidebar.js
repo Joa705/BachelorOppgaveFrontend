@@ -36,78 +36,55 @@ export default function NavigationSidebar() {
     >
       <Toggle></Toggle>
       <SideNav.Nav defaultSelected="/">
-        <NavItem eventKey="/posts">
-          <NavIcon>
-            <i>
-              <MdForum style={{ fontSize: "25px" }} />
-            </i>
-          </NavIcon>
-          <NavText>Se alle innlegg</NavText>
-        </NavItem>
-        <NavItem eventKey="/posts/mine">
-          <NavIcon>
-            <i>
-              <MdComment style={{ fontSize: "25px" }} />
-            </i>
-          </NavIcon>
-          <NavText>Mine innlegg</NavText>
-        </NavItem>
-        <NavItem eventKey="/favourites">
-          <NavIcon>
-            <i>
-              <MdFavorite style={{ fontSize: "25px" }} />
-            </i>
-          </NavIcon>
-          <NavText>Mine favoritter</NavText>
-        </NavItem>
-        <NavItem eventKey="/posts/opprett">
-          <NavIcon>
-            <i>
-              <MdAddComment style={{ fontSize: "25px" }} />
-            </i>
-          </NavIcon>
-          <NavText>Registrer ny feedback</NavText>
-        </NavItem>
-        <NavItem eventKey="/notifications">
-          <NavIcon>
-            <i>
-              <MdNotifications style={{ fontSize: "25px" }} />
-            </i>
-          </NavIcon>
-          <NavText>Notifikasjoner</NavText>
-        </NavItem>
-
         {token ? (
-          <>
+          <NavItem eventKey="/posts">
+            <NavIcon>
+              <i>
+                <MdForum style={{ fontSize: "25px" }} />
+              </i>
+            </NavIcon>
+            <NavText>Innlegg</NavText>
+
             <NavItem eventKey="/posts">
-              <NavIcon>
-                <i>
-                  <MdForum style={{ fontSize: "25px" }} />
-                </i>
-              </NavIcon>
-              <NavText>Se alle innlegg</NavText>
+              <NavText>Alle Innlegg</NavText>
             </NavItem>
+
             <NavItem eventKey="/posts/mine">
-              <NavIcon>
-                <i>
-                  <MdAccessAlarm style={{ fontSize: "25px" }} />
-                </i>
-              </NavIcon>
               <NavText>Mine innlegg</NavText>
             </NavItem>
-            <NavItem eventKey="/posts/opprett">
-              <NavIcon>
-                <i>
-                  <MdAddComment style={{ fontSize: "25px" }} />
-                </i>
-              </NavIcon>
-              <NavText>Registrer ny feedback</NavText>
+
+            <NavItem eventKey="/posts/favourites">
+              <NavText>Mine favoritter</NavText>
             </NavItem>
-          </>
+          </NavItem>
+        ) : (
+          ""
+        )}
+        {token ? (
+          <NavItem eventKey="/posts/opprett">
+            <NavIcon>
+              <i>
+                <MdAddComment style={{ fontSize: "25px" }} />
+              </i>
+            </NavIcon>
+            <NavText>Registrer ny feedback</NavText>
+          </NavItem>
         ) : (
           ""
         )}
 
+        {token ? (
+          <NavItem eventKey="/notifications">
+            <NavIcon>
+              <i>
+                <MdNotifications style={{ fontSize: "25px" }} />
+              </i>
+            </NavIcon>
+            <NavText>Notifikasjoner</NavText>
+          </NavItem>
+        ) : (
+          ""
+        )}
         {admin ? (
           <NavItem eventKey="/admin">
             <NavIcon>

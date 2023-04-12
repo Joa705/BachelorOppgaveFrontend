@@ -111,14 +111,14 @@ function Hjemmeside() {
         <br/>
         <div ref={scroll2}className="forklaring3 d-flex flex-column align-items-center justify-content-center">
         <div className="row">
-        <div className="col-sm-5 p-4"><h3> Asplan Viak ønsker å få alle slags tilbakemeldinger av sine tjenester fra brukere. Derfor ber vi deg om å registerere alt det du ønsker å si til oss. Slik kan vi bli bedre.</h3></div> 
-        <div className="col-sm-7 p-4 d-flex flex-column align-items-center justify-content-center "><h1><p class="font-weight-bold">Feedbacksystem for våre kunder<h3>Utviklet av oss til deg</h3></p></h1></div>
+        <div className="col-sm-7 p-4 d-flex flex-column align-items-center justify-content-center "><h1><p class="font-weight-bold">Feedbacksystem for våre ansatte<h3>Utviklet av oss til deg</h3></p></h1></div> 
+        <div className="col-sm-5 p-4 "><h3>Asplan Viak ønsker å få alle slags tilbakemeldinger av sine tjenester fra brukere. Derfor ber vi deg om å registerere alt det du ønsker å si til oss. Slik kan vi bli bedre.<br /> <br />Enklere blir det ikke. </h3> </div>
         </div>
         </div>
         <br/>
         <div ref={scroll3}className="forklaring4 d-flex flex-column align-items-center justify-content-center">
         <div className="row">
-        <div className="col-sm-7 p-4 d-flex flex-column align-items-center justify-content-center "><h1><p class="font-weight-bold">Vi leser grundig alle tilbakemeldinger<h3>Og selvsagt svarer på dem</h3></p></h1></div> 
+        <div className="col-sm-7 p-4 d-flex flex-column align-items-center justify-content-center "><h1><p class="font-weight-bold">Vi leser alle tilbakemeldinger<h3>Og selvsagt svarer på dem</h3></p></h1></div> 
         <div className="col-sm-5 p-4 "><h3>Vi får et varsel når det kommer en ny melding til oss. En av våre administratore skal gå gjennom feedbackem din. Kanskje du skal være med på å endre fremtiden?</h3> </div>
         </div> 
         </div>

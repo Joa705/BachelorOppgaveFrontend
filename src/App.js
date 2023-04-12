@@ -42,7 +42,7 @@ export default function App() {
             <Route exact path="/posts" element={<Posts />} />
             <Route exact path="/posts/mine" element={<MyPosts />}/>
             <Route exact path="/notifications" element={<Notifications />}/>
-            <Route exact path="/favourites" element={<Favourites />}/>
+            <Route exact path="/posts/favourites" element={<Favourites />}/>
             <Route
               exact
               path="/posts/opprett"

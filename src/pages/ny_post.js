@@ -20,6 +20,9 @@ import {
   MDBScrollspy,
 } from "mdb-react-ui-kit";
 
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+
 export default function NyPosts() {
   const { token } = UseAuth();
   const [categories, setCategories] = useState([]);
@@ -29,6 +32,7 @@ export default function NyPosts() {
   const [labelTakk, setLabelTakk] = useState("");
 
   const navgiate = useNavigate();
+
 
   useEffect(() => {
     fetch(UrlConfig.serverUrl + "/Category")
@@ -138,15 +142,18 @@ export default function NyPosts() {
                       type="text"
                       required
                     />
-                    <MDBTextArea
-                      className="mb-4"
+                    <div className="editorContainer">
+                    <ReactQuill 
+                      theme="snow" 
+                      className="editor"
+                      id="textAreaExample" 
                       label={labelTakk}
-                      id="textAreaExample"
                       onChange={(e) => setDescription(e.target.value)}
-                      rows={10}
                       type="text"
                       required
-                    />
+                       />
+                       </div>
+            
                   </MDBCardBody>
                   <MDBCardFooter>
                     <div className="text-end">
