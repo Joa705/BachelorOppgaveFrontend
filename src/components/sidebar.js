@@ -11,6 +11,11 @@ import {
   MdOutlineForum,
   MdOutlinePostAdd,
   MdAddComment,
+  MdAccessAlarm,
+  MdNotifications,
+  MdFormatUnderlined,
+  MdComment,
+  MdFavorite,
 } from "react-icons/md";
 import { RiAdminFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
@@ -39,15 +44,66 @@ export default function NavigationSidebar() {
           </NavIcon>
           <NavText>Se alle innlegg</NavText>
         </NavItem>
+        <NavItem eventKey="/posts/mine">
+          <NavIcon>
+            <i>
+              <MdComment style={{ fontSize: "25px" }} />
+            </i>
+          </NavIcon>
+          <NavText>Mine innlegg</NavText>
+        </NavItem>
+        <NavItem eventKey="/favourites">
+          <NavIcon>
+            <i>
+              <MdFavorite style={{ fontSize: "25px" }} />
+            </i>
+          </NavIcon>
+          <NavText>Mine favoritter</NavText>
+        </NavItem>
+        <NavItem eventKey="/posts/opprett">
+          <NavIcon>
+            <i>
+              <MdAddComment style={{ fontSize: "25px" }} />
+            </i>
+          </NavIcon>
+          <NavText>Registrer ny feedback</NavText>
+        </NavItem>
+        <NavItem eventKey="/notifications">
+          <NavIcon>
+            <i>
+              <MdNotifications style={{ fontSize: "25px" }} />
+            </i>
+          </NavIcon>
+          <NavText>Notifikasjoner</NavText>
+        </NavItem>
+
         {token ? (
-          <NavItem eventKey="/posts/opprett">
-            <NavIcon>
-              <i>
-                <MdAddComment style={{ fontSize: "25px" }} />
-              </i>
-            </NavIcon>
-            <NavText>Registrer ny feedback</NavText>
-          </NavItem>
+          <>
+            <NavItem eventKey="/posts">
+              <NavIcon>
+                <i>
+                  <MdForum style={{ fontSize: "25px" }} />
+                </i>
+              </NavIcon>
+              <NavText>Se alle innlegg</NavText>
+            </NavItem>
+            <NavItem eventKey="/posts/mine">
+              <NavIcon>
+                <i>
+                  <MdAccessAlarm style={{ fontSize: "25px" }} />
+                </i>
+              </NavIcon>
+              <NavText>Mine innlegg</NavText>
+            </NavItem>
+            <NavItem eventKey="/posts/opprett">
+              <NavIcon>
+                <i>
+                  <MdAddComment style={{ fontSize: "25px" }} />
+                </i>
+              </NavIcon>
+              <NavText>Registrer ny feedback</NavText>
+            </NavItem>
+          </>
         ) : (
           ""
         )}
@@ -62,16 +118,11 @@ export default function NavigationSidebar() {
             <NavText>Admin</NavText>
 
             <NavItem eventKey="/admin">
-                <NavText>
-                    Innlegg
-                </NavText>
+              <NavText>Innlegg</NavText>
             </NavItem>
             <NavItem eventKey="/admin/brukere">
-                <NavText>
-                    Brukere
-                </NavText>
+              <NavText>Brukere</NavText>
             </NavItem>
-
           </NavItem>
         ) : (
           ""
