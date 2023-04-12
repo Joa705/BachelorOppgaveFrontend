@@ -20,6 +20,7 @@ import "../../styling/admin/index.css";
 import AdminPanel from "../../components/admin/panel";
 import { fetchCategories } from "../../functions/category";
 
+
 export default function Admin() {
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryId, setCategoryId] = useState("all");

@@ -9,6 +9,7 @@ import {
   MDBCardBody,
   MDBTypography,
 } from "mdb-react-ui-kit";
+import { MdSearch } from "react-icons/md";
 import "../../styling/brukere.css";
 import "../../App.css";
 import AdminPanel from "../../components/admin/panel";
@@ -16,7 +17,7 @@ import { UseAuth } from "../../functions/authentication";
 import { useQuery } from "react-query";
 import Loader from "../../components/loader";
 import ErrorNotification from "../../components/errorNotification";
-import { Put } from "react-axios";
+
 
 function DisplayBruker(props) {
   const { token } = UseAuth();
@@ -62,15 +63,17 @@ function DisplayBruker(props) {
       headers: { userId: token }
     });
 
-    console.log(curURoleId)
-    console.log(curURole)
-
     if (res.status == "200") {
       setUpdateStatus("Bruker rolle endret");
-
+      
+      console.log(curURoleId)
       setTimeout(() => {
         setUpdateStatus("");
-        rolleRef.current.innerHTML = curURole;
+        userRoles?.forEach(element => {
+          if(element.id == curURoleId) {
+            rolleRef.current.innerHTML = element.type;
+          }
+        });
       }, 3000);
     }
     else {
@@ -259,6 +262,26 @@ export default function Brukere() {
           }
         />
         <div className="blank-space-header"></div>
+
+        <MDBCardBody className="p-4">
+          <form action="#" onSubmit="#">
+            <div class="form-inline my-2 my-lg-3">  <MdSearch style={{ fontSize: "25px" }} /> 
+              <input 
+                type="text"
+                class="form-control" 
+                placeholder="Søk..."
+                aria-label="Søk etter tittel eller bruker"
+                aria-describedby="basic-addon2"
+
+              /> 
+              
+              <div class="input-group-append">
+             
+              </div>
+            </div>
+          </form>
+        </MDBCardBody>
+
         <MDBTable align="middle">
           <MDBTableHead>
             <tr>
