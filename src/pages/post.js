@@ -5,6 +5,7 @@ import { UseAuth } from "../functions/authentication";
 function Post() {
     const {id} = useParams()
     const {admin, userName} = UseAuth();
+    
     return (
      <div>
          <h1>Her vises en enkel post</h1>

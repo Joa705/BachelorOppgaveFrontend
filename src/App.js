@@ -20,6 +20,9 @@ import NavigationSidebar from "./components/sidebar";
 import "./styling/sidebar.css";
 import Footer from "./components/footer";
 import { QueryClient, QueryClientProvider } from "react-query";
+import Notifications from "./pages/notifications";
+import Favourites from "./pages/favourites";
+
 
 const queryClient = new QueryClient();
 
@@ -37,6 +40,9 @@ export default function App() {
             <Route exact path="/" element={<Hjemmeside />} />
             <Route exact path="/hjemmeside" element={<Hjemmeside />} />
             <Route exact path="/posts" element={<Posts />} />
+            <Route exact path="/posts/mine" element={<MyPosts />}/>
+            <Route exact path="/notifications" element={<Notifications />}/>
+            <Route exact path="/posts/favourites" element={<Favourites />}/>
             <Route
               exact
               path="/posts/opprett"

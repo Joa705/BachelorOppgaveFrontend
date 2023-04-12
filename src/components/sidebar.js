@@ -11,6 +11,11 @@ import {
   MdOutlineForum,
   MdOutlinePostAdd,
   MdAddComment,
+  MdAccessAlarm,
+  MdNotifications,
+  MdFormatUnderlined,
+  MdComment,
+  MdFavorite,
 } from "react-icons/md";
 import { RiAdminFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
@@ -31,14 +36,30 @@ export default function NavigationSidebar() {
     >
       <Toggle></Toggle>
       <SideNav.Nav defaultSelected="/">
-        <NavItem eventKey="/posts">
-          <NavIcon>
-            <i>
-              <MdForum style={{ fontSize: "25px" }} />
-            </i>
-          </NavIcon>
-          <NavText>Se alle innlegg</NavText>
-        </NavItem>
+        {token ? (
+          <NavItem eventKey="/posts">
+            <NavIcon>
+              <i>
+                <MdForum style={{ fontSize: "25px" }} />
+              </i>
+            </NavIcon>
+            <NavText>Innlegg</NavText>
+
+            <NavItem eventKey="/posts">
+              <NavText>Alle Innlegg</NavText>
+            </NavItem>
+
+            <NavItem eventKey="/posts/mine">
+              <NavText>Mine innlegg</NavText>
+            </NavItem>
+
+            <NavItem eventKey="/posts/favourites">
+              <NavText>Mine favoritter</NavText>
+            </NavItem>
+          </NavItem>
+        ) : (
+          ""
+        )}
         {token ? (
           <NavItem eventKey="/posts/opprett">
             <NavIcon>
@@ -52,6 +73,18 @@ export default function NavigationSidebar() {
           ""
         )}
 
+        {token ? (
+          <NavItem eventKey="/notifications">
+            <NavIcon>
+              <i>
+                <MdNotifications style={{ fontSize: "25px" }} />
+              </i>
+            </NavIcon>
+            <NavText>Notifikasjoner</NavText>
+          </NavItem>
+        ) : (
+          ""
+        )}
         {admin ? (
           <NavItem eventKey="/admin">
             <NavIcon>
@@ -62,16 +95,11 @@ export default function NavigationSidebar() {
             <NavText>Admin</NavText>
 
             <NavItem eventKey="/admin">
-                <NavText>
-                    Innlegg
-                </NavText>
+              <NavText>Innlegg</NavText>
             </NavItem>
             <NavItem eventKey="/admin/brukere">
-                <NavText>
-                    Brukere
-                </NavText>
+              <NavText>Brukere</NavText>
             </NavItem>
-
           </NavItem>
         ) : (
           ""

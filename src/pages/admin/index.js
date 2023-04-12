@@ -1,115 +1,166 @@
-import React, { useState, useEffect } from "react";
-import { MDBBadge, MDBBtn, MDBTable, MDBTableHead, MDBTableBody, MDBCardBody, MDBTypography } from 'mdb-react-ui-kit';
+import React, { useState, useEffect} from "react";
+import { useQuery } from "react-query";
+import {
+  MDBBadge,
+  MDBBtn,
+  MDBTable,
+  MDBTableHead,
+  MDBTableBody,
+  MDBCardBody,
+  MDBTypography,
+} from "mdb-react-ui-kit";
+import { MdSearch } from "react-icons/md";
+import DisplayPosts from "../../components/admin";
+import { fetchPosts } from "../../functions/admin";
+import { UseAuth } from "../../functions/authentication";
+import Loader from "../../components/loader";
+import ErrorNotification from "../../components/errorNotification";
+import "../../App.css";
+import "../../styling/admin/index.css";
+import AdminPanel from "../../components/admin/panel";
+import { fetchCategories } from "../../functions/category";
 
-
-function DisplayPosts(props) {
-  return (
-    <>
-       <tr>
-              <td>
-                <div className='d-flex align-items-center'>
-                  <img
-                    src='https://mdbootstrap.com/img/new/avatars/8.jpg'
-                    alt=''
-                    style={{ width: '45px', height: '45px' }}
-                    className='rounded-circle'
-                  />
-                  <div className='ms-3'>
-                    <p className='fw-bold mb-1'>{props.userName}</p>
-                    <p className='text-muted mb-0'>{props.email}</p>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <p className='fw-normal mb-1'>{props.title}</p>
-              </td>
-              <td>
-                <MDBBadge color='success' pill>
-                  {props.status}
-                </MDBBadge>
-              </td>
-              <td>
-              <MDBBadge color='warning' pill>
-                  {props.category}
-                </MDBBadge>
-                </td>
-                <td>
-                <p className='fw-normal'>{props.created}</p>
-              </td>
-                <td>
-                <MDBBtn color='link' rounded size='sm'>
-                  Åpne
-                </MDBBtn>
-                <MDBBtn color='link' rounded size='sm'>
-                  Svar
-                </MDBBtn>
-                <MDBBtn color='link' rounded size='sm'>
-                  Set status
-                </MDBBtn>
-                <MDBBtn color='link' rounded size='sm'>
-                  Slett
-                </MDBBtn>
-              </td>
-            </tr>
-            
-    </>
-  )
-}
 
 export default function Admin() {
-  const [displayBruker, setDisplayBruker] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [categoryId, setCategoryId] = useState("all");
+  const [statusType, setStatusType] = useState("all");
+  const [count, setCount] = useState(0)
+  const { token } = UseAuth();
 
-  useEffect(()=> {
-    fetch("http://localhost:5296/Post").then(res => res.json()).then(data => setDisplayBruker(data))
-  },[])
-    return ( 
+  useEffect(() => {
+    const delaySearchQuery = setTimeout(() => {
+      setCount(c => c + 1)
+      console.log(searchQuery);
+      refetchPosts();
+    }, 700);
 
-      <>
-          <MDBCardBody className="p-4 header-text">
-                <MDBTypography tag="h1" className="mb-2">
-                 Admin Panel
-                </MDBTypography>
-                <p className="fw-light mb-4 pb-2">
-                  <br />
-                  <h5>Her kan du administrere alle innlegg. Åpne, svar, set status eller slett innlegg.</h5>
-                </p>
-                <br />
-              </MDBCardBody>
-              <div className="blank-space-header">
-              </div>
+    return () => clearTimeout(delaySearchQuery);
+  }, [searchQuery, categoryId, statusType]);
 
-        <MDBTable align='middle'> 
-          <MDBTableHead>
-            <tr>
-              <th scope='col'>Bruker</th>
-              <th scope='col'>Tittel</th>
-              <th scope='col'>Status</th>
-              <th scope='col'>Kategori</th>
-              <th scope='col'>Dato opprettet</th>
-              <th scope='col'>Administer innlegg</th>
-            </tr>
-          </MDBTableHead>
-          <MDBTableBody>
-          
-          {displayBruker.map((element) => {
-            let nyDato = new Date(element.created).toDateString()
-        
-      return (
-        <DisplayPosts 
-        title={element.title} 
-        category={element.category.type}
-        description={element.description} 
-        userName={element.user.userName}
-        status={element.status.type}
-        id={element.user.userId}
-        created={nyDato}
-        email={element.user.email}/>
-    
-        
-      )
-    })}    
-          </MDBTableBody>
-        </MDBTable>
-        </>
-      );
+  const {
+    data: posts,
+    status,
+    refetch: refetchPosts,
+  } = useQuery({
+    queryKey: ["posts", count],
+    queryFn: () => fetchPosts(token, searchQuery, categoryId, statusType),
+  });
+
+  const { data: categories, status: categoryStatus } = useQuery({
+    queryKey: ["category"],
+    queryFn: () => fetchCategories(),
+  });
+
+  const mapPosts = () => {
+    if (posts.length == 0) {
+      return <div>No results</div>;
     }
+
+    return posts?.map((element) => {
+      let nyDato = new Date(element.created).toLocaleDateString();
+
+      return (
+        <DisplayPosts
+          id={element.id}
+          title={element.title}
+          category={element.category.type}
+          description={element.description}
+          userName={element.user.userName}
+          status={element.status.type}
+          created={nyDato}
+          email={element.user.email}
+        />
+      );
+    });
+  };
+
+  const submitSearch = (e) => {
+    e.preventDefault();
+    refetchPosts();
+  };
+
+  return (
+    <>
+      <div className="Appcontainer">
+        <AdminPanel
+          title={
+            "Her kan du administrere alle innlegg.Åpne, svar, set status eller slett innlegg"
+          }
+        />
+        <div className="blank-space-header"></div>
+        <MDBCardBody className="p-4">
+          <form action="#" onSubmit={(e) => submitSearch(e)}>
+            <div class="form-inline my-2 my-lg-3">  <MdSearch style={{ fontSize: "25px" }} /> 
+              <input 
+                type="text"
+                class="form-control" 
+                placeholder="Søk..."
+                aria-label="Søk etter tittel eller bruker"
+                aria-describedby="basic-addon2"
+                onChange={(e) => setSearchQuery(e.target.value)}
+              /> 
+              
+              <div class="input-group-append">
+             
+              </div>
+            </div>
+          </form>
+
+          <div>
+            <p>Velg en Kategori:</p>
+            <select
+              className="form-control"
+              aria-label="Floating label select example"
+              onChange={(e) => setCategoryId(e.target.value)}
+            >
+              <option value="all" selected="selected">
+                -- Alle --
+              </option>
+              {categoryStatus == "success"
+                ? categories?.map((element) => {
+                    return <option value={element.id}>{element.type}</option>;
+                  })
+                : ""}
+            </select>
+          </div>
+
+          <div>
+            <p>Velg en Status:</p>
+            <select
+              className="form-control"
+              aria-label="Floating label select example"
+              onChange={(e) => setStatusType(e.target.value)}
+            >
+              <option value="all" selected="selected">
+                -- Alle --
+              </option>
+              <option value={"Venter"}>Venter</option>
+              <option value={"Besvart"}>Besvart</option>
+              <option value={"Avslått"}>Avslått</option>
+            </select>
+          </div>
+        </MDBCardBody>
+        <div className="mainContent" style={{ overflow: "scroll" }}>
+          <MDBTable align="middle">
+            <MDBTableHead>
+              <tr>
+                <th scope="col">Bruker</th>
+                <th scope="col">Ide</th>
+                <th scope="col">Status</th>
+                <th scope="col">Kategori</th>
+                <th scope="col">Opprettet</th>
+                <th scope="col">Administrer</th>
+              </tr>
+            </MDBTableHead>
+            {status === "loading" ? <Loader /> : ""}
+
+            {status === "error" ? <ErrorNotification message={"An error occured"} /> : ""}
+            <MDBTableBody>{status === "success" ? mapPosts() : ""}</MDBTableBody>
+          </MDBTable>
+        </div>
+        <div className="blank-space-header"></div>
+      </div>
+    </>
+  );
+}
