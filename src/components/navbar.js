@@ -95,15 +95,49 @@ export function Navigationbar() {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <div className="nav-dropdown">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a
-                  class="nav-link ml-2"
-                  href="#"
-                  onClick={() => navigate("/posts")}
-                >
-                  Alle innlegg <span class="sr-only">(current)</span>
-                </a>
-              </li>
+
+              {token ?
+                              <>
+                              <li class="nav-item active dropdown ml-2">
+                                <a
+                                  class="nav-link dropdown-toggle"
+                                  href="#"
+                                  id="dropdownInnlegg"
+                                  role="button"
+                                  data-toggle="dropdown"
+                                  aria-haspopup="true"
+                                  aria-expanded="false"
+                                >
+                                  Innlegg
+                                </a>
+                                <div class="dropdown-menu mr-2" aria-labelledby="dropdownInnlegg">
+                                  <a
+                                    class="dropdown-item"
+                                    href="#"
+                                    onClick={() => navigate("/posts")}
+                                  >
+                                    Alle innlegg
+                                  </a>
+                                  <a
+                                    class="dropdown-item"
+                                    href="#"
+                                    onClick={() => navigate("/posts/mine")}
+                                  >
+                                    Mine innlegg
+                                  </a>
+                                  <a
+                                    class="dropdown-item"
+                                    href="#"
+                                    onClick={() => navigate("/posts/favourites")}
+                                  >
+                                    Mine favoritter
+                                  </a>
+                                </div>
+                              </li>
+                            </>
+                            :
+                            "" 
+              }
               {token ? (
                 <li class="nav-item">
                   <a
