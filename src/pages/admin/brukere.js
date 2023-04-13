@@ -7,7 +7,7 @@ import {
   MDBTableHead,
   MDBTableBody,
   MDBCardBody,
-  MDBTypography,
+  MDBTypography
 } from "mdb-react-ui-kit";
 import { MdSearch } from "react-icons/md";
 import "../../styling/brukere.css";
@@ -150,7 +150,7 @@ function DisplayBruker(props) {
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id={"bruker-modal-" + props.userId}>
-                  Modal title
+                  Endre rolle for <b>{props.userName}</b>
                 </h5>
                 <button
                   type="button"
@@ -202,10 +202,10 @@ function DisplayBruker(props) {
                   class="btn btn-secondary"
                   data-dismiss="modal"
                 >
-                  Close
+                  Lukk
                 </button>
                 <button type="submit" class="btn btn-primary">
-                  Save changes
+                  Lagre endringer
                 </button>
               </div>
             </div>
@@ -258,7 +258,7 @@ export default function Brukere() {
       <div className="Appcontainer">
         <AdminPanel
           title={
-            "Her kan du finne oversikt over alle brukere. Endre rolle til brukeren eller slett brukere."
+            "Her kan du finne oversikt over alle brukere. Endre rolle til brukeren eller slette brukere."
           }
         />
         <div className="blank-space-header"></div>
@@ -281,7 +281,7 @@ export default function Brukere() {
             </div>
           </form>
         </MDBCardBody>
-
+        <div className="mainContent" style={{ overflow: "scroll" }}>
         <MDBTable align="middle">
           <MDBTableHead>
             <tr>
@@ -300,6 +300,7 @@ export default function Brukere() {
             {userStatus == "success" ? display() : ""}
           </MDBTableBody>
         </MDBTable>
+        </div>
       </div>
     </>
   );
