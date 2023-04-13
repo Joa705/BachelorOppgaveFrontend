@@ -4,6 +4,7 @@
     margin-left: 64px !important;
     top : 82px !important;
     background-color: #f0f4e3 !important;
+    overflow: scroll;
 }
 
 @media (max-width : 991px) {

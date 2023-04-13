@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useRef } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { Navigationbar } from "./components/navbar";
 import {
   AuthProvider,
   ProtectRouteAdmin,
   ProtectRouteLogin,
-  SessionHandler
+  SessionHandler,
 } from "./functions/authentication";
 import Posts from "./pages/posts";
 import NotFound from "./pages/notfound";
@@ -22,62 +22,74 @@ import Footer from "./components/footer";
 import { QueryClient, QueryClientProvider } from "react-query";
 import Notifications from "./pages/notifications";
 import Favourites from "./pages/favourites";
-
+import ScrollToTop from "./functions/scroll";
 
 const queryClient = new QueryClient();
 
 export default function App() {
+
+  const scrollRef = useRef()
   return (
     <>
-    <QueryClientProvider client={queryClient}>
-    <BrowserRouter>
-      <AuthProvider>
-        <SessionHandler />
-        <Navigationbar />
-        <NavigationSidebar />
-        <div className="main-content">
-          <Routes>
-            <Route exact path="/" element={<Hjemmeside />} />
-            <Route exact path="/hjemmeside" element={<Hjemmeside />} />
-            <Route exact path="/posts" element={<Posts />} />
-            <Route exact path="/posts/mine" element={<MyPosts />}/>
-            <Route exact path="/notifications" element={<Notifications />}/>
-            <Route exact path="/posts/favourites" element={<Favourites />}/>
-            <Route
-              exact
-              path="/posts/opprett"
-              element={
-                <ProtectRouteLogin>
-                  <NyPosts />
-                </ProtectRouteLogin>
-              }
-            />
-            <Route path="/posts/id/:id" element={<Post />} />
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <ScrollToTop scrollRef={scrollRef}/>
 
-            <Route
-              path="/admin"
-              element={
-                <ProtectRouteAdmin>
-                  <Admin />
-                </ProtectRouteAdmin>
-              }
-            ></Route>
-            <Route
-              path="/admin/brukere"
-              element={
-                <ProtectRouteAdmin>
-                  <Brukere />
-                </ProtectRouteAdmin>
-              }
-            />
+          <AuthProvider>
+            <SessionHandler />
+            <Navigationbar />
+            <NavigationSidebar />
+            <div className="main-content" ref={scrollRef}>
+              <Routes>
+                <Route exact path="/" element={<Hjemmeside />} />
+                <Route exact path="/hjemmeside" element={<Hjemmeside />} />
+                <Route exact path="/posts" element={<Posts />} />
+                <Route exact path="/posts/mine" element={<MyPosts />} />
+                <Route
+                  exact
+                  path="/notifications"
+                  element={<Notifications />}
+                />
+                <Route
+                  exact
+                  path="/posts/favourites"
+                  element={<Favourites />}
+                />
+                <Route
+                  exact
+                  path="/posts/opprett"
+                  element={
+                    <ProtectRouteLogin>
+                      <NyPosts />
+                    </ProtectRouteLogin>
+                  }
+                />
+                <Route path="/posts/id/:id" element={<Post />} />
 
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        <Footer />
-        </div>
-      </AuthProvider>
-    </BrowserRouter>
-    </QueryClientProvider>
+                <Route
+                  path="/admin"
+                  element={
+                    <ProtectRouteAdmin>
+                      <Admin />
+                    </ProtectRouteAdmin>
+                  }
+                ></Route>
+                <Route
+                  path="/admin/brukere"
+                  element={
+                    <ProtectRouteAdmin>
+                      <Brukere />
+                    </ProtectRouteAdmin>
+                  }
+                />
+
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+              <Footer />
+            </div>
+          </AuthProvider>
+        </BrowserRouter>
+      </QueryClientProvider>
     </>
   );
 }
