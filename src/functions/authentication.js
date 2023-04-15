@@ -167,5 +167,6 @@ export function SessionHandler() {
   }
 
   onSession(session.token, session.userName, session.email, session.role);
+  console.log("Token: " + token)
   return;
 }
