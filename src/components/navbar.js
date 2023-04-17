@@ -11,10 +11,12 @@ import {
 import "../styling/navbar.css";
 import { useMsal } from "@azure/msal-react";
 import { RiLoginCircleFill } from "react-icons/ri";
+import { ProfileIn, ProfileOut } from "./profile";
 
 export function Navigationbar() {
-  const { token, admin, userName, onLogin, onLogout } = UseAuth();
+  const { token, admin } = UseAuth();
   const { instance, accounts } = useMsal();
+
 
   const navigate = useNavigate();
   return (
@@ -37,38 +39,11 @@ export function Navigationbar() {
           </li>
           {token ? (
             <li class="nav-item logo-phone ml-2">
-              <div class="btn-group">
-                <img
-                  class="logout-img dropdown-toggle"
-                  src="https://mdbootstrap.com/img/new/avatars/3.jpg"
-                  alt="Mitt Bildet"
-                  type="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                ></img>
-                <div class="dropdown-menu dropdown-menu-right">
-                  <span class="dropdown-item-text">{userName}</span>
-                  <hr></hr>
-                  <a
-                    class="dropdown-item"
-                    href="#"
-                    onClick={() => SignOutHandler(instance, onLogout)}
-                  >
-                    Logg ut
-                  </a>
-                </div>
-              </div>
+                <ProfileIn />
             </li>
           ) : (
             <li class="nav-item logo-phone ml-2">
-              <button
-                class="azure-btn btn btn-sm btn-outline-secondary"
-                type="button"
-                onClick={() => SignInHandler(instance, onLogin)}
-              >
-                Logg inn
-              </button>
+              <ProfileOut />
             </li>
           )}
         </ul>
@@ -192,111 +167,16 @@ export function Navigationbar() {
           <ul class="navbar-nav ml-auto">
             {token ? (
               <li class="nav-item ml-2 login-logout">
-                <div class="btn-grou dropleft mr-2">
-                  <img
-                    class="logout-img dropdown-toggle"
-                    src="https://mdbootstrap.com/img/new/avatars/3.jpg"
-                    alt="Mitt Bildet"
-                    type="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  ></img>
-                  <div class="dropdown-menu dropdown-menu-right">
-                    <span class="dropdown-item-text">
-                      {userName}
-                      </span>
-                    <hr></hr>
-                    <a
-                      class="dropdown-item"
-                      href="#"
-                      onClick={() => SignOutHandler(instance, onLogout)}
-                    >
-                      Logg ut
-                    </a>
-                  </div>
-                </div>
+                <ProfileIn />
               </li>
             ) : (
               <li class="nav-item ml-2 login-logout">
-                <button
-                  class="azure-btn btn btn-sm btn-outline-secondary mr-2"
-                  type="button"
-                  onClick={() => SignInHandler(instance, onLogin)}
-                >
-                  Logg inn med Azure AD
-                </button>
+                <ProfileOut />
               </li>
             )}
           </ul>
         </div>
       </nav>
     </>
-  );
-
-  return (
-    <Navbar expand="lg" className="navbar">
-      <Container>
-        <div className="nav-logo">
-          <Navbar.Brand as={Link} to="/hjemmeside">
-            <img id="navbar-logo" src={require("../navn.png")} />
-          </Navbar.Brand>
-        </div>
-
-        <div className="nav-logo">
-          <Navbar.Brand as={Link} to="/posts">
-            <img id="navbar-logo-second" src={require("../symbol.png")} />
-          </Navbar.Brand>
-        </div>
-
-        {/*  <Nav className="me-auto">
-            <Nav.Link as={Link} to="/posts">
-              Posts
-            </Nav.Link>
-            <Nav.Link as={Link} to="/posts/mine">
-              Mine posts
-            </Nav.Link>
-            {admin ? (
-              <Nav.Link as={Link} to="/admin">
-                Admin
-              </Nav.Link>
-            ) : (
-              ""
-            )}
-          </Nav> */}
-        <Nav className="mr-auto">
-          {token ? (
-            <>
-              <Nav.Link disabled style={{ color: "black" }}>
-                Hei, ({userName})
-              </Nav.Link>
-              <Nav.Link onClick={() => SignOutHandler(instance, onLogout)}>
-                <button type="button" className="btn btn-success">
-                  Logg ut
-                </button>
-              </Nav.Link>
-            </>
-          ) : (
-            <>
-              <Nav.Link onClick={() => SignInHandler(instance, onLogin)}>
-                <div className="login-button">
-                  <button type="button" className="btn btn-success">
-                    Logg inn med Azure AD
-                  </button>
-                </div>
-              </Nav.Link>
-
-              <Nav.Link onClick={() => SignInHandler(instance, onLogin)}>
-                <div className="login-icon">
-                  <i>
-                    <RiLoginCircleFill style={{ fontSize: "25px" }} />
-                  </i>
-                </div>
-              </Nav.Link>
-            </>
-          )}
-        </Nav>
-      </Container>
-    </Navbar>
   );
 }

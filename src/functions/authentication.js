@@ -21,7 +21,7 @@ export async function SignOutHandler(instance, onLogout) {
     postLogoutRedirectUri: UrlConfig.clientUrl,
   };
   localStorage.removeItem("session");
-  console.log("Removed session")
+  console.log("Removed session");
   await instance.logoutPopup(logoutRequest).then(() => onLogout());
 }
 
@@ -50,19 +50,24 @@ export async function SignInHandler(instance, onLogin) {
           console.log(data);
 
           if (localStorage.getItem("session") == null) {
-            console.log("Setting new session")
+            console.log("Setting new session");
             var dd = new Date();
             dd.setHours(dd.getHours() + 24);
             let s = {
-              "token": data.id,
-              "userName": data.userName,
-              "email": data.email,
-              "role": data.userRole.type,
-              "expire": dd
+              token: data.azureId,
+              userName: data.userName,
+              email: data.email,
+              expire: dd,
             };
             localStorage.setItem("session", JSON.stringify(s));
           }
-          onLogin(data.id, data.userName, data.email, data.userRole.type);
+          onLogin(
+            data.id,
+            data.userName,
+            data.email,
+            data.userRole.type,
+            data.profilePicture ?? ""
+          );
         })
         .catch((e) => console.log(e));
     })
@@ -93,8 +98,9 @@ export function AuthProvider({ children }) {
   const [admin, setAdmin] = useState(false);
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
+  const [profilePicture, setProfilePicture] = useState("");
 
-  const handleLogin = (token, name, email, admin) => {
+  const handleLogin = (token, name, email, admin, picture = "") => {
     setToken(token);
     if (admin == "Admin") {
       setAdmin(true);
@@ -104,6 +110,7 @@ export function AuthProvider({ children }) {
     setAdmin(true);
     setUserName(name);
     setUserEmail(email);
+    setProfilePicture(picture);
     navigate("/");
   };
 
@@ -115,28 +122,15 @@ export function AuthProvider({ children }) {
     navigate("/");
   };
 
-  const handleSession = (token, name, email, admin) => {
-    setToken(token);
-    if (admin == "Admin") {
-      setAdmin(true);
-    }
-
-    // set admin to true in test stage
-    setAdmin(true);
-    setUserName(name);
-    setUserEmail(email);
-
-    console.log("Handled session");
-  };
 
   const value = {
     token,
     admin,
     userName,
     userEmail,
+    profilePicture,
     onLogin: handleLogin,
     onLogout: handleLogout,
-    onSession: handleSession,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
@@ -147,7 +141,7 @@ export function UseAuth() {
 }
 
 export function SessionHandler() {
-  const { onSession, token } = UseAuth();
+  const { onLogin, token } = UseAuth();
 
   if (token != null) return;
   let isSession = localStorage.getItem("session");
@@ -160,13 +154,36 @@ export function SessionHandler() {
   let currentDate = new Date();
   let expiredDate = new Date(session.expire);
   var isExpired = currentDate.getTime() >= expiredDate.getTime();
-  console.log("Has expired: ", isExpired)
-  if (isExpired){
+  console.log("Has expired: ", isExpired);
+  if (isExpired) {
     localStorage.removeItem("session");
     return;
   }
 
-  onSession(session.token, session.userName, session.email, session.role);
-  console.log("Token: " + session.token)
+  const data = new FormData();
+  data.append("azureId", session.token);
+  data.append("userName", session.userName);
+  data.append("userEmail", session.email);
+
+  // store user in backend
+  fetch(UrlConfig.serverUrl + "/User", {
+    method: "Post",
+    body: data,
+    headers: { token: "1234" },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+
+      onLogin(
+        data.id,
+        data.userName,
+        data.email,
+        data.userRole.type,
+        data.profilePicture ?? ""
+      );
+    })
+    .catch((e) => console.log(e));
+  console.log("Token: " + session.token);
   return;
 }

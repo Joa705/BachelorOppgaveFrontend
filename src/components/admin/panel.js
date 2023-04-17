@@ -27,3 +27,24 @@ export default function AdminPanel({ title }) {
     </>
   );
 }
+
+export function DefaultPanel({ header, title }) {
+    
+  return (
+    <>
+      <MDBCardBody className="p-4 header-text">
+        <MDBTypography tag="h1" className="mb-2">
+          {header}
+        </MDBTypography>
+        <p className="fw-light mb-4 pb-2">
+          <br />
+          <h5>
+            {title}
+          </h5>
+        </p>
+        <br />
+      </MDBCardBody>
+    </>
+  );
+}
+
