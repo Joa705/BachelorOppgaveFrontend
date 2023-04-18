@@ -21,20 +21,20 @@ import {
   MDBScrollspy,
 } from "mdb-react-ui-kit";
 
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import Loader from "../components/loader";
 
 export default function NyPosts() {
+  const [loading, setLoading] = useState(false);
   const { token } = UseAuth();
   const [categories, setCategories] = useState([]);
   const [categoryId, setCategoryId] = useState("");
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const descriptionRef = useRef()
+  const descriptionRef = useRef();
   const [labelTakk, setLabelTakk] = useState("");
 
   const navgiate = useNavigate();
-
 
   useEffect(() => {
     fetch(UrlConfig.serverUrl + "/Category")
@@ -44,6 +44,7 @@ export default function NyPosts() {
   }, []);
 
   async function submitData() {
+    setLoading(true);
     let myForm = new FormData();
     myForm.append("categoryId", categoryId);
     myForm.append("title", title);
@@ -55,6 +56,7 @@ export default function NyPosts() {
     });
 
     if (res.status == "200") {
+      setLoading(false);
       setLabelTakk("Takk for din tilbakemelding! Vi setter pris på det.");
 
       setTimeout(() => {
@@ -145,26 +147,34 @@ export default function NyPosts() {
                       required
                     />
                     <div className="editorContainer">
-                    <ReactQuill 
-                      ref={descriptionRef}
-                      theme="snow" 
-                      className="editor"
-                      id="textAreaExample" 
-                      label={labelTakk}
-                      type="text"
-                      required
-                       />
-                       </div>
-            
+                      <ReactQuill
+                        ref={descriptionRef}
+                        theme="snow"
+                        className="editor"
+                        id="textAreaExample"
+                        type="text"
+                        required
+                      />
+                    </div>
                   </MDBCardBody>
                   <MDBCardFooter>
-                    <div className="text-end">
-                      <button
-                        type="submit"
-                        className="submit-ny-innlegg btn btn-success"
-                      >
-                        Send inn
-                      </button>
+                    <div className="text-end d-flex flex-row">
+                      <div className="p-2">
+                        <p>{labelTakk}</p>
+                      </div>
+
+                      <div className="ml-auto p-2">
+                        {loading ? (
+                          <Loader />
+                        ) : (
+                          <button
+                            type="submit"
+                            className="submit-ny-innlegg btn btn-success"
+                          >
+                            Send inn
+                          </button>
+                        )}
+                      </div>
                     </div>
                   </MDBCardFooter>
                 </MDBCard>

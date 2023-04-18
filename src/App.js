@@ -23,6 +23,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import Notifications from "./pages/notifications";
 import Favourites from "./pages/favourites";
 import ScrollToTop from "./functions/scroll";
+import Profile from "./pages/profile";
 
 const queryClient = new QueryClient();
 
@@ -65,6 +66,7 @@ export default function App() {
                   }
                 />
                 <Route path="/posts/id/:id" element={<Post />} />
+                <Route path="/profile" element={<Profile />} />
 
                 <Route
                   path="/admin"
