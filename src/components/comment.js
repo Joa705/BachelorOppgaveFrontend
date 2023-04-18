@@ -20,7 +20,7 @@ const comment = (props) => {
       <a className="me-3" href="#">
         <MDBCardImage
           className="rounded-circle shadow-1-strong me-3"
-          src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(11).webp"
+          src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg"
           alt="avatar"
           width="65"
           height="65"

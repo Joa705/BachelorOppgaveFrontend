@@ -50,3 +50,49 @@
   color: #1d3c34 !important;
 } 
 
+.post-desc {
+  max-height: 10rem;
+  overflow-y: hidden;
+  position: relative;
+  text-overflow: ellipsis;
+}
+
+.post-desc:hover:before {
+  content:'';
+  width:100%;
+  height:100%;    
+  position:absolute;
+  left:0;
+  top:0;
+  background:linear-gradient(transparent 100px, #ebebeb);
+}
+
+.post-desc::before {
+  content:'';
+  width:100%;
+  height:100%;    
+  position:absolute;
+  left:0;
+  top:0;
+  background:linear-gradient(transparent 100px, #ffffff);
+}
+
+.voteButton {
+  all: unset;
+  cursor: pointer;
+  text-align: center;
+}
+
+.voteButton {
+  all: unset;
+  cursor: pointer;
+  text-align: center;
+}
+
+.voteButton:focus {
+  outline: rgb(150, 150, 150) 5px auto;
+}
+
+.voteButton:hover {
+  outline: rgb(150, 150, 150) 5px auto;
+}

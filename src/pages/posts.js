@@ -90,7 +90,7 @@ export default function RecentComments() {
                           userName={element.user.userName}
                           status={element.status.type}
                           category={element.category.type}
-                          votes={element.votes}
+                          votes={element.up_votes - element.down_votes || 0}
                           date={element.created}
                         />
                         <div className="blank-space"></div>
