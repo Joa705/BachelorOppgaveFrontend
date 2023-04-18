@@ -19,21 +19,21 @@ import "../../App.css";
 import "../../styling/admin/index.css";
 import AdminPanel from "../../components/admin/panel";
 import { fetchCategories } from "../../functions/category";
-
+import { makeid } from "../../functions/helpers";
 
 export default function Admin() {
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryId, setCategoryId] = useState("all");
   const [statusType, setStatusType] = useState("all");
-  const [count, setCount] = useState(0)
+  const [randomId, setRandomId] = useState(makeid(9))
   const { token } = UseAuth();
 
   useEffect(() => {
     const delaySearchQuery = setTimeout(() => {
-      setCount(c => c + 1)
       console.log(searchQuery);
+      setRandomId(makeid(9))
       refetchPosts();
-    }, 700);
+    }, 500);
 
     return () => clearTimeout(delaySearchQuery);
   }, [searchQuery, categoryId, statusType]);
@@ -43,7 +43,8 @@ export default function Admin() {
     status,
     refetch: refetchPosts,
   } = useQuery({
-    queryKey: ["posts", count],
+    cacheTime: 0,
+    queryKey: ["posts", randomId],
     queryFn: () => fetchPosts(token, searchQuery, categoryId, statusType),
   });
 
