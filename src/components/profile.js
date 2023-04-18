@@ -7,7 +7,7 @@ import {
 } from "../functions/authentication";
 import { useNavigate } from "react-router-dom";
 import "./../styling/navbar.css"
-
+import defaultImg from "../default.jpg"
 
 export function ProfileIn() {
   const { token, admin, userName, onLogin, onLogout, profilePicture } = UseAuth();
@@ -18,7 +18,7 @@ export function ProfileIn() {
       <div class="btn-grou dropleft mr-2">
         <img
           class="logout-img dropdown-toggle"
-          src={profilePicture}
+          src={profilePicture ?? defaultImg}
           alt="Mitt Bildet"
           type="button"
           data-toggle="dropdown"

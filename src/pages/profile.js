@@ -5,6 +5,7 @@ import { DefaultPanel } from "../components/admin/panel";
 import { UrlConfig } from "../config";
 import { UseAuth } from "../functions/authentication";
 import Loader from "../components/loader";
+import defaultImg from "../default.jpg"
 
 export default function Profile() {
   const [loading, setLoading] = useState(false);
@@ -77,7 +78,7 @@ export default function Profile() {
 
             <img
               ref={preview}
-              src={profilePicture}
+              src={profilePicture ?? defaultImg}
               style={{ width: "200px" }}
               alt="Image preview"
             ></img>

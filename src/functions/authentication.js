@@ -101,9 +101,9 @@ export function AuthProvider({ children }) {
   const [admin, setAdmin] = useState(false);
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
-  const [profilePicture, setProfilePicture] = useState("");
+  const [profilePicture, setProfilePicture] = useState(null);
 
-  const handleLogin = (token, name, email, admin, picture = "") => {
+  const handleLogin = (token, name, email, admin, picture = null) => {
     setToken(token);
     if (admin == "Admin") {
       setAdmin(true);
@@ -182,7 +182,7 @@ export function SessionHandler() {
         data.userName,
         data.email,
         data.userRole.type,
-        data.profilePicture ?? ""
+        data.profilePicture ?? null
       );
     })
     .catch((e) => console.log(e));
