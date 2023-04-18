@@ -61,7 +61,7 @@ export default function DisplayPosts(props) {
         <td>
           <div className="d-flex align-items-center">
             <img
-              src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+              src={props.profilePicture ?? "https://mdbootstrap.com/img/new/avatars/8.jpg"}
               alt=""
               style={{ width: "45px", height: "45px" }}
               className="rounded-circle"

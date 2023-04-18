@@ -71,6 +71,7 @@ export default function Admin() {
           status={element.status.type}
           created={nyDato}
           email={element.user.email}
+          profilePicture={element.user.profilePicture ?? null}
         />
       );
     });
