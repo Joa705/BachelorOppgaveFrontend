@@ -100,6 +100,9 @@ export default function NavigationSidebar() {
             <NavItem eventKey="/admin/brukere">
               <NavText>Brukere</NavText>
             </NavItem>
+            <NavItem eventKey="/admin/category">
+              <NavText>kategorier</NavText>
+            </NavItem>
           </NavItem>
         ) : (
           ""
