@@ -20,9 +20,12 @@ export async function SignOutHandler(instance, onLogout) {
     mainWindowRedirectUri: UrlConfig.clientUrl,
     postLogoutRedirectUri: UrlConfig.clientUrl,
   };
-  localStorage.removeItem("session");
-  console.log("Removed session");
-  await instance.logoutPopup(logoutRequest).then(() => onLogout());
+  await instance.logoutPopup(logoutRequest).then(() => {
+    onLogout();
+  }).then(() => {
+    localStorage.removeItem("session");
+    console.log("Removed session");
+  });
 }
 
 export async function SignInHandler(instance, onLogin) {
@@ -121,7 +124,6 @@ export function AuthProvider({ children }) {
     setUserEmail("");
     navigate("/");
   };
-
 
   const value = {
     token,
