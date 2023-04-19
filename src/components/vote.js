@@ -5,6 +5,7 @@ import { useQuery } from "react-query";
 import { UrlConfig } from "../config";
 import Loader from "../components/loader";
 import ErrorNotification from "../components/errorNotification";
+import { UseAuth } from "../functions/authentication";
 
 const arrow = {
     height: "4rem",
@@ -62,10 +63,11 @@ async function fetchUserVote(userId, postId) {
 }
 
 const Vote = (props) => {
+    const {token} = UseAuth();
     const postId = props.id
     const { isLoading, error, data } = useQuery(
-        ["fetchUserVote" + props.id],
-        () => fetchUserVote("336514eb-29ea-46fd-915d-b744abb01b5b", props.id)
+        ["fetchUserVote", props.id],
+        () => fetchUserVote(token, props.id)
     );
 
     console.log(data);
@@ -109,7 +111,7 @@ const Vote = (props) => {
                 <button class="voteButton" style={arrow} onClick={(e) => {
                     e.stopPropagation();
                     e.preventDefault();
-                    this.doVote(0, postId, "336514eb-29ea-46fd-915d-b744abb01b5b")
+                    this.doVote(0, postId, token)
                     }}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" style={{
                     width: "2em",
@@ -123,7 +125,7 @@ const Vote = (props) => {
                 <button class="voteButton" style={arrow} onClick={(e) => {
                     e.stopPropagation();
                     e.preventDefault();
-                    this.doVote(-1, postId, "336514eb-29ea-46fd-915d-b744abb01b5b")
+                    this.doVote(-1, postId, token)
                     }}>
 
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" style={{
@@ -141,7 +143,7 @@ const Vote = (props) => {
     if (data.liked == false) {
         return (
             <div style={voteContainer}>
-                <button class="voteButton" style={arrow} onClick={() => this.doVote(1, props.id, "336514eb-29ea-46fd-915d-b744abb01b5b")}>
+                <button class="voteButton" style={arrow} onClick={() => this.doVote(1, props.id, token)}>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" style={{
                     width: "2em",
                     height: "2em",
@@ -151,7 +153,7 @@ const Vote = (props) => {
                     </svg>
                 </button>
                 <p style={voteText}>{props.votes}</p>
-                <button class="voteButton" style={arrow} onClick={() => this.doVote(0, props.id, "336514eb-29ea-46fd-915d-b744abb01b5b")}>
+                <button class="voteButton" style={arrow} onClick={() => this.doVote(0, props.id, token)}>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" style={{
                     width: "2em",
                     height: "2em",
@@ -166,7 +168,7 @@ const Vote = (props) => {
 
     return (
         <div style={voteContainer}>
-            <button class="voteButton" style={arrow} onClick={() => this.doVote(1, props.id, "336514eb-29ea-46fd-915d-b744abb01b5b")}>
+            <button class="voteButton" style={arrow} onClick={() => this.doVote(1, props.id, token)}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" style={{
                     width: "2em",
                     height: "2em",
@@ -176,7 +178,7 @@ const Vote = (props) => {
                 </svg>
             </button>
             <p style={voteText}>{props.votes}</p>
-            <button class="voteButton" style={arrow} onClick={() => this.doVote(-1, props.id, "336514eb-29ea-46fd-915d-b744abb01b5b")}>
+            <button class="voteButton" style={arrow} onClick={() => this.doVote(-1, props.id, token)}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" style={{
                     width: "2em",
                     height: "2em",

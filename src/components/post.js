@@ -15,6 +15,7 @@ import Status from "../components/status";
 import Vote from "../components/vote";
 import { useQuery } from "react-query";
 import { UrlConfig } from "../config";
+import {UseAuth} from "../functions/authentication"
 
 async function fetchTopComment(userId, postId) {
     return await fetch(UrlConfig.serverUrl + "/Comment", {
@@ -28,7 +29,9 @@ async function fetchTopComment(userId, postId) {
     });
 }
 
+
 const Post = (props) => {
+    const {token} = UseAuth();
     const postsId = props.id;
     const postsRef = "posts/id/";
 
@@ -42,7 +45,7 @@ const Post = (props) => {
 
     const { isLoading, error, data } = useQuery(
         ["fetchTopComment" + postsId],
-        () => fetchTopComment("1ddbe57e-d120-4dad-9b91-80cf58bc4135", postsId)
+        () => fetchTopComment(token, postsId)
     );
 
     if (isLoading) {
