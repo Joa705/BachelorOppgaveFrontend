@@ -156,6 +156,13 @@ export function Navigationbar() {
                       >
                         Brukere
                       </a>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        onClick={() => navigate("/admin/category")}
+                      >
+                        Kategorier
+                      </a>
                     </div>
                   </li>
                 </>
