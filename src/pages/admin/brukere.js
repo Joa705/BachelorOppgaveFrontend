@@ -7,7 +7,7 @@ import {
   MDBTableHead,
   MDBTableBody,
   MDBCardBody,
-  MDBTypography
+  MDBTypography,
 } from "mdb-react-ui-kit";
 import { MdSearch } from "react-icons/md";
 import "../../styling/brukere.css";
@@ -17,7 +17,6 @@ import { UseAuth } from "../../functions/authentication";
 import { useQuery } from "react-query";
 import Loader from "../../components/loader";
 import ErrorNotification from "../../components/errorNotification";
-
 
 function DisplayBruker(props) {
   const { token } = UseAuth();
@@ -56,27 +55,26 @@ function DisplayBruker(props) {
 
   async function updateUserRole(token) {
     let url = new URL(UrlConfig.serverUrl + "/User/id/" + props.userId);
-    url.searchParams.append("userRoleId", curURoleId)
+    url.searchParams.append("userRoleId", curURoleId);
 
     let res = await fetch(url, {
-      method: "put",
-      headers: { userId: token }
+      method: "post",
+      headers: { userId: token },
     });
 
     if (res.status == "200") {
       setUpdateStatus("Bruker rolle endret");
-      
-      console.log(curURoleId)
+
+      console.log(curURoleId);
       setTimeout(() => {
         setUpdateStatus("");
-        userRoles?.forEach(element => {
-          if(element.id == curURoleId) {
+        userRoles?.forEach((element) => {
+          if (element.id == curURoleId) {
             rolleRef.current.innerHTML = element.type;
           }
         });
       }, 3000);
-    }
-    else {
+    } else {
       setUpdateStatus("Kunne ikke endre rolle");
 
       setTimeout(() => {
@@ -265,42 +263,51 @@ export default function Brukere() {
 
         <MDBCardBody className="p-4">
           <form action="#" onSubmit="#">
-            <div class="form-inline my-2 my-lg-3">  <MdSearch style={{ fontSize: "25px" }} /> 
-              <input 
+            <div class="form-inline my-2 my-lg-3">
+              {" "}
+              <MdSearch style={{ fontSize: "25px" }} />
+              <input
                 type="text"
-                class="form-control" 
+                class="form-control"
                 placeholder="Søk..."
                 aria-label="Søk etter tittel eller bruker"
                 aria-describedby="basic-addon2"
-
-              /> 
-              
-              <div class="input-group-append">
-             
-              </div>
+              />
+              <div class="input-group-append"></div>
             </div>
           </form>
         </MDBCardBody>
         <div className="mainContent" style={{ overflow: "scroll" }}>
-        <MDBTable align="middle">
-          <MDBTableHead>
-            <tr>
-              <th scope="col">Navn</th>
-              <th scope="col">Email</th>
-              <th scope="col">Rolle</th>
-              <th scope="col">Opprettet</th>
-              <th scope="col">Administer</th>
-            </tr>
-          </MDBTableHead>
-          <MDBTableBody>
-            {userStatus == "loading" ? <Loader /> : ""}
-
-            {userStatus == "error" ? <ErrorNotification /> : ""}
-
-            {userStatus == "success" ? display() : ""}
-          </MDBTableBody>
-        </MDBTable>
+          <MDBTable align="middle">
+            <MDBTableHead>
+              <tr>
+                <th scope="col">Navn</th>
+                <th scope="col">Email</th>
+                <th scope="col">Rolle</th>
+                <th scope="col">Opprettet</th>
+                <th scope="col">Administer</th>
+              </tr>
+            </MDBTableHead>
+            <MDBTableBody>
+              {userStatus == "success" ? display() : ""}
+            </MDBTableBody>
+          </MDBTable>
         </div>
+        {userStatus == "loading" ? (
+          <div className="d-flex flex-column align-items-center">
+            <Loader />
+          </div>
+        ) : (
+          ""
+        )}
+
+        {userStatus == "error" ? (
+          <div className="d-flex flex-column align-items-center">
+            <ErrorNotification />
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </>
   );

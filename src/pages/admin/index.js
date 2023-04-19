@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import {
   MDBBadge,
@@ -25,13 +25,13 @@ export default function Admin() {
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryId, setCategoryId] = useState("all");
   const [statusType, setStatusType] = useState("all");
-  const [randomId, setRandomId] = useState(makeid(9))
+  const [randomId, setRandomId] = useState(makeid(9));
   const { token } = UseAuth();
 
   useEffect(() => {
     const delaySearchQuery = setTimeout(() => {
       console.log(searchQuery);
-      setRandomId(makeid(9))
+      setRandomId(makeid(9));
       refetchPosts();
     }, 500);
 
@@ -71,6 +71,7 @@ export default function Admin() {
           status={element.status.type}
           created={nyDato}
           email={element.user.email}
+          profilePicture={element.user.profilePicture ?? null}
         />
       );
     });
@@ -92,19 +93,18 @@ export default function Admin() {
         <div className="blank-space-header"></div>
         <MDBCardBody className="p-4">
           <form action="#" onSubmit={(e) => submitSearch(e)}>
-            <div class="form-inline my-2 my-lg-3">  <MdSearch style={{ fontSize: "25px" }} /> 
-              <input 
+            <div class="form-inline my-2 my-lg-3">
+              {" "}
+              <MdSearch style={{ fontSize: "25px" }} />
+              <input
                 type="text"
-                class="form-control" 
+                class="form-control"
                 placeholder="Søk..."
                 aria-label="Søk etter tittel eller bruker"
                 aria-describedby="basic-addon2"
                 onChange={(e) => setSearchQuery(e.target.value)}
-              /> 
-              
-              <div class="input-group-append">
-             
-              </div>
+              />
+              <div class="input-group-append"></div>
             </div>
           </form>
 
@@ -155,12 +155,26 @@ export default function Admin() {
                 <th scope="col">Administrer</th>
               </tr>
             </MDBTableHead>
-            {status === "loading" ? <Loader /> : ""}
 
-            {status === "error" ? <ErrorNotification message={"An error occured"} /> : ""}
-            <MDBTableBody>{status === "success" ? mapPosts() : ""}</MDBTableBody>
+            <MDBTableBody>
+              {status === "success" ? mapPosts() : ""}
+            </MDBTableBody>
           </MDBTable>
         </div>
+        {status === "loading" ? (
+          <div className="d-flex flex-column align-items-center">
+            <Loader />
+          </div>
+        ) : (
+          ""
+        )}
+        {status === "error" ? (
+          <div className="d-flex flex-column align-items-center">
+            <ErrorNotification message={"An error occured"} />
+          </div>
+        ) : (
+          ""
+        )}
         <div className="blank-space-header"></div>
       </div>
     </>

@@ -24,17 +24,17 @@ import Notifications from "./pages/notifications";
 import Favourites from "./pages/favourites";
 import ScrollToTop from "./functions/scroll";
 import Profile from "./pages/profile";
+import Category from "./pages/admin/category";
 
 const queryClient = new QueryClient();
 
 export default function App() {
-
-  const scrollRef = useRef()
+  const scrollRef = useRef();
   return (
     <>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
-          <ScrollToTop scrollRef={scrollRef}/>
+          <ScrollToTop scrollRef={scrollRef} />
 
           <AuthProvider>
             <SessionHandler />
@@ -75,12 +75,20 @@ export default function App() {
                       <Admin />
                     </ProtectRouteAdmin>
                   }
-                ></Route>
+                />
                 <Route
                   path="/admin/brukere"
                   element={
                     <ProtectRouteAdmin>
                       <Brukere />
+                    </ProtectRouteAdmin>
+                  }
+                />
+                <Route
+                  path="/admin/category"
+                  element={
+                    <ProtectRouteAdmin>
+                      <Category />
                     </ProtectRouteAdmin>
                   }
                 />
