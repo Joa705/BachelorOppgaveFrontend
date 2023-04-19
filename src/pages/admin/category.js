@@ -77,7 +77,7 @@ export default function Category() {
         <div className="add-new-category d-flex flex-column align-items-center">
           <button
             type="button"
-            class="btn btn-primary"
+            class="btn btn-success"
             data-toggle="modal"
             data-target="#kategoriModal"
           >
@@ -169,7 +169,7 @@ export default function Category() {
                 {isLoading ? (
                   <Loader />
                 ) : (
-                  <button type="submit" class="btn btn-primary">
+                  <button type="submit" class="btn btn-success">
                     Lagre
                   </button>
                 )}

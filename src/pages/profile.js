@@ -91,7 +91,7 @@ export default function Profile() {
               ) : (
                 <button
                   type="submit"
-                  class="btn btn-primary"
+                  class="btn btn-success"
                   style={{ backgroundColor: "#198754" }}
                 >
                   Lagre
