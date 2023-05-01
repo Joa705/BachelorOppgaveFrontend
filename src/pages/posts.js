@@ -14,16 +14,26 @@ import Loader from "../components/loader";
 import ErrorNotification from "../components/errorNotification";
 import { useQuery } from "react-query";
 import Post from "../components/post";
+import { UseAuth } from "../functions/authentication";
 
-async function fetchPostsData() {
-  return await fetch(UrlConfig.serverUrl + "/Post").then((res) => {
+
+async function fetchPostsData(token) {
+  return await fetch(UrlConfig.serverUrl + "/Post", {headers: {userId: token}}).then((res) => {
     const result = res.json();
     return result;
   });
 }
 
-export default function RecentComments() {
-  const { isLoading, error, data } = useQuery("fetchPosts", fetchPostsData);
+export default function Posts() {
+
+  const { token } = UseAuth()
+
+
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["Posts123"],
+    queryFn: () => fetchPostsData(token),
+  });
+
 
   if (isLoading) {
     return (
@@ -80,7 +90,16 @@ export default function RecentComments() {
                   <div className="blank-space-header"></div>
 
                   {data.map((element) => {
-
+                    let hasLiked = 0
+                    
+                    if (element.liked != undefined) {
+                      if(element.liked.liked == true){
+                        hasLiked = 1
+                      }
+                      else {
+                        hasLiked = -1
+                      }  
+                    }
                     return (
                       <>
                         <Post
@@ -92,7 +111,10 @@ export default function RecentComments() {
                           category={element.category.type}
                           votes={element.up_votes - element.down_votes || 0}
                           date={element.created}
+                          comments={element.comments ?? 0}
+                          liked={hasLiked}
                         />
+
                         <div className="blank-space"></div>
                       </>
                     );
