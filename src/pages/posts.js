@@ -16,59 +16,61 @@ import { useQuery } from "react-query";
 import Post from "../components/post";
 import { UseAuth } from "../functions/authentication";
 
-
 async function fetchPostsData(token) {
-  return await fetch(UrlConfig.serverUrl + "/Post", {headers: {userId: token}}).then((res) => {
+  return await fetch(UrlConfig.serverUrl + "/Post", {
+    headers: { userId: token },
+  }).then((res) => {
     const result = res.json();
     return result;
   });
 }
 
 export default function Posts() {
-
-  const { token } = UseAuth()
-
-
-  const { isLoading, error, data } = useQuery({
+  const { token } = UseAuth();
+  const { error, data, status } = useQuery({
     queryKey: ["Posts123"],
     queryFn: () => fetchPostsData(token),
   });
 
+  function displayPostsData() {
+    if (data == undefined) {
+      return;
+    }
 
-  if (isLoading) {
-    return (
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "100vh",
-        }}
-      >
-        <Loader />
-      </div>
-    );
-  }
+    return data.map((element) => {
+      let hasLiked = 0;
 
-  if (error) {
-    console.log(error.name + " : " + error.message);
-    return (
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "10vh",
-        }}
-      >
-        <ErrorNotification message={error.name + " : " + error.message} />
-      </div>
-    );
+      if (element.liked != undefined) {
+        if (element.liked.liked == true) {
+          hasLiked = 1;
+        } else {
+          hasLiked = -1;
+        }
+      }
+      return (
+        <>
+          <Post
+            id={element.id}
+            title={element.title}
+            description={element.description}
+            userName={element.user.userName}
+            status={element.status.type}
+            category={element.category.type}
+            votes={element.up_votes - element.down_votes || 0}
+            date={element.created}
+            comments={element.comments ?? 0}
+            liked={hasLiked}
+          />
+
+          <div className="blank-space"></div>
+        </>
+      );
+    });
   }
 
   return (
     <>
-      <div className="container">
+      <div className="Appcontainer">
         <section style={{ backgroundColor: "#f0f4e3" }}>
           <MDBContainer className="py-5" style={{ maxWidth: "100%" }}>
             <MDBRow className="justify-content-center">
@@ -88,37 +90,41 @@ export default function Posts() {
                     <br />
                   </MDBCardBody>
                   <div className="blank-space-header"></div>
-
-                  {data.map((element) => {
-                    let hasLiked = 0
-                    
-                    if (element.liked != undefined) {
-                      if(element.liked.liked == true){
-                        hasLiked = 1
-                      }
-                      else {
-                        hasLiked = -1
-                      }  
-                    }
-                    return (
-                      <>
-                        <Post
-                          id={element.id}
-                          title={element.title}
-                          description={element.description}
-                          userName={element.user.userName}
-                          status={element.status.type}
-                          category={element.category.type}
-                          votes={element.up_votes - element.down_votes || 0}
-                          date={element.created}
-                          comments={element.comments ?? 0}
-                          liked={hasLiked}
+                  {status == "loading" ? (
+                    <>
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          height: "100vh",
+                        }}
+                      >
+                        <Loader />
+                      </div>
+                    </>
+                  ) : (
+                    ""
+                  )}
+                  {status == "error" ? (
+                    <>
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          height: "10vh",
+                        }}
+                      >
+                        <ErrorNotification
+                          message={error.name + " : " + error.message}
                         />
-
-                        <div className="blank-space"></div>
-                      </>
-                    );
-                  })}
+                      </div>
+                    </>
+                  ) : (
+                    ""
+                  )}
+                  {status == "success" ? <>{displayPostsData()}</> : ""}
                 </MDBCard>
               </MDBCol>
             </MDBRow>
